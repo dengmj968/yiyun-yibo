@@ -1,0 +1,120 @@
+<include file="Public:_header" />
+<style>
+    .yanzheng{color: red}
+</style>
+
+<div class="con_fr ">
+	<div class="con_fr_title">
+		
+		<span class="icon_bg_7"><i class=" icon icon_7"></i></span>
+        <a href="__APP__/Place404/index">404广告位</a> > <span>编辑404广告位</span>
+	</div>
+	<div class="con_fr_des">
+        <form method="post" action="__APP__/Admin/Place404/saveEdit"  name="myForm">
+             <input type="hidden" name="id" value="{$place404Info.id}"/>
+            <div class="user_text clearfix">
+				<label class="user_title">名称：</label>
+				<div class="user_input">
+                    <input  name="web_name" id="web_name" class="text_mes" type="text" value="{$place404Info.web_name}" onblur="if(this.value=='')document.getElementById('titleDiv').innerHTML='*请填写名称！';else document.getElementById('titleDiv').innerHTML='' "/>
+				</div>
+                <div class="user_des " id="" >
+					<span id="titleDiv"></span>
+				</div>
+			</div>
+            <div class="user_text clearfix">
+				<label class="user_title">域名：</label>
+				<div class="user_input">
+                    <input name="web_host" id="web_host" class="text_mes"  type="text" value="{$place404Info['web_host']}" onblur="if(this.value=='')document.getElementById('urlDiv').innerHTML='*请填写广告地址！';else document.getElementById('urlDiv').innerHTML='' "/>
+				</div>
+                <div class="user_des " id="" >
+					<span id="urlDiv"></span>
+				</div>
+			</div>
+            <div class="user_text clearfix">
+				<label class="user_title">专题：</label>
+                <div class="user_radio">
+					<volist name="projectList" id="vo">
+						<label>
+							<input name="mid[]" type="checkbox" value="{$vo.id}" <php>if(in_array($vo['id'],$place404Info['mid'])){ echo "checked";}</php> />{$vo.name}
+						</label>
+					</volist>
+				</div>
+			</div>
+			<div class="user_text clearfix">
+				<label class="user_title">状态：</label>
+				<div class="user_radio">
+					<label><input name="status" type="radio" value="2" <eq name="place404Info.status" value="2">checked</eq>/>启用</label>
+					<label><input name="status" type="radio" value="3" <eq name="place404Info.status" value="3">checked</eq>/>停用</label>
+				</div>
+			</div>
+			<div class="user_text clearfix">
+				<label class="user_title">展示：</label>
+				<div class="user_radio">
+					<label><input name="is_come" type="radio" value="1" <eq name="place404Info.is_come" value="1">checked</eq>/>展示</label>
+					<label><input name="is_come" type="radio" value="0" <eq name="place404Info.is_come" value="0">checked</eq>/>不展示</label>
+				</div>
+			</div>
+			<div class="user_text clearfix">
+				<label class="user_title">颜色：</label>
+				<div class="user_input">							
+					<input id="colors" class="text_mes" type="text" name="colors" value="{$place404Info.colors}" />
+				</div>
+			</div> 
+            <div class="user_btn clearfix">
+                <a class="user_btn_save" href="javascript:void(0);" onclick="run();">确认修改</a>
+            </div>	
+			<input type='hidden' name='p' value="{$Think.get.p}"> 			
+		</form>
+    </div>
+</div>
+
+<include file="Public:_footer" />
+<script>
+function showDiv(obj){
+	$(obj).slideDown("fast");
+}
+		function selectCate(obj){
+			var val = obj.innerHTML;
+			var id = obj.getAttribute('info');
+			var inputVal = $("#keywords").val();
+			var inputInfo = $("#keywords_ids").val();
+			var patt = new RegExp(val);
+			if( patt.test( inputVal ) ){
+				return false;
+			}else{
+				if(inputVal != ""){
+					inputVal = inputVal+','+val;
+					inputInfo = inputInfo+','+id;
+				}else{
+					inputVal = val;
+					inputInfo = id;
+				}
+			}
+			document.getElementById('keywords').value = inputVal;
+			document.getElementById('keywords_ids').value = inputInfo
+		}
+		//博客和空间固定尺寸
+		function selectSize(){
+			$("select[name='size_id'] option").each(function(){
+				if($(this).attr('info') != '190x350' ){
+					$(this).hide();
+				}else{
+					$(this).attr("selected",'selected');
+				}
+				
+			})
+			
+			var size_id =$("select[name='size_id'] option:selected").val();
+			getPic(size_id);
+			
+		}
+		function showAllSize(){
+			$("select[name='size_id'] option").each(function(){
+				$(this).show();
+			})
+		}
+		
+		function run(){
+			document.forms.myForm.submit();
+		}
+</script>

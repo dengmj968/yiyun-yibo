@@ -1,0 +1,105 @@
+<include file="UserCenter:header"/>
+<include file="UserCenter:top"/>
+
+<style> 
+#info{} 
+.meren{ font-size:14px; color:#c5c5c5; padding:0px; margin:0px; font-weight:500;}
+</style> 	
+<div class="page" id="info">
+<div class="page-container">
+<div class="container">
+	<div class="row">
+		<include file="UserCenter:left" />
+		<div class="span9">
+		   <h4 class="header">
+			<span><a class="btn changeBg" href="__URL__/index/readStatus/unread">未读消息</a></span>
+			<span><a class="btn changeBg" href="__URL__/index/readStatus/readed">已读消息</a></span>
+		   </h4>
+		<div class="row-fluid">
+			<div class="min_span2">
+				<form class="form-horizontal">
+					<div class="controlgroup">
+					<!--  
+						<notempty name='messageList'>
+						<table width='100%' border=1>
+							<tr><th  width='30%'>发件人</th><th  width='40%'>标题</th><th  width='10%'>时间</th><th  width='20%'>操作</th></tr>
+							<volist name='messageList' id='vo'>
+								<tr id="message_{$vo.id}" class="tr_list"><td>{$vo.userInfo.email}</td><td>{$vo.title}</td><td>{$vo.create_time|date='Y-m-d',###}</td><td><a href='__URL__/showMessage/mid/{$vo.mid}'>查看</a> | <a href='javascript:void(0);' onclick='delByAjax({$vo.id});'>删除</a></td></tr>
+							</volist>
+							<tr class='tr_page'><td colspan='4' style='text-align:right;'>{$show}</td></tr>
+						<else/>
+						<tr><td colspan='4' style='text-align:right;'>暂无任何消息</td></tr>
+						</table>
+						</notempty>
+						-->
+						<div id="test2_2" class="tablist">
+							<span>
+								<table class="table table-striped sortable">
+									<thead>
+									  <tr>
+										<th>发件人</th>
+										<th>标题</th>
+										<th>时间</th>
+										<th>更多操作</th>
+									  </tr>
+									</thead>
+									<tbody>
+									<volist name="messageList" id="vo">
+									  <tr id="message_{$vo.id}" class='tr_list'>
+										<td>{$vo.sendName}</td>
+										<td>{$vo.title}</td>
+										<td><php> echo date("Y-m-d",$vo['create_time']);</php></td>
+										<td>
+											<a href='__URL__/showMessage/id/{$vo.id}'>查看</a> |
+											<a href='javascript:void(0);' onclick='delByAjax({$vo.id});'> 删除</a>
+										</td>
+									  </tr>
+									</volist>
+									</tbody>
+									</table>
+									
+								<!--********************这里是翻页********************************-->
+									<div class="pagination pagination-centered m_page_stylist fr">
+										{$show}
+									</div>
+								<!--********************这里是翻页********************************-->	
+
+
+							</span>
+						</div>
+					</div> 						
+						
+					</div>
+	
+				</form>
+		</div>
+		</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+ 
+<include file="UserCenter:foot" />
+<script>
+function delByAjax(id){
+	if(!confirm('确认删除该数据吗？')){
+			return false;
+	}
+	$.ajax({
+		url:'__URL__/delByAjax',
+		type:'post',
+		dataType:'json',
+		data:{id:id},
+		success:function(data){
+			if(data){
+				$('#message_'+id).remove();
+				if($(".tr_list").length==0){
+					$(".tr_page").hide();
+				}
+			}
+		}
+	})
+}
+
+</script>

@@ -1,0 +1,110 @@
+<style>
+.changeBg{ background:#eee;}
+.changeBg a:hover{ background:#eee;}
+/*鼠标点击时变换背景，方便JS获取样式*/
+</style>	
+	<div class="span3">
+		<div class="Avatar">
+			<div class="Avatar_left">
+			
+				<div class="boxgrid captionfull">
+					<if condition="$userInfo['extend']['pic']">
+						<img src="{$deploy['CENTER_SERVER']}{$userInfo['extend']['pic']}" width="80" height="80" border="0"/>
+					<else />
+						<img src="/Public/image/default.jpg" width="80" height="80" border="0"/>
+					</if>
+					<div class="cover boxcaption">
+						<p><a href="{$deploy['CENTER_SERVER']}/Home/Index/userPhoto">修改头像</a></p>
+					</div>
+				</div>
+			
+			<!--<img src="/public/css/home/images/nate.png" width="120" height="120" border="0"/>-->
+			</div>
+			<div class="Avatar_right">
+					<if condition="$userInfo['extend']['user_name']">
+						{$userInfo['extend']['user_name']}
+					<elseif condition="$userInfo['extend']['true_name']" />
+						{$userInfo['extend']['true_name']}
+					<elseif condition="$userInfo['email']" />
+						{$userInfo['email']}
+					<else />
+						{$userInfo['phone']}
+					</if>
+				<!--<div>积分：<span>164</span></div>-->
+				<div class="Avatar_right_div"><a href="{$deploy['CENTER_SERVER']}/Home/Index/userPhoto">修改头像</a></div>
+			</div>
+		</div>
+			<div class="sidebar">
+			<ul class="col-nav span3">
+			<!-- style=" background: none repeat scroll 0 0 #EEEEEE;"导航点击样式-->
+				<li <if condition="strtolower(MODULE_NAME) eq 'ad'">class="changeBg"</if>><a href="/Ad"><i class="pull-right icon-heart"></i>我的公益广告</a></li>
+				<li <if condition="strtolower(MODULE_NAME) eq 'place'">class="changeBg"</if> ><a href="/Place"><i class="pull-right icon-list-alt"></i>我的站长广告位</a></li>
+				<li <if condition="strtolower(MODULE_NAME) eq 'place404'">class="changeBg"</if> ><a href="/Place404"><i class="pull-right icon-folder-open"></i>404公益广告位</a></li>
+                <if condition = "$userInfo['group']['group_name'] eq '设计师'">
+                <li <if condition="strtolower(MODULE_NAME) eq 'production'">class="changeBg"</if> ><a href="/Production"><i class="pull-right icon-folder-open"></i>我的作品</a></li>
+                </if>
+                <li <if condition="strtolower(MODULE_NAME) eq 'demand'">class="changeBg"</if> ><a href="/Demand"><i class="pull-right icon-folder-open"></i>我的需求</a></li>
+                <li <if condition="strtolower(MODULE_NAME) eq 'adbuy'">class="changeBg"</if> ><a href="/AdBuy"><i class="pull-right icon-folder-open"></i>我的赞助</a></li> 
+				<!--<li <if condition="strtolower(MODULE_NAME) eq 'scorehistory'">class="changeBg"</if>><a href="/ScoreHistory"><i class="pull-right icon-heart"></i>积分记录</a></li>--> 
+			</ul>
+			</div>
+		</div>
+		<script type="text/javascript">
+        $(document).ready(function(){
+            //To switch directions up/down and left/right just place a "-" in front of the top/left attribute
+            //Vertical Sliding
+            //Full Caption Sliding (Hidden to Visible)
+            $('.boxgrid.captionfull').hover(function(){
+                $(".cover", this).stop().animate({top:'56px'},{queue:false,duration:80});
+            }, function() {
+                $(".cover", this).stop().animate({top:'80px'},{queue:false,duration:80});
+            });
+        });
+
+        function ChangeMenu(){
+            var URLList = []; //索引表示该链接显示的位置
+            // 个人中心
+            URLList["UserCenter/center"] = 0;
+            URLList["UserCenter/index"] = 0;
+            URLList["UserCenter/editPassword"] = 0;
+            //广告管理
+            URLList["Ad/add"] = 1;
+            URLList["Ad/index"] = 1;
+            URLList["Ad/edit"] = 1;
+            //广告位管理
+            URLList["Place/add"] = 2;
+            URLList["Place/index"] =2;
+            URLList["Place/edit"] = 2;
+            URLList["Place404/index"] = 3;
+            URLList["Place404/edit"] = 3;
+			  URLList["Place404/add"] = 3;
+
+            var string = window.location.toString();
+            // 判断当前连接
+            for(index in URLList){
+                if(string.indexOf(index)>0){
+                    var num = URLList[index];
+                  //  alert(num);
+                    var selecter = "#menu_top a:eq("+num+")";
+                    $(selecter).addClass("a_hover");
+                    $(selecter).css("color","#fff");
+                    break;
+                }
+            }
+        }
+
+        /**
+         * 改变左侧高度
+         * @constructor
+         */
+        function ChangeLeftHeight(){
+           var R_height =  $(".Central_content").height();
+           $(".main_left").css("height",R_height+60+"px");
+        }
+
+        window.onload=function(){
+            ChangeMenu(); //刷新改变菜单
+            ChangeLeftHeight(); // 改变左侧高度与右侧一致
+        }
+
+    </script>

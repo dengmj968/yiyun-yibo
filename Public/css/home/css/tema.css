@@ -1,0 +1,1419 @@
+@charset "utf-8";
+
+/* C�digo Digital - Est�dio de Web Design de Fortaleza Cear� */
+
+body {overflow-x:hidden; font-family:sans-serif;}
+
+/* guia */
+#lay {background:url(/Public/images/guian.jpg)center top; z-index:50; width:1440px; height:1912px; opacity:0; position:absolute; left:50%; margin-left:-720px;}
+#lay:hover {opacity:1;}
+
+#lay2 {background:url(/Public/images/guian.jpg)center top; z-index:50; width:1440px; height:1912px; opacity:0; position:absolute; left:50%; margin-left:-720px;}
+#lay2:hover {opacity:1;}
+
+#guiaa {background:url(/Public/images/guia.png)center top; z-index:50; width:1440px; height:1912px; opacity:0; position:absolute; left:50%; margin-left:-720px;}
+#guiaa:hover {opacity:1;}
+
+
+
+/* -----------------Header----------------- */
+#header {position:absolute; width:100%; background:url(/Public/images/bg_textura_destaques.bmp); height:521px;}
+#header #barrasuperior {position:absolute; width:100%; background:url(/Public/images/bg_barra_superior.jpg); height:70px; border-top:solid 2px #9943c1;}
+#header #barrasuperior #menu {float:right;}
+#header #barrasuperior #menu ul {list-style-type:none; margin-top:26px; margin-right:32px;}
+#header #barrasuperior #menu ul li {display:inline;}
+#header #barrasuperior #menu ul li a {font-family:'SimHei;', sans-serif; color:#fff; font-size:16px; margin:0px 16px;}
+#header #barrasuperior #menu ul li a.ativo, #header #barrasuperior #menu ul li a:hover {color:#8771a3;}
+#header #barrasuperior #logo {float:left; width: 300px;}
+
+
+#header #barrasuperior #logo h1 img {margin-left:-84px; margin-top:-0px;}
+
+
+#header #barrasuperior #redessociais {float:right; width:85px; margin-top:23px; margin-right:1px;}
+#header #barrasuperior #redessociais #twitter {width:31px; height:24px; background:url(/Public/images/twitter.png) no-repeat; float:left;}
+#header #barrasuperior #redessociais #facebook {width:31px; height:24px; background:url(/Public/images/facebook.png) no-repeat; float:left;}
+#header #barrasuperior #redessociais #gplus {width:31px; height:24px; background:url(/Public/images/gplus.jpg) no-repeat; float:left;}
+#header #barrasuperior #redessociais a { text-indent: -90000px; display: block; width:31px; height:24px; float: left; margin-left: 10px;}
+
+#header #luz {position:absolute; width:100%; background:url(/Public/images/bg_luz.png) center -72px no-repeat; height:449px; top:72px; z-index:1;}
+
+/* centraliza o conteudo */
+.centralizador {position:absolute; width:981px; height:auto; left:50%; margin-left:-490px; /*background:#333;*/}
+
+#sombradestaques {position:absolute; background:url(/Public/images/sombra_destaques.bmp) top center no-repeat; width:840px; height:10px; top:521px; left:50%; margin-left:-420px;}
+
+
+#header-white {position:absolute; width:100%; background:url(/Public/images/bg-branco.png); height:521px;}
+
+#header-white #barrasuperior {position:absolute; width:100%; background:url(/Public/images/bg_barra_superior.bmp); height:70px; border-top:solid 2px #9943c1;}
+#header-white #barrasuperior #menu {float:right;}
+#header-white #barrasuperior #menu ul {list-style-type:none; margin-top:26px; margin-right:32px;}
+#header-white #barrasuperior #menu ul li {display:inline;}
+#header-white #barrasuperior #menu ul li a {font-family:'SimHei;', sans-serif; color:#fff; font-size:16px; margin:0px 16px;}
+#header-white #barrasuperior #menu ul li a.ativo, #header #barrasuperior #menu ul li a:hover {color:#8771a3;}
+#header-white #barrasuperior #logo {float:left;}
+
+
+#header-white #barrasuperior #logo h1 img {margin-left:-84px; margin-top:-0px;}
+
+
+#header-white #barrasuperior #redessociais {float:right; width:67px; margin-top:23px; margin-right:1px;}
+#header-white #barrasuperior #redessociais #twitter {width:31px; height:24px; background:url(/Public/images/twitter.png) no-repeat; float:left;}
+#header-white #barrasuperior #redessociais #facebook {width:31px; height:24px; background:url(/Public/images/facebook.png) no-repeat; float:right;}
+
+
+#header-white #luz {position:absolute; width:100%; background:url(/Public/images/bg_luz.png) center -72px no-repeat; height:449px; top:72px; z-index:1;}
+
+
+
+/* -----------------/Header----------------- */
+
+
+.descricao-empresa {height:95px; font-family:'SimHei;', arial, sans-serif; text-transform:uppercase; line-height:95px;}
+.descricao-empresa p {width:985px; color:#888783; text-align:center; font-size:13px;}
+.descricao-empresa p strong {font-weight:normal; font-size:inherit; font-family:inherit; color:inherit;}
+
+
+/* -----------------Ultimos Trabalhos----------------- */
+#ultimostrabalhos {position:absolute; background:url(/Public/images/bg_claro.png); height:710px; width:100%; top:521px; z-index:-1;}
+#ultimostrabalhos ul {margin-left:-5px; list-style-type:none;}
+#ultimostrabalhos ul li {padding:1px 4px; width:222px; height:298px; background:url(/Public/images/bg_ulimos_trabalhos.png) no-repeat; float:left; margin-right:25px; cursor:pointer;}
+#ultimostrabalhos ul li:hover .principal {margin-top:-4px; margin-bottom:4px;
+-webkit-transition:margin 100ms ease;
+-moz-transition:margin 100ms ease;
+-o-transition:margin 100ms ease;
+transition:margin 100ms ease;
+}
+#ultimostrabalhos ul li.nomargin {margin-right:-9px;}
+#ultimostrabalhos ul li img.principal {width:215px; height:160px;
+-webkit-transition:margin 170ms ease;
+-moz-transition:margin 170ms ease;
+-o-transition:margin 170ms ease;
+transition:margin 170ms ease;
+
+-webkit-box-shadow:0px 3px 5px rgba(0,0,0,0.2);
+-moz-box-shadow:0px 3px 5px rgba(0,0,0,0.2);
+-o-box-shadow:0px 3px 5px rgba(0,0,0,0.2);
+-ms-box-shadow:0px 3px 5px rgba(0,0,0,0.2);
+box-shadow:0px 3px 5px rgba(0,0,0,0.2);
+}
+
+#ultimostrabalhos ul li .sobre {padding:0px; width:215px; position:relative; height:127px;}
+#ultimostrabalhos ul li .sobre h5 {font-family:'SimHei;', sans-serif; font-size:16px; color:#552b75; padding:13px 22px; margin-top:3px; font-weight:normal;}
+#ultimostrabalhos ul li .sobre p {font-size:12px; font-weight: normal; color:#333; padding:0px 22px 14px 22px; line-height:18px; font-family:helvetica, helvetica neue, arial, sans-serif;}
+#ultimostrabalhos ul li .sobre p strong{font-size:12px; font-weight: normal; color:#333; line-height:18px; font-family:helvetica, helvetica neue, arial, sans-serif;}
+#ultimostrabalhos ul li .sobre a.link {border-bottom:solid 2px #c5b9ca; color:#77569b; font-family:helvetica, helvetica neue, arial, sans-serif; position:absolute; bottom:10px; left:22px;
+
+-webkit-transition:border 250ms ease;
+-moz-transition:border 250ms ease;
+-o-transition:border 250ms ease;
+transition:border 250ms ease;
+}
+#ultimostrabalhos ul li .sobre a.link:hover {border-bottom:solid 2px #91739d;}
+#ultimostrabalhos ul li .sobre .redessociais2 {position:absolute; left:100px; bottom:10px;}
+#ultimostrabalhos ul li .sobre .redessociais2 img {border:solid 1px transparent; margin:0 0 0 -1px;}
+#ultimostrabalhos ul li .sobre .redessociais2 img:hover {border:solid 1px #c5bbce; box-shadow:0px 0px 3px #c5bbce;}
+/* -----------------/Ultimos Trabalhos----------------- */
+
+
+
+
+
+/* -----------------Logos----------------- */
+div#logos {position:absolute; height:330px; width:100%; top:970px; background:url(/Public/images/bg_claro.png);}
+div#logos div#marcas ul {list-style-type:none; margin-top:-17px;}
+div#logos div#marcas ul li {float:left; margin:10px 12px 0 0;}
+/* -----------------/Logos----------------- */
+
+
+
+
+
+
+/* -----------------Footer----------------- */
+#footer {position:absolute; background:url(/Public/images/bg_claro2.png); height:680px; width:100%; top:1260px;}
+
+.footer-servicos {position:static!important;}
+
+#atendimentoAll h3 {margin-bottom:42px; margin-top:70px; font:23px/28px 'SimHei;', arial, sans-serif; color:#4a1e81; clear:both; text-transform:uppercase;}
+#atendimentoAll h3 span {font:24px/30px 'SimHei;', arial, sans-serif; color:#7d35d0; clear:both; text-transform:uppercase;}
+
+#atendimentoAll ul {list-style-type:none;}
+#atendimentoAll ul li {display:block;}
+
+#atendimentoAll #form1, #atendimentoAll #form2, #atendimentoAll #form3 {position:absolute;}
+
+#controle {margin-left:-1px; height:410px; width:255px;}
+#controle ul li {cursor:pointer; height:90px; font-size:19px; font-family:'SimHei;', arial, sans-serif; color:#4a1e81; text-transform:uppercase;}
+#controle ul li:hover {background:url(/Public/images/bg_footer_escuro.png) center;}
+
+/* classe IL fundo escuro ativa */
+.activeFooter {background:url(/Public/images/bg_footer_escuro.png) center;}
+
+#formularios {width:470px; height:410px; background:url(/Public/images/bg_footer_escuro.png) center;}
+
+#controle, #formularios, #mapa {float:left;}
+
+#controle ul li {
+-webkit-border-top-left-radius: 2px;
+-webkit-border-bottom-left-radius: 2px;
+-moz-border-radius-topleft: 2px;
+-moz-border-radius-bottomleft: 2px;
+border-top-left-radius: 2px;
+border-bottom-left-radius: 2px;
+}
+
+#controle ul li#atendimento {line-height:90px; letter-spacing:-1px;}
+#controle ul li#outrosAssuntos {line-height:90px; letter-spacing:-1px;}
+#controle ul li#trabalheConosco {line-height:90px; letter-spacing:-1px;}
+
+#controle ul li img {float:left;}
+
+#controle ul li img#trim {margin-top:24px; margin-left:7px; margin-right:11px}
+#controle ul li img#cafe {margin-top:28px; margin-left:1px; margin-right:11px}
+#controle ul li img#cadeira {margin-top:18px; margin-left:11px; margin-right:11px;}
+
+
+#atendimentoAll #formularios {
+	-webkit-border-radius: 2px;
+	-webkit-border-top-left-radius: 0;
+	-moz-border-radius: 2px;
+	-moz-border-radius-topleft: 0;
+	border-radius: 2px;
+	border-top-left-radius: 0;
+}
+
+/* manter as caixas dos formul�rios uma abaixo da outra */
+#form1 form * {float:left; clear:both;}
+#form2 form * {float:left; clear:both;}
+#form3 form * {float:left; clear:both;}
+
+
+#mapa {height:410px; width:240px; float:left;}
+
+/* formul�rio 1 */
+#form1 p {font-family:'helvetica', arial, sans-serif; font-size:13px; margin-top:39px; margin-bottom:24px; margin-left:38px;}
+
+#form1 form {margin-left:38px;}
+
+#form1 form input[name=nome] {margin-bottom:9px; width:383px; height:31px; background:url(/Public/images/input_um.png); padding-left:7px;}
+#form1 form input[name=email] {margin-bottom:9px; width:383px; height:31px; background:url(/Public/images/input_um.png); padding-left:7px;}
+#form1 form input[name=fone] {margin-bottom:9px; width:168px; height:31px; background:url(/Public/images/input_dois.png); padding-left:7px;}
+#form1 form textarea[name=msg] {margin-bottom:19px; width:383px; height:114px; background:url(/Public/images/input_tres.png); padding-left:7px; padding-top:7px; resize:none;}
+
+#form1 form input, #form1 form textarea {font-family:'SimHei;', arial, sans-serif; color:#37274a; font-size:14px; text-shadow:none;} 
+
+#form1 form input[type=submit] {margin-left:2px; width:109px; height:44px; background:url(/Public/images/botao.png); text-transform:uppercase; color:#e6e4e9;}
+#form1 form input[type=submit]:hover {width:109px; height:44px; background:url(/Public/images/botao.png) 0px -43px;}
+#form1 form input[type=submit]:active {width:109px; height:44px; background:url(/Public/images/botao.png) 0px -86px;}
+
+
+/* formul�rio 2 */
+#form2 p {font-family:'helvetica', arial, sans-serif; font-size:13px; margin-top:39px; margin-bottom:24px; margin-left:38px;}
+
+#form2 form {margin-left:38px;}
+
+#form2 form input[name=nome] {margin-bottom:9px; width:383px; height:31px; background:url(/Public/images/input_um.png); padding-left:7px;}
+#form2 form input[name=email] {margin-bottom:9px; width:383px; height:31px; background:url(/Public/images/input_um.png); padding-left:7px;}
+#form2 form input[name=fone] {margin-bottom:9px; width:168px; height:31px; background:url(/Public/images/input_dois.png); padding-left:7px;}
+#form2 form textarea[name=msg] {margin-top:-1px; margin-bottom:19px; width:383px; height:155px; background:url(/Public/images/input_quatro.png); padding-left:7px; padding-top:7px; resize:none;}
+
+#form2 form input, #form2 form textarea {font-family:'SimHei;', arial, sans-serif; color:#37274a; font-size:14px; text-shadow:none;} 
+
+#form2 form input[type=submit] {margin-left:2px; width:109px; height:44px; background:url(/Public/images/botao.png); text-transform:uppercase; color:#e6e4e9;}
+#form2 form input[type=submit]:hover {width:109px; height:44px; background:url(/Public/images/botao.png) 0px -43px;}
+#form2 form input[type=submit]:active {width:109px; height:44px; background:url(/Public/images/botao.png) 0px -86px;}
+
+
+/* formul�rio 3 */
+#form3 p {font-family:'helvetica', arial, sans-serif; font-size:13px; margin-top:39px; margin-bottom:24px; margin-left:38px;}
+
+#form3 form {margin-left:38px; position:relative; overflow:hidden; height:300px;}
+
+#form3 form input[name=nome] {margin-bottom:9px; width:383px; height:31px; background:url(/Public/images/input_um.png); padding-left:7px;}
+#form3 form input[name=email] {margin-bottom:9px; width:383px; height:31px; background:url(/Public/images/input_um.png); padding-left:7px;}
+#form3 form input[name=fone] {margin-bottom:9px; width:168px; height:31px; background:url(/Public/images/input_dois.png); padding-left:7px;}
+#form3 form input[name=portfolio] {margin-bottom:9px; width:383px; height:31px; background:url(/Public/images/input_um.png); padding-left:7px;}
+#form3 form textarea[name=msg] {margin-bottom:19px; width:383px; height:74px; background:url(/Public/images/input_cinco.png); padding-left:7px; padding-top:7px; resize:none;}
+
+#form3 form input, #form3 form textarea {font-family:'SimHei;', arial, sans-serif; color:#37274a; font-size:14px; text-shadow:none;} 
+
+#form3 form input[type=file] {display:none;}
+#form3 form input[type=submit] {clear:none; position:absolute; left:130px; bottom:0px; width:109px; height:44px; background:url(/Public/images/botao.png); text-transform:uppercase; color:#e6e4e9;}
+#form3 form input[type=submit]:hover {width:109px; height:44px; background:url(/Public/images/botao.png) 0px -43px;}
+#form3 form input[type=submit]:active {width:109px; height:44px; background:url(/Public/images/botao.png) 0px -86px;}
+
+#form3 span#anexarCurriculo {cursor:pointer; position:absolute; bottom:10px; left:0px; font-family:'SimHei;', arial, sans-serif; font-size:14px; color:#37274a; text-decoration:underline;}
+
+
+/* mapa */
+#mapa #map {border:solid 1px #d7d6cb; width:210px; height:200px; margin-left:40px;
+-webkit-box-shadow:2px 2px 4px rgba(0,0,0,0.1);
+-moz-box-shadow:2px 2px 4px rgba(0,0,0,0.1);
+-o-box-shadow:2px 2px 4px rgba(0,0,0,0.1);
+-ms-box-shadow:2px 2px 4px rgba(0,0,0,0.1);
+box-shadow:2px 2px 4px rgba(0,0,0,0.1);
+}
+
+#mapa p, #mapa ul, #mapa address {margin-left:40px;}
+
+#mapa address {line-height:19px; margin-top:13px; font-style:normal !important; font-weight:normal !important; font-family:'SimHei;', arial, sans-serif; font-size:14px; color:#391b5d;}
+#mapa a.mapAmpliado {margin-top:6px; line-height:21px; font-style:normal; font-family:'SimHei;', arial, sans-serif; font-size:14px; color:#7D35D0; font-weight:normal; margin:8px 0 0 40px; float:left; clear:both;}
+_#mapa a.mapAmpliado:hover {text-decoration:underline;}
+
+#mapa ul li {height:40px; line-height:20px; font-family:'SimHei', arial, sans-serif; font-size:14px; color:#391b5d;}
+#mapa ul li a {line-height:20px; font-family:'SimHei', arial, sans-serif; font-size:14px; color:#391b5d;}
+#mapa ul li img {float:left; clear:both;}
+#mapa ul li#telefone {font-family:'SimHei', arial, sans-serif !important; font-size:18px; color:#391b5d;}
+
+/* mapa ul icones */
+#mapa ul {margin-top:60px;/*45px antes*/}
+
+/* icones fone, witter e facebook */
+#mapa ul li img[alt="Telefone"] {margin-left:-7px; margin-top:-4px; margin-right:5px;}
+#mapa ul li img[alt="Twitter"] {margin-left:-6px; margin-top:-3px; margin-right:5px;}
+#mapa ul li img[alt="Facebook"] {margin-left:-7px; margin-top:-2px; margin-right:5px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* atendimento right */
+#footer #atendimentoright {float:right; margin-top:30px; background:url(/Public/images/bg_atendimento.bmp); height:440px; width:470px; margin-right:2px;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+}
+
+#footer #atendimentoright div.margem {margin:24px 0 0 29px; width:415px;}
+#footer #atendimentoright h3 {font-weight:normal; text-transform:uppercase; font-family:Myriad Pro, Calibri, sans-serif; font-size:17px; color:#391b5d; letter-spacing:1px;}
+#footer #atendimentoright p { font-family:helvetica, helvetica neue, arial, sans-serif; margin-top:13px; line-height:19px; color:#444; padding-bottom:14px; border-bottom:solid 1px #cfcec4;}
+#footer #atendimentoright input[type=text], #footer #atendimentoright textarea{color:#444;}
+#footer #atendimentoright label {clear:both; margin-top:25px; float:right; font-family:'SimHei;', sans-serif; font-size:14px; color:#37274a; letter-spacing:-1px; margin-right:22px;}
+#footer #atendimentoright div#esq {float:left; width:111px; /*margin-top:20px;*/}
+#footer #atendimentoright div#esq label {margin-top:25px}
+#footer #atendimentoright div#dir {float:right; width:302px; margin-top:11px;}
+#footer #atendimentoright div#dir input, #footer #atendimentoright div#dir textarea {margin-top:9px; font-family:helvetica, helvetica neue, arial, sans-serif;}
+
+
+/* agende atendimento */
+.input1 {width:287px; height:28px; background:url(/Public/images/input1.png) no-repeat; padding:3px 7px 0 7px;}
+.input2 {width:161px; height:28px; background:url(/Public/images/input2.png) no-repeat; padding:3px 7px 0 7px;}
+.textarea {overflow:scroll-y; width:287px; height:114px; background:url(/Public/images/textarea.png) no-repeat; padding:7px 7px 0px 7px; resize:none;}
+input.button {width:110px; height:43px; margin-left:1px; background:url(/Public/images/botao.png) 1px 0px; color:#e6dfeb; font-weight:bold; font-size:13px; text-transform:uppercase; font-family:arial;}
+input.button:hover {background:url(/Public/images/botao.png) 1px 87px;}
+input.button:active {background:url(/Public/images/botao.png) 1px 44px;}
+
+
+/* atendimento left */
+#footer #atendimentoleft {margin-top:-55px;}
+#footer #atendimentoleft div.margem2 {margin:24px 0 0 0; width:415px;}
+#footer #atendimentoleft div.margem2 p {margin-top:30px; font-family:helvetica, helvetica neue, arial, sans-serif;}
+#footer #atendimentoleft {float:left; margin-top:30px;}
+#footer #atendimentoleft h3 {font-family:Myriad Pro, Calibri, sans-serif; text-transform:uppercase; margin-top:-5px; margin-left:-3px; font-size:24px; color:#4a1e81; font-weight:normal;}
+#footer #atendimentoleft p {margin-top:13px; line-height:19px; color:#444; padding-bottom:14px;}
+
+#footer #atendimentoleft div#contato {margin-top:13px; text-align:left;}
+#footer #atendimentoleft div#contato ul {list-style-type:none; margin-top:20px; margin-left:-5px;}
+#footer #atendimentoleft div#contato ul li {line-height:40px; height:30px; padding:10px 0 9px 0; display:run-in; font-family:'SimHei', Calibri, Myriad Pro; font-weight:normal; letter-spacing:-1px; font-size:16px; color:#391a5d;}
+#footer #atendimentoleft div#contato ul li.margem {margin:5px 0 -5px 0;}
+#footer #atendimentoleft div#contato ul li img {float:left; margin-right:10px;}
+#footer #atendimentoleft div#contato ul li address {margin-top:6px; line-height:21px; font-style:normal; font-family:'SimHei'; sans-serif; font-weight:normal; letter-spacing:-1px; font-size:16px; color:#391a5d; font-weight:normal;}
+#footer #atendimentoleft div#contato ul li span {font-family:'SimHei'; sans-serif; font-size:23px; font-weight:600; letter-spacing:-1px; font-variant:small-caps;}
+#footer #atendimentoleft div#contato div.efeito1 {position:absolute; width:240px; height:50px;}
+#footer #atendimentoleft div#contato div.efeito1:hover {background:url(/Public/images/bg_transparente.png); box-shadow:0px 2px 2px rgba(0,0,0,0.2);}
+/* -----------------/Footer----------------- */
+
+
+
+/* -----------------Portf�lio----------------- */
+
+.conteudoPortfolio .dizeres {
+	height:308px;
+	width:100%;
+}
+
+h2.h2port {margin-top:64px; font-weight:normal; color:#b19ace; font-size:18px; font-family:'SimHei;', arial, sans-serif; text-transform:uppercase; text-align:center;}
+h3.h3port {margin-top:16px; font-weight:normal; color:#fff; font-size:36px; font-family:'SimHei', arial, sans-serif, arial, sans-serif; text-transform:uppercase; text-align:center;}
+h4.h4port {margin-top:12px; line-height:30px; font-weight:normal; color:#b19ace; font-family:'SimHei;', arial, sans-serif; font-size:16px; text-align:center;}
+
+span.spanlinks {border-bottom:solid 1px #57278f; color:#8e3ced; line-height:30px; font-weight:normal; font-family:'SimHei;', arial, sans-serif; font-size:16px; text-align:center;
+-webkit-transition:border 300ms ease;
+-moz-transition:border 300ms ease;
+-o-transition:border 300ms ease;
+-ms-transition:border 300ms ease;
+transition:border 300ms ease;
+}
+
+span.spanlinks:hover {
+	border-bottom:solid 1px #8654c1;
+	color:#9e59ed;
+}
+
+.portfolioForSlide {
+	height:650px;
+	width:980px;
+	float:left;
+	margin-left:-1px;
+	list-style-type:none;
+	overflow:hidden!important;
+}
+
+.portfolio {
+	height:620px;
+	width:980px;
+	float:left;
+	background-color:transparent!important;
+}
+
+.portfolio .itemPortfolio {
+	height:300px;
+	width:215px;
+	margin-right:40px;
+	margin-bottom:40px;
+	background:url(/Public/images/bg_trabalhos_portfolio.png) bottom left repeat-x #f7f7f3;
+	float:left;
+	cursor:pointer;
+	-webkit-box-shadow:4px 4px 35px rgba(0,0,0,0.5);
+	-moz-box-shadow:4px 4px 35px rgba(0,0,0,0.5);
+	-o-box-shadow:4px 4px 35px rgba(0,0,0,0.5);
+	-ms-box-shadow:4px 4px 35px rgba(0,0,0,0.5);
+	box-shadow:4px 4px 35px rgba(0,0,0,0.5);
+}
+
+.portfolio div.itemPortfolio img.principal {
+-webkit-box-shadow:0px 3px 5px rgba(0,0,0,0.4);
+-moz-box-shadow:0px 3px 5px rgba(0,0,0,0.4);
+-o-box-shadow:0px 3px 5px rgba(0,0,0,0.4);
+-ms-box-shadow:0px 3px 5px rgba(0,0,0,0.4);
+box-shadow:0px 3px 5px rgba(0,0,0,0.4);
+
+-webkit-transition:margin 100ms ease;
+-moz-transition:margin 100ms ease;
+-o-transition:margin 100ms ease;
+transition:margin 100ms ease;
+}
+
+.portfolio .itemPortfolio:hover img {
+	margin-top:-4px; 
+	margin-bottom:4px;
+-webkit-transition:margin 100ms ease;
+-moz-transition:margin 100ms ease;
+-o-transition:margin 100ms ease;
+transition:margin 100ms ease;
+}
+
+.portfolio .itemPortfolio a h5 {
+	font-family:'SimHei;', arial, sans-serif;
+	color:#552B75;
+	font-size:16px;
+	font-weight:normal;
+	padding:13px 22px;
+	margin-top:3px;
+}
+
+.portfolio .itemPortfolio a p {
+	font-family:'SimHei'; arial, sans-serif;
+	color:#333;
+	font-size:12px;
+	font-weight:normal;
+	padding:0px 15px 14px 22px;
+	line-height:18px;
+	height:36px;
+}
+.portfolio .itemPortfolio a p strong {
+	font-family:'SimHei';
+	color:#333;
+	font-size:12px;
+	font-weight:normal;
+	line-height:18px;
+	height:36px;
+}
+
+.conteudoPortfolio {
+	position:absolute;
+	width:100%;
+	height:1220px;
+	background:url(/Public/images/bg_portfolio_principal_test.jpg) no-repeat center top #210f37;
+	margin-top:72px;
+}
+
+.conteudoPortfolio-nobg {
+	position:static;
+	width:100%;
+	background:url(/Public/images/bg-branco.png) center top; /*img temporariamente externa*/
+	overflow:hidden;
+	padding-bottom:80px;
+}
+
+.portfolio .itemPortfolio a.link {
+	margin:5px 22px;
+	color:#77569B;
+	font-family:'SimHei';
+	padding-bottom:1px;
+	border-bottom:solid 2px #C5B9CA;
+-webkit-transition:border 250ms ease;
+-moz-transition:border 250ms ease;
+-o-transition:border 250ms ease;
+transition:border 250ms ease;
+}
+
+.portfolio .itemPortfolio a.link:hover{
+	border-bottom:solid 2px #91739D;
+}
+
+.portfolio .itemPortfolio .redessociais2{
+	margin-top:-15px;
+	margin-left:97px;
+}
+
+.nolink{
+	margin-top:0px!important;
+	margin-left:22px!important;
+}
+
+.nolink2{
+	margin-top:22px!important;
+	margin-left:0px!important;
+}
+
+.portfolio .itemPortfolio .redessociais3{
+	margin-top:0px;
+	margin-left:21px;
+}
+
+.portfolio .itemPortfolio .redessociais2 img{
+	border:solid 1px transparent; 
+	margin:0 0 0 -1px;
+}
+
+.portfolio .itemPortfolio .redessociais2 img:hover{
+	border:solid 1px #c5bbce;
+	-webkit-box-shadow:0px 0px 3px #c5bbce;
+	-moz-box-shadow:0px 0px 3px #c5bbce;
+	-o-box-shadow:0px 0px 3px #c5bbce;
+	-ms-box-shadow:0px 0px 3px #c5bbce;
+	box-shadow:0px 0px 3px #c5bbce;
+}
+
+.nomarginright {
+	margin-right:0px!important;
+}
+
+#navport {width:200px; height:50px; position:absolute; left:50%; margin-left:-91px; margin-top:680px; z-index:20;}
+#navport a {background:url(/Public/images/disable-item.png) center no-repeat; color:transparent; padding:16px; margin:0px -4px 0px -4px; text-shadow:none;}
+#navport a:hover {opacity:0.6;}
+#navport a.activeSlide {background:url(/Public/images/item-active.png) -1px 4px no-repeat; overflow:visible;}
+#navport a.activeSlide:hover {opacity:1;}
+
+.infoAbaixoCaixas {
+	margin-top:655px;
+}
+
+.infoAbaixoCaixas .useSetas{
+	float:right;
+	margin-right:50px;
+}
+
+.infoAbaixoCaixas .useSetas img{
+	float:right;
+}
+
+.infoAbaixoCaixas .useSetas p{
+	font-family:'SimHei;', arial, sans-serif;
+	font-size:14px;
+	color:#8e3ced;
+	float:right;
+	text-align:right;
+	width:139px;
+	margin-top:11px;
+	margin-right:2px;
+	line-height:20px;
+}
+
+/* item destacado portfolio */
+
+.itemDestacado {
+	list-style-type:none;
+	margin-left:-1px;
+	z-index:20;
+	position:absolute;
+	-webkit-box-shadow:5px 5px 20px rgba(0,0,0,0.5);	
+	-moz-box-shadow:5px 5px 20px rgba(0,0,0,0.5);	
+	-o-box-shadow:5px 5px 20px rgba(0,0,0,0.5);	
+	-ms-box-shadow:5px 5px 20px rgba(0,0,0,0.5);	
+	box-shadow:5px 5px 20px rgba(0,0,0,0.5);	
+}
+
+.itemDestacado li {
+	width:980px;
+	height:620px;
+}
+
+.itemDestacado li img.imgleft {
+	float:left;
+	height:620px;
+	width:765px;
+}
+
+.itemDestacado li .itemDescricao  {
+	float:right;
+	width:215px;
+	height:620px;
+	background:#f8f8f4;
+}
+
+.itemDestacadoFuncoes {
+	position:absolute;
+	margin-top:675px;
+	height:100px;
+	z-index:30;
+	width:978px;
+}
+
+.itemDestacadoFuncoes .direction {
+	margin-left:380px;
+	position:absolute;
+	margin-top:3px;
+	height:40px;
+}
+
+.itemDestacadoFuncoes .direction #prevport {
+	margin-right:29px;
+}
+
+.itemDestacadoFuncoes .direction #prevport, .itemDestacadoFuncoes .direction #nextport {
+	background:url(/Public/images/prev-next-bg.png) repeat-x;
+	color:#8c5bd3;
+	font-family:'SimHei;', arial, sans-serif;
+	font-size:13px;
+	text-transform:uppercase;
+	padding:8px 16px;
+-webkit-border-radius:2px;
+-moz-border-radius:2px;
+-o-border-radius:2px;
+-ms-border-radius:2px;
+border-radius:2px;
+}
+
+.itemDestacadoFuncoes .direction #prevport:hover, .itemDestacadoFuncoes .direction #nextport:hover  {
+	background:url(/Public/images/prev-next-hover-bg.png) repeat-x;
+}
+
+.itemDestacadoFuncoes .direction #prevport:active, .itemDestacadoFuncoes .direction #nextport:active {
+	opacity:0.8;
+}
+
+.itemDestacado .tituloMaisDescricao {
+	margin-top:47px;
+	margin-left:19px;
+}
+.itemDestacado .tituloMaisDescricao h5 {
+	font-family:'SimHei;', arial, sans-serif;
+	color:#552B75;
+	font-size:16px;
+	font-weight:normal;
+}
+
+.itemDestacado .tituloMaisDescricao p {
+	font-family:'helvetica', 'helvetica neue', arial, sans-serif;
+	color:#333;
+	font-size:13px;
+	margin-top:23px;
+	width:180px;
+}
+
+.itemDestacado .tituloMaisDescricao a.visiteositeport {
+	font-family:'SimHei';
+	color:#77569B;
+	font-size:12px;
+	margin-top:7px;
+	border-bottom:solid 2px #C5B9CA;
+	margin-top:16px;
+	float:left;
+	-webkit-transition:border 250ms ease;
+	-moz-transition:border 250ms ease;
+	-o-transition:border 250ms ease;
+	transition:border 250ms ease;
+}
+
+.itemDestacado .tituloMaisDescricao a.visiteositeport:hover {
+	border-bottom:solid 2px #91739D;
+}
+
+.itemDestacado .tituloMaisDescricao .social {
+	float:left;
+	margin-top:16px;
+	margin-left:20px;
+	border:solid 1px transparent;
+}
+
+.itemDestacado .tituloMaisDescricao .social img{
+	border:solid 1px transparent;
+	-webkit-border-radius:2px;
+	-moz-border-radius:2px;
+	-o-border-radius:2px;
+	-ms-border-radius:2px;
+	border-radius:2px;
+}
+
+.itemDestacado .tituloMaisDescricao .social img:hover{
+	border:solid 1px #c5bbce;
+	-webkit-box-shadow:0px 0px 3px #c5bbce;
+	-moz-box-shadow:0px 0px 3px #c5bbce;
+	-o-box-shadow:0px 0px 3px #c5bbce;
+	-ms-box-shadow:0px 0px 3px #c5bbce;
+	box-shadow:0px 0px 3px #c5bbce;
+}
+
+.backtoall {
+	position:absolute;
+	cursor:pointer;
+}
+
+.backtoall:hover img {
+	opacity:0.8;
+}
+
+.backtoall img {
+	float:left;
+	margin-right:10px;
+}
+
+.backtoall span {
+	color:#8c5bd3;
+	font-family:'SimHei;', arial, sans-serif;
+	font-size:13px;
+	text-transform:uppercase;
+	float:left;
+	line-height:22px;
+}
+
+#navdestaq {
+	display:none;
+}
+
+/* -----------------/Portf�lio----------------- */
+
+
+#caixaimaginaria {
+	width:230px;
+	height:75px;
+	position:absolute;
+	background:black;
+	margin-top:445px;
+	margin-left:555px;
+	z-index:1;
+	display:none;
+}
+
+
+/* -----------------Servi�os----------------- */
+
+#servicos {
+	margin-top:-8px;
+}
+
+#servicos ul {
+	width:1020px;
+	list-style-type:none;
+	margin:0 auto;
+	padding-left:39px;
+}
+
+#servicos ul li {
+	cursor:default;
+	height:220px;
+	width:470px;
+	float:left;
+	margin:0px 40px 40px 0px;
+	position:relative;
+	
+	-webkit-transition:all 1s ease;
+	-moz-transition:all 1s ease;
+	-o-transition:all 1s ease;
+	transition:all 1s ease;
+}
+
+#servicos ul li:hover {
+	-webkit-box-shadow:0px 0px 30px rgba(142, 60, 237, 0.3);
+	-moz-box-shadow:0px 0px 30px rgba(142, 60, 237, 0.3);
+	-o-box-shadow:0px 0px 30px rgba(142, 60, 237, 0.3);
+	box-shadow:0px 0px 30px rgba(142, 60, 237, 0.3);
+	
+	-webkit-transition:all 200ms ease;
+	-moz-transition:all 200ms ease;
+	-o-transition:all 200ms ease;
+	transition:all 200ms ease;
+}
+
+#servicos ul li#web-sites {
+	background:url(/Public/images/bg-websites.png);
+}
+
+#servicos ul li#web-sites img {
+	position:absolute;
+	bottom:0px;
+	right:0px;
+}
+
+#servicos ul li#e-commerce {
+	background:url(/Public/images/bg-ecommerce.png);
+}
+
+#servicos ul li#e-commerce img {
+	position:absolute;
+	bottom:0px;
+	right:0px;
+}
+
+#servicos ul li#mobile-sites-e-apps {
+	background:url(/Public/images/bg-mobile.png);
+}
+
+#servicos ul li#mobile-sites-e-apps img {
+	position:absolute;
+	bottom:0px;
+	right:0px;
+}
+
+#servicos ul li#e-mail-marketing {
+	background:url(/Public/images/bg-emailmarketing.png);
+}
+
+#servicos ul li#e-mail-marketing img {
+	position:absolute;
+	top:0px;
+	right:0px;
+}
+
+#servicos ul li#redes-sociais {
+	margin-top:2px;
+	background:url(/Public/images/bg-redessociais.png);
+}
+
+#servicos ul li#redes-sociais img {
+	position:absolute;
+	bottom:0px;
+	right:0px;
+}
+
+#servicos ul li#sistemas {
+	margin-top:2px;
+	background:url(/Public/images/bg-sistemas.png);
+}
+
+#servicos ul li#sistemas img {
+	position:absolute;
+	top:0px;
+	right:0px;
+}
+
+#servicos ul li h3 {
+	font-weight:normal!important;
+	margin-top:38px;
+	margin-bottom:5px;
+	color:#fff;
+	font-family:'SimHei;', arial, sans-serif;
+	font-size:24px;
+	text-transform:uppercase;
+	margin-left:45px;
+	float:left;
+	clear:both;
+	letter-spacing:-1px;
+}
+
+#servicos ul li p {
+	font-weight:normal!important;
+	width:263px;
+	color:#b19ace;
+	font-family:'SimHei;', arial, sans-serif;
+	font-size:16px;
+	margin-left:45px;
+	float:left;
+	clear:both;
+	line-height:30px;
+}
+
+#servicos ul li#e-commerce p {
+	width:293px;
+}
+
+#servicos ul li a {
+	font-weight:normal!important;
+	color:#8e3ced;
+	font-family:'SimHei;', arial, sans-serif;
+	font-size:16px;
+	margin-left:45px;
+	float:left;
+	clear:both;
+	line-height:27px;
+}
+
+#servicos-conteudo {width:725px; float:left; margin-top:56px;} 
+#servicos-conteudo h3 {font-family:'SimHei;', arial, sans-serif; font-size:18px; color:#78776f; font-weight:normal; text-transform:uppercase; margin-bottom:14px;}
+#servicos-conteudo h3 span {font-family:'SimHei;', arial, sans-serif; font-size:18px; color:#281340; font-weight:normal; text-transform:uppercase;}
+
+#servicos-conteudo #envolve-servicos {padding-top:2px; background:#230f39; _height:990px; width:725px; background:url(/Public/images/bg-services.png) no-repeat #240f3a; margin-left:-1px; padding-bottom:35px;}
+#servicos-conteudo #envolve-servicos .imagem-relacionada.iguatemi {position:relative; width:100%; height:468px; background:url(/Public/images/case-iguatemi.jpg) center no-repeat; margin:0 0 50px 0;}
+#servicos-conteudo #envolve-servicos .imagem-relacionada.iguatemi h5 {position:absolute; left:45px; top:50px; width:600px; line-height:30px; font-size:23px; color:#fff; font-family:'SimHei;', arial, sans-serif; font-weight:100;}
+#servicos-conteudo #envolve-servicos .imagem-relacionada.iguatemi ol {width:170px; position:absolute; left:515px; top:165px; color:#75ffff; font-family:'SimHei;', arial, sans-serif; text-transform:uppercase;}
+#servicos-conteudo #envolve-servicos .imagem-relacionada.iguatemi ol li {font-size:16px; list-style-image:url(/Public/images/check-azul.png); margin:0 0 10px 0; line-height:20px;}
+
+#servicos-conteudo #envolve-servicos .imagem-relacionada.baladain {position:relative; width:100%; height:468px; background:url(/Public/images/case-baladain.jpg) center no-repeat; margin:0 0 50px 0;}
+#servicos-conteudo #envolve-servicos .imagem-relacionada.baladain h5 {position:absolute; left:45px; top:50px; width:600px; line-height:30px; font-size:23px; color:#fff; font-family:'SimHei;', arial, sans-serif; font-weight:100;}
+#servicos-conteudo #envolve-servicos .imagem-relacionada.baladain ol {width:170px; position:absolute; left:470px; top:195px; color:#ECFF7F; font-family:'SimHei;', arial, sans-serif; text-transform:uppercase;}
+#servicos-conteudo #envolve-servicos .imagem-relacionada.baladain ol li {font-size:16px; list-style-image:url(/Public/images/check-verde.png); margin:0 0 10px 0; line-height:20px;}
+
+#servicos-conteudo #envolve-servicos .imagem-relacionada.pinheiro {position:relative; width:100%; height:468px; background:url(/Public/images/case-pinheiro.jpg) center no-repeat; margin:0 0 50px 0;}
+#servicos-conteudo #envolve-servicos .imagem-relacionada.pinheiro h5 {position:absolute; left:45px; top:50px; width:600px; line-height:30px; font-size:23px; color:#fff; font-family:'SimHei;', arial, sans-serif; font-weight:100;}
+#servicos-conteudo #envolve-servicos .imagem-relacionada.pinheiro ol {width:170px; position:absolute; left:70px; top:195px; color:#FDA236; font-family:'SimHei;', arial, sans-serif; text-transform:uppercase;}
+#servicos-conteudo #envolve-servicos .imagem-relacionada.pinheiro ol li {font-size:16px; list-style-image:url(/Public/images/check-laranja.png); margin:0 0 10px 0; line-height:20px;}
+
+#servicos-conteudo #envolve-servicos .imagem-relacionada.fortalezatravel {position:relative; width:100%; height:468px; background:url(/Public/images/case-fortalezatravel.jpg) center no-repeat; margin:0 0 50px 0;}
+#servicos-conteudo #envolve-servicos .imagem-relacionada.fortalezatravel h5 {position:absolute; left:45px; top:50px; width:600px; line-height:30px; font-size:23px; color:#fff; font-family:'SimHei;', arial, sans-serif; font-weight:100;}
+#servicos-conteudo #envolve-servicos .imagem-relacionada.fortalezatravel ol {width:270px; position:absolute; left:400px; top:225px; color:#FFE50C; font-family:'SimHei;', arial, sans-serif; text-transform:uppercase;}
+#servicos-conteudo #envolve-servicos .imagem-relacionada.fortalezatravel ol li {font-size:16px; list-style-image:url(/Public/images/check-amarelo.png); margin:0 0 10px 0; line-height:20px;}
+
+#servicos-conteudo #servicos-conteudo-imagem {position:relative; _border-top:solid 2px #391e59; background:url(/Public/images/);}
+#servicos-conteudo #servicos-conteudo-imagem h4 {left:46px; top:74px; width:460px; position:absolute; font-size:36px; font-family:'SimHei'; color:#6e4b9b; font-weight:normal; text-transform:uppercase;}
+#servicos-conteudo #servicos-conteudo-imagem h4 span {font-size:36px; font-family:'SimHei'; font-weight:normal; text-transform:uppercase;color:#27113e;}
+#servicos-conteudo #servicos-conteudo-imagem img {padding-top:2px;}
+
+#servicos-conteudo #servicos-conteudo-dizeres {margin:0px 30px 64px 45px; /*padding-top:2px;*/}
+#servicos-conteudo #servicos-conteudo-dizeres p {line-height:31px; color:#fefefe; font-family:'SimHei'; font-size:14px; margin:0 0 20px 0; font-weight:100;}
+#servicos-conteudo #servicos-conteudo-dizeres p strong {line-height:31px; color:#fefefe; font-family:'SimHei'; font-size:14px; margin:0 0 20px 0; font-weight:100;}
+#servicos-conteudo #servicos-conteudo-dizeres p span {font-size:14px;}
+#servicos-conteudo #servicos-conteudo-dizeres .block {border-left:solid 7px #442e5c; padding:0 0 0 20px; margin:50px 0 0 0;}
+#servicos-conteudo #servicos-conteudo-dizeres .block * {color:#a781d0; font-style:italic;}
+#servicos-conteudo #servicos-conteudo-dizeres .block h6 {text-transform:uppercase; margin:0 0 20px 0; font-weight:100;}
+
+#servicos-lateral {width:215px; float:right; margin-top:56px; margin-right:1px;}
+#servicos-lateral h3 {font-family:'SimHei;', arial, sans-serif; font-size:18px; color:#78776f; font-weight:normal; text-transform:uppercase; margin-bottom:14px;}
+#servicos-lateral ul {list-style-type:none;}
+#servicos-lateral ul li {float:left; clear:both; width:215px; height:131px; background:url(/Public/images/outros-servicos-sprite.png) -215px 0px; margin-bottom:22px; overflow:hidden;
+	-webkit-transition:all 300ms ease-in-out;
+	-moz-transition:all 300ms ease-in-out;
+	-o-transition:all 300ms ease-in-out;
+	-khtml-transition:all 300ms ease-in-out;
+	-ms-transition:all 300ms ease-in-out;
+	transition:all 300ms ease-in-out;
+
+}
+
+#servicos-lateral ul li:hover {background:url(/Public/images/outros-servicos-sprite.png) 0px 0px;
+	-webkit-transition:all 200ms ease-in-out;
+	-moz-transition:all 200ms ease-in-out;
+	-o-transition:all 200ms ease-in-out;
+	-khtml-transition:all 200ms ease-in-out;
+	-ms-transition:all 200ms ease-in-out;
+	transition:all 200ms ease-in-out;
+	
+	-webkit-box-shadow:inset 0px 0px 20px rgba(0,0,0,0.3), 0px 0px 15px rgba(35,15,57,0.2);
+	-moz-box-shadow:inset 0px 0px 20px rgba(0,0,0,0.3), 0px 0px 15px rgba(35,15,57,0.2);
+	-o-box-shadow:inset 0px 0px 20px rgba(0,0,0,0.3), 0px 0px 15px rgba(35,15,57,0.2);
+	-ms-box-shadow:inset 0px 0px 20px rgba(0,0,0,0.3), 0px 0px 15px rgba(35,15,57,0.2);
+	box-shadow:inset 0px 0px 20px rgba(0,0,0,0.3), 0px 0px 15px rgba(35,15,57,0.2);
+}
+#servicos-lateral ul li#websites a img {right:-30px; bottom:0px;
+	-webkit-transition:all 300ms ease-in-out;
+	-moz-transition:all 300ms ease-in-out;
+	-o-transition:all 300ms ease-in-out;
+	-khtml-transition:all 300ms ease-in-out;
+	-ms-transition:all 300ms ease-in-out;
+	transition:all 300ms ease-in-out;
+
+}
+#servicos-lateral ul li#websites:hover a img {right:-15px; bottom:0px;
+	-webkit-transition:all 200ms ease-in-out;
+	-moz-transition:all 200ms ease-in-out;
+	-o-transition:all 200ms ease-in-out;
+	-khtml-transition:all 200ms ease-in-out;
+	-ms-transition:all 200ms ease-in-out;
+	transition:all 200ms ease-in-out;
+	
+	-webkit-transform:scale(0.9);
+	-moz-transform:scale(0.9);
+	-o-transform:scale(0.9);
+	-ms-transform:scale(0.9);
+	-khtml-transform:scale(0.9);
+	transform:scale(0.9);
+}
+
+#servicos-lateral ul li#e-commerce a img {right:-15px; bottom:0px;
+	-webkit-transition:all 300ms ease-in-out;
+	-moz-transition:all 300ms ease-in-out;
+	-o-transition:all 300ms ease-in-out;
+	-khtml-transition:all 300ms ease-in-out;
+	-ms-transition:all 300ms ease-in-out;
+	transition:all 300ms ease-in-out;
+
+}
+#servicos-lateral ul li#e-commerce:hover a img {right:0px; bottom:0px;
+	-webkit-transition:all 200ms ease-in-out;
+	-moz-transition:all 200ms ease-in-out;
+	-o-transition:all 200ms ease-in-out;
+	-khtml-transition:all 200ms ease-in-out;
+	-ms-transition:all 200ms ease-in-out;
+	transition:all 200ms ease-in-out;
+
+}
+
+#servicos-lateral ul li#sistemas a img {right:-15px; top:0px;
+	-webkit-transition:all 300ms ease-in-out;
+	-moz-transition:all 300ms ease-in-out;
+	-o-transition:all 300ms ease-in-out;
+	-khtml-transition:all 300ms ease-in-out;
+	-ms-transition:all 300ms ease-in-out;
+	transition:all 300ms ease-in-out;
+
+}
+#servicos-lateral ul li#sistemas:hover a img {right:0px; top:0px;
+	-webkit-transition:all 200ms ease-in-out;
+	-moz-transition:all 200ms ease-in-out;
+	-o-transition:all 200ms ease-in-out;
+	-khtml-transition:all 200ms ease-in-out;
+	-ms-transition:all 200ms ease-in-out;
+	transition:all 200ms ease-in-out;
+
+}
+
+#servicos-lateral ul li#redes-sociais a img[alt=Brilho] {opacity:0; visibility:hidden; right:35px; bottom:7px;
+	-webkit-transition:all 300ms ease-in-out;
+	-moz-transition:all 300ms ease-in-out;
+	-o-transition:all 300ms ease-in-out;
+	-khtml-transition:all 300ms ease-in-out;
+	-ms-transition:all 300ms ease-in-out;
+	transition:all 300ms ease-in-out;
+
+}
+
+#servicos-lateral ul li#redes-sociais:hover a img[alt=Brilho] {opacity:1; visibility:visible; right:21px; bottom:61px;
+	-webkit-transition:all 300ms ease-in-out;
+	-moz-transition:all 300ms ease-in-out;
+	-o-transition:all 300ms ease-in-out;
+	-khtml-transition:all 300ms ease-in-out;
+	-ms-transition:all 300ms ease-in-out;
+	transition:all 300ms ease-in-out;
+
+}
+#servicos-lateral ul li#redes-sociais a img[alt=Brilho2] {opacity:0; right:21px; bottom:61px;
+	-webkit-transition:all 300ms ease-in-out;
+	-moz-transition:all 300ms ease-in-out;
+	-o-transition:all 300ms ease-in-out;
+	-khtml-transition:all 300ms ease-in-out;
+	-ms-transition:all 300ms ease-in-out;
+	transition:all 300ms ease-in-out;
+
+}
+
+#servicos-lateral ul li#redes-sociais a img {right:-15px; bottom:0px;
+	-webkit-transition:all 300ms ease-in-out;
+	-moz-transition:all 300ms ease-in-out;
+	-o-transition:all 300ms ease-in-out;
+	-khtml-transition:all 300ms ease-in-out;
+	-ms-transition:all 300ms ease-in-out;
+	transition:all 300ms ease-in-out;
+
+}
+#servicos-lateral ul li#redes-sociais:hover a img {right:0px; bottom:0px;
+	-webkit-transition:all 200ms ease-in-out;
+	-moz-transition:all 200ms ease-in-out;
+	-o-transition:all 200ms ease-in-out;
+	-khtml-transition:all 200ms ease-in-out;
+	-ms-transition:all 200ms ease-in-out;
+	transition:all 200ms ease-in-out;
+
+}
+
+#servicos-lateral ul li#mobile-sites-e-apps a img {right:-15px; bottom:-15px;
+	-webkit-transition:all 300ms ease-in-out;
+	-moz-transition:all 300ms ease-in-out;
+	-o-transition:all 300ms ease-in-out;
+	-khtml-transition:all 300ms ease-in-out;
+	-ms-transition:all 300ms ease-in-out;
+	transition:all 300ms ease-in-out;
+
+}
+#servicos-lateral ul li#mobile-sites-e-apps:hover a img {right:0px; bottom:0px;
+	-webkit-transition:all 200ms ease-in-out;
+	-moz-transition:all 200ms ease-in-out;
+	-o-transition:all 200ms ease-in-out;
+	-khtml-transition:all 200ms ease-in-out;
+	-ms-transition:all 200ms ease-in-out;
+	transition:all 200ms ease-in-out;
+
+}
+#servicos-lateral ul li#e-mail-marketing a img {right:12px; top:11px;
+	-webkit-transition:all 300ms ease-in-out;
+	-moz-transition:all 300ms ease-in-out;
+	-o-transition:all 300ms ease-in-out;
+	-khtml-transition:all 300ms ease-in-out;
+	-ms-transition:all 300ms ease-in-out;
+	transition:all 300ms ease-in-out;
+	
+	-webkit-box-shadow:0px 0px 15px rgba(0,0,0,0.2);
+	-moz-box-shadow:0px 0px 15px rgba(0,0,0,0.2);
+	-o-box-shadow:0px 0px 15px rgba(0,0,0,0.2);
+	-ms-box-shadow:0px 0px 15px rgba(0,0,0,0.2);
+	-khtml-box-shadow:0px 0px 15px rgba(0,0,0,0.2);
+	box-shadow:0px 0px 15px rgba(0,0,0,0.2);
+	
+}
+#servicos-lateral ul li#e-mail-marketing:hover a img {
+	-webkit-transition:all 200ms ease-in-out;
+	-moz-transition:all 200ms ease-in-out;
+	-o-transition:all 200ms ease-in-out;
+	-khtml-transition:all 200ms ease-in-out;
+	-ms-transition:all 200ms ease-in-out;
+	transition:all 200ms ease-in-out;
+	
+	-webkit-transform:scale(0.9);
+	-khtml-transform:scale(0.9);
+	-moz-transform:scale(0.9);
+	-o-transform:scale(0.9);
+	-ms-transform:scale(0.9);
+	transform:scale(0.9);
+	
+	-webkit-transform:rotate(15deg);
+	-khtml-transform:rotate(15deg);
+	-moz-transform:rotate(15deg);
+	-o-transform:rotate(15deg);
+	-ms-transform:rotate(15deg);
+	transform:rotate(15deg);
+
+}
+#servicos-lateral ul li a {display:block; width:100%; height:100%; position:relative;}
+#servicos-lateral ul li a h4 {font-family:'SimHei;', arial, sans-serif; width:150px; font-size:24px; color:#220f38; font-weight:normal; text-transform:uppercase; position:absolute; margin:37px 0px 0px 19px; line-height:30px;
+	-webkit-transition:all 300ms ease-in-out;
+	-moz-transition:all 300ms ease-in-out;
+	-o-transition:all 300ms ease-in-out;
+	-khtml-transition:all 300ms ease-in-out;
+	-ms-transition:all 300ms ease-in-out;
+	transition:all 300ms ease-in-out;
+}
+#servicos-lateral ul li:hover a h4 {color:#fff; text-shadow:0px 0px 5px rgba(255,255,255,0.3);
+
+	-webkit-transition:all 200ms ease-in-out;
+	-moz-transition:all 200ms ease-in-out;
+	-o-transition:all 200ms ease-in-out;
+	-khtml-transition:all 200ms ease-in-out;
+	-ms-transition:all 200ms ease-in-out;
+	transition:all 200ms ease-in-out;
+}
+#servicos-lateral ul li a img {position:absolute;}
+
+/* -----------------/Servi�os----------------- */
+
+
+/* error message */
+.error {
+	/* supply height to ensure consistent positioning for every browser */
+	height:15px;
+	background-color:#FFFE36;
+	border:1px solid #E1E16D;
+	font-size:11px;
+	color:#000;
+	padding:3px 10px;
+	margin-left:-2px;
+
+
+	/* CSS3 spicing for mozilla and webkit */
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	-moz-border-radius-bottomleft:0;
+	-moz-border-radius-topleft:0;
+	-webkit-border-bottom-left-radius:0;
+	-webkit-border-top-left-radius:0;
+
+	-moz-box-shadow:0 0 6px #ddd;
+	-webkit-box-shadow:0 0 6px #ddd;
+}
+
+.escondido {display:none}
+
+.white {color:#fff;}
+.purple {color:#ae77ea;}
+.upper {text-transform:uppercase;}
+.fonte-18 {font-size:18px!important; font-family:'SimHei;', arial, sans-serif; font-weight:normal; font-style:normal;}
+
+.caixa-centralizadora-servicos {margin:0 auto; width:980px; overflow:hidden; margin-top:73px;}
+
+#header-white {background:url(../imagens/bg-branco.png);}
+
+#servicos-conteudo #servicos-conteudo-dizeres p img[alt=Websites] {margin-left:-44px;}
+
+
+
+
+/* slide 2013 */
+
+.slide-2013 {position:relative; overflow:hidden;}
+.slide-2013 ul {height:450px; width:100%;}
+.slide-2013 ul > li {height:100%; width:100%;}
+.slide-2013 ul > li .bg-textura {background:url(/Public/images/bg-slide-textura.png); position:absolute; height:100%; width:100%; top:0; left:0;}
+.slide-2013 ul > li .centralizar-slide {width:980px; margin:0 auto; position:relative;}
+.slide-2013 ul > li .centralizar-slide h3 strong { font-weight: normal !important; font: 22px/30px 'SimHei';}
+.slide-2013 .centralizar-slide li strong { font-weight: 100 !important; font: 18px 'SimHei;';}
+.slide-2013 ul > li .imagem {
+
+-webkit-transition: all 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+   -moz-transition: all 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+    -ms-transition: all 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+     -o-transition: all 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+        transition: all 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750); /* linear */
+
+-webkit-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+   -moz-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+    -ms-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+     -o-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+        transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); /* linear */
+
+}
+
+.slide-2013 ul > li .veja-o-projeto {
+
+-webkit-transition: box-shadow 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+   -moz-transition: box-shadow 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+    -ms-transition: box-shadow 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+     -o-transition: box-shadow 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+        transition: box-shadow 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750); /* linear */
+
+-webkit-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+   -moz-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+    -ms-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+     -o-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+        transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); /* linear */
+
+	-webkit-box-shadow:0 2px 3px rgba(0,0,0,0.3);
+	-moz-box-shadow:0 2px 3px rgba(0,0,0,0.3);
+	-o-box-shadow:0 2px 3px rgba(0,0,0,0.3);
+	-ms-box-shadow:0 2px 3px rgba(0,0,0,0.3);
+	box-shadow:0 2px 3px rgba(0,0,0,0.3);
+
+}
+
+.slide-2013 ul > li .servicos a {
+
+-webkit-transition: all 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+   -moz-transition: all 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+    -ms-transition: all 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+     -o-transition: all 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+        transition: all 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750); /* linear */
+
+-webkit-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+   -moz-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+    -ms-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+     -o-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+        transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); /* linear */
+
+}
+
+.slide-2013 ul > li .checklist ol li {
+
+-webkit-transition: all 100ms cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+   -moz-transition: all 100ms cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+    -ms-transition: all 100ms cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+     -o-transition: all 100ms cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+        transition: all 100ms cubic-bezier(0.250, 0.250, 0.750, 0.750); /* linear */
+
+-webkit-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+   -moz-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+    -ms-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+     -o-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+        transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); /* linear */
+
+}
+
+.slide-2013 ul li h3 {color:#fff; font:22px/30px 'SimHei;', arial, sans-serif;}
+
+.slide-2013 ul li.azul {background:url(/Public/images/bg-slide-azul.jpg) center no-repeat #255d70;}
+.slide-2013 ul li.azul h3 {width:280px; position:absolute; left:0; top:70px; font-family:SimHei;}
+.slide-2013 ul li.azul .imagem {width:541px; height:335px; position:absolute; left:315px; top:45px; background:url(/Public/images/bg-dispositivos.png) 0px 0px no-repeat;}
+.slide-2013 ul li.azul .botao-link {position:absolute; left:0px; top:280px;}
+.slide-2013 ul li.azul .botao-link .veja-o-projeto {width:178px; height:48px; background:url(/Public/images/sprite-veja-o-projeto.png) center top; text-align:center; font-size:18px; line-height:48px; font-family:"Microsoft YaHei"; color:#3e3e3e; overflow:hidden; margin:0 0 20px 0;}
+.slide-2013 ul li.azul .botao-link .veja-o-projeto:hover {background-position:center!important; font-size:18px; line-height:48px; font-family:"Microsoft YaHei"; color:#3e3e3e;
+
+	-webkit-box-shadow:0 0 15px #6FF1F3;
+	-moz-box-shadow:0 0 15px #6FF1F3;
+	-o-box-shadow:0 0 15px #6FF1F3;
+	-ms-box-shadow:0 0 15px #6FF1F3;
+	box-shadow:0 0 15px #6FF1F3;
+
+}
+.slide-2013 ul li.azul .botao-link .veja-o-projeto:active {background-position:center bottom!important;}
+.slide-2013 ul li.azul .botao-link .veja-o-projeto a {display:block; height:100%; font-size:18px; line-height:48px; font-family:"Microsoft YaHei"; color:#3e3e3e;}
+.slide-2013 ul li.azul .botao-link .servicos {font-family:helvetica, helvetica neue, arial, sans-serif;}
+.slide-2013 ul li.azul .botao-link .servicos a {color:#6ff1f3; text-decoration:underline; font-size:13px;}
+.slide-2013 ul li.azul .botao-link .servicos a:hover {color:#fff;}
+.slide-2013 ul li.azul .checklist {position:absolute; left:795px; top:55px; color:#75ffff; text-transform:uppercase; font-family:'SimHei;', arial, sans-serif; font-weight:100;}
+.slide-2013 ul li.azul .checklist ol {}
+.slide-2013 ul li.azul .checklist ol li {margin:0 0 13px 0; background:url(/Public/images/check-azul.png) left scroll no-repeat; padding-left:20px; font-weight: 100 !important; font:16px; cursor:default; font-family:"Microsoft YaHei";}
+.slide-2013 ul li.azul .checklist ol li:hover {color:#fff; margin-left:-5px;}
+.slide-2013 ul li.azul .use-as-setas {position: absolute;
+top: 390px;
+left: 740px;
+width: 260px;}
+.slide-2013 ul li.azul .use-as-setas small {text-align: left;
+float: left;
+margin: 0 0 10px 0;
+font-size: 14px;
+font-family: 'SimHei;', arial, sans-serif;
+line-height: 20px;
+color: #75FFFF;
+width: 130px;}
+.slide-2013 ul li.azul .use-as-setas .seta {width:35px; height:35px; float:left;}
+.slide-2013 ul li.azul .use-as-setas .seta.esq {margin:0 7px 0 23px; background:url(/Public/images/seta-teclado-esq.png) center no-repeat;}
+.slide-2013 ul li.azul .use-as-setas .seta.dir { background:url(/Public/images/seta-teclado-dir.png) center no-repeat;}
+
+.slide-2013 ul li.verde {background:url(/Public/images/bg-slide-verde.jpg) center no-repeat #467025;}
+.slide-2013 ul li.verde h3 {width:400px; position:absolute; left:505px; top:80px;}
+.slide-2013 ul li.verde .imagem {width:480px; height:340px; position:absolute; left:-20px; top:25px; background:url(/Public/images/bg-sistemas-slide.png) center no-repeat;}
+.slide-2013 ul li.verde .botao-link {position:absolute; left:505px; top:240px; width:430px;}
+.slide-2013 ul li.verde .botao-link .veja-o-projeto {float:left; width:178px; height:48px; background:url(/Public/images/sprite-veja-o-projeto.png) center top; overflow:hidden; text-align:center;font-size:18px; line-height:48px; font-family:"Microsoft YaHei"; color:#3e3e3e; margin:0 45px 0 0;}
+.slide-2013 ul li.verde .botao-link .veja-o-projeto:hover {background-position:center!important; font-size:18px; line-height:48px; font-family:"Microsoft YaHei"; color:#3e3e3e;
+
+	-webkit-box-shadow:0 0 15px #B3FF60;
+	-moz-box-shadow:0 0 15px #B3FF60;
+	-o-box-shadow:0 0 15px #B3FF60;
+	-ms-box-shadow:0 0 15px #B3FF60;
+	box-shadow:0 0 15px #B3FF60;
+
+}
+.slide-2013 ul li.verde .botao-link .veja-o-projeto:active {background-position:center bottom!important;}
+.slide-2013 ul li.verde .botao-link .veja-o-projeto a {display:block; height:100%; font-size:18px; line-height:48px; font-family:"Microsoft YaHei"; color:#3e3e3e;}
+.slide-2013 ul li.verde .botao-link .servicos {font-family:helvetica, helvetica neue, arial, sans-serif; line-height:48px;}
+.slide-2013 ul li.verde .botao-link .servicos a {color:#c0d268; text-decoration:underline; font-size:13px;}
+.slide-2013 ul li.verde .botao-link .servicos a:hover {color:#fff;}
+.slide-2013 ul li.verde .checklist {position:absolute; left:530px; top:150px; color:#ecff7f; text-transform:uppercase; font-family:'SimHei;', arial, sans-serif; font-weight:100;}
+.slide-2013 ul li.verde .checklist ol {}
+.slide-2013 ul li.verde .checklist ol li {margin:0 0 13px 0; background:url(/Public/images/check-verde.png) left scroll no-repeat; padding-left:20px; font-weight: 100 !important; font: 18px 'SimHei;', arial, sans-serif; cursor:default;}
+.slide-2013 ul li.verde .checklist ol li:hover {color:#fff; margin-left:-5px;}
+
+.slide-2013 ul li.laranja {background:url(/Public/images/bg-slide-laranja.jpg) center no-repeat #902c01;}
+.slide-2013 ul li.laranja h3 {width:370px; position:absolute; left:0; top:100px; font-family:SimHei;}
+.slide-2013 ul li.laranja .imagem {width:470px; height:315px; position:absolute; left:455px; top:50px; background:url(/Public/images/bg-ecommerce-slide.png) center no-repeat;}
+.slide-2013 ul li.laranja .botao-link {position:absolute; left:0; top:290px; width:430px;}
+.slide-2013 ul li.laranja .botao-link .veja-o-projeto {float:left; width:178px; height:48px; background:url(/Public/images/sprite-veja-o-projeto.png) center top; /*text-indent:-9999px;*/text-align:center; font-size:18px; line-height:48px; font-family:"Microsoft YaHei"; color:#3e3e3e; overflow:hidden; margin:0 45px 0 0;}
+.slide-2013 ul li.laranja .botao-link .veja-o-projeto:hover {background-position:center!important; text-align:center; font-size:18px; line-height:48px; font-family:"Microsoft YaHei"; color:#3e3e3e;
+
+	-webkit-box-shadow:0 0 15px #FE7202;
+	-moz-box-shadow:0 0 15px #FE7202;
+	-o-box-shadow:0 0 15px #FE7202;
+	-ms-box-shadow:0 0 15px #FE7202;
+	box-shadow:0 0 15px #FE7202;
+
+}
+.slide-2013 ul li.laranja .botao-link .veja-o-projeto:active {background-position:center bottom!important;}
+.slide-2013 ul li.laranja .botao-link .veja-o-projeto a {display:block; height:100%; text-align:center; font-size:18px; line-height:48px; font-family:"Microsoft YaHei"; color:#3e3e3e;}
+.slide-2013 ul li.laranja .botao-link .servicos {font-family:helvetica, helvetica neue, arial, sans-serif; line-height:48px;}
+.slide-2013 ul li.laranja .botao-link .servicos a {color:#ec8834; text-decoration:underline; font-size:13px;}
+.slide-2013 ul li.laranja .botao-link .servicos a:hover {color:#fff;}
+.slide-2013 ul li.laranja .checklist {position:absolute;  top:225px; color:#fda236; text-transform:uppercase; font-family:'SimHei;', arial, sans-serif; font-weight:100;}
+.slide-2013 ul li.laranja .checklist ol {}
+.slide-2013 ul li.laranja .checklist ol li {float:left; margin:0 25px 0 0; background:url(/Public/images/check-laranja.png) left scroll no-repeat; font-weight: 100 !important; font: 18px 'SimHei;', arial, sans-serif; cursor:default; padding-left:20px;}
+.slide-2013 ul li.laranja .checklist ol li:hover {color:#fff; margin-top:-5px;}
+
+.slide-2013 ul li.amarelo {background:url(/Public/images/bg-slide-amarelo.jpg) center no-repeat #854d03;}
+.slide-2013 ul li.amarelo h3 {width:480px; position:absolute; left:470px; top:80px; font-family:SimHei;}
+.slide-2013 ul li.amarelo .imagem {width:485px; height:415px; position:absolute; left:-90px; top:20px; background:url(/Public/images/bg-redessociais-slide.png) center no-repeat;}
+.slide-2013 ul li.amarelo .botao-link {position:absolute; left:470px; top:290px; width:430px;}
+.slide-2013 ul li.amarelo .botao-link .veja-o-projeto {float:left; width:178px; height:48px; background:url(/Public/images/sprite-veja-o-projeto.png) center top; /*text-indent:-9999px;*/text-align:center; font-size:18px; line-height:48px; font-family:"Microsoft YaHei"; color:#3e3e3e; overflow:hidden; margin:0 45px 0 0;}
+.slide-2013 ul li.amarelo .botao-link .veja-o-projeto:hover {background-position:center!important;text-align:center; font-size:18px; line-height:48px; font-family:"Microsoft YaHei"; color:#3e3e3e;
+
+	-webkit-box-shadow:0 0 15px #FFE50C;
+	-moz-box-shadow:0 0 15px #FFE50C;
+	-o-box-shadow:0 0 15px #FFE50C;
+	-ms-box-shadow:0 0 15px #FFE50C;
+	box-shadow:0 0 15px #FFE50C;
+
+}
+.slide-2013 ul li.amarelo .botao-link .veja-o-projeto:active {background-position:center bottom!important;}
+.slide-2013 ul li.amarelo .botao-link .veja-o-projeto a {display:block; height:100%;text-align:center; font-size:18px; line-height:48px; font-family:"Microsoft YaHei"; color:#3e3e3e;}
+.slide-2013 ul li.amarelo .botao-link .servicos {font-family:helvetica, helvetica neue, arial, sans-serif; line-height:48px;}
+.slide-2013 ul li.amarelo .botao-link .servicos a {color:#daca09; text-decoration:underline; font-size:13px;}
+.slide-2013 ul li.amarelo .botao-link .servicos a:hover {color:#fff;}
+.slide-2013 ul li.amarelo .checklist {position:absolute; left:495px; top:195px; color:#ffe50c; text-transform:uppercase; font-family:'SimHei;', arial, sans-serif; font-weight:100;}
+.slide-2013 ul li.amarelo .checklist ol {}
+.slide-2013 ul li.amarelo .checklist ol li {margin:0 0 13px 0; background:url(/Public/images/check-amarelo.png) left scroll no-repeat; padding-left:20px; font-weight: 100 !important; font: 18px 'SimHei;', arial, sans-serif; cursor:default;}
+.slide-2013 ul li.amarelo .checklist ol li:hover {color:#fff; margin-left:-5px;}
+
+.slide-2013 .guia {position:absolute; *position:relative; bottom:30px; width:100%; margin:0 auto; *width:200px; *margin:0 auto; *text-align:center; z-index:100;}
+.slide-2013 .guia .itens {margin:0 auto; display:table; *width:200px; *margin:0 auto; *overflow:hidden;}
+.slide-2013 .guia a {float:left; width:16px; height:16px; background:url(/Public/images/bg-guia-transparente.png); overflow:hidden; text-indent:-40px; margin:0 7px;
+
+-webkit-transition: all 2000ms cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+   -moz-transition: all 2000ms cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+    -ms-transition: all 2000ms cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+     -o-transition: all 2000ms cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+        transition: all 2000ms cubic-bezier(0.250, 0.250, 0.750, 0.750); /* linear */
+
+-webkit-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+   -moz-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+    -ms-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+     -o-transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+        transition-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750); /* linear */	
+
+	-webkit-border-radius:20px;
+	-moz-border-radius:20px;
+	-o-border-radius:20px;
+	-ms-border-radius:20px;
+	border-radius:20px;
+
+}
+.slide-2013 .guia a.activeSlide {}
+
+.activeSlide.azul {background:url(/Public/images/bolinha-laranja-luz.png) 0px 0px no-repeat!important;
+
+	-webkit-box-shadow:0 0 15px 5px #fe7202;
+	-moz-box-shadow:0 0 15px 5px #fe7202;
+	-o-box-shadow:0 0 15px 5px #fe7202;
+	-ms-box-shadow:0 0 15px 5px #fe7202;
+	box-shadow:0 0 15px 5px #fe7202;
+
+}
+
+.activeSlide.verde {background:url(/Public/images/bolinha-azul-luz.png) 0px 0px no-repeat!important;
+
+	-webkit-box-shadow:0 0 15px 5px #6FF1F3;
+	-moz-box-shadow:0 0 15px 5px #6FF1F3;
+	-o-box-shadow:0 0 15px 5px #6FF1F3;
+	-ms-box-shadow:0 0 15px 5px #6FF1F3;
+	box-shadow:0 0 15px 5px #6FF1F3;
+
+}
+
+.activeSlide.laranja {background:url(/Public/images/bolinha-verde-luz.png) 0px 0px no-repeat!important;
+
+	-webkit-box-shadow:0 0 15px 5px #b3ff60;
+	-moz-box-shadow:0 0 15px 5px #b3ff60;
+	-o-box-shadow:0 0 15px 5px #b3ff60;
+	-ms-box-shadow:0 0 15px 5px #b3ff60;
+	box-shadow:0 0 15px 5px #b3ff60;
+
+}
+
+.activeSlide.amarelo {background:url(/Public/images/bolinha-amarelo-luz.png) 0px 0px no-repeat!important;
+
+	-webkit-box-shadow:0 0 15px 5px #fac608;
+	-moz-box-shadow:0 0 15px 5px #fac608;
+	-o-box-shadow:0 0 15px 5px #fac608;
+	-ms-box-shadow:0 0 15px 5px #fac608;
+	box-shadow:0 0 15px 5px #fac608;
+
+}

@@ -1,0 +1,51 @@
+<include file="Public:_header" />
+<div class="con_fr ">
+	<div class="con_fr_title">
+		
+		<span class="icon_bg_7"><i class=" icon icon_7"></i></span>
+		<!--<span>添加合作伙伴</span>&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="__APP__/Admin/Cooperation">返回列表</a></span>-->
+        <a href="__APP__/Admin/Keywords">关键字管理</a> > <span>添加关键字</span>
+        
+	</div>
+	<div class="con_fr_des">
+        <form method="post" action="__APP__/Admin/Keywords/saveEdit"  name="adForm">
+			<input type="hidden" value="{$keywordsInfo.id}" name="id"/>
+            <div class="user_text clearfix">
+				<label class="user_title">分类类别：</label>
+				<div class="user_select">                    
+				    <select name="category_id">
+						 <volist name="categoryList" id="vo">
+							 <option value="{$vo.id}" <if condition="$keywordsInfo['category_id'] eq $vo['id']"> selected="selected" </if> >{$vo.category_name}</option>
+						 </volist>
+					 </select>
+				</div>
+			</div>
+			<div class="user_text clearfix">
+				<label class="user_title">关键字名称：</label>
+				<div class="user_input">
+                    <input  name="value" id="title" class="text_mes" type="text" value="{$keywordsInfo.value}" onblur="if(this.value=='')document.getElementById('titleDiv').innerHTML='*请填写标题！';else document.getElementById('titleDiv').innerHTML='' "/>
+				</div>
+                <div class="user_des " id="" >
+					<span id="titleDiv"></span>
+				</div>
+			</div>
+            <div class="user_btn clearfix">
+                <a class="user_btn_save" href="javascript:void(0);" onclick="run();">编辑保存</a>
+            </div>			
+		</form>
+    </div>
+</div>
+
+<include file="Public:_footer" />
+<script>
+	function run(){
+		if($('#title').val() == ''){
+			$('#titleDiv').html('*请填写标题！');
+			return false;
+		}else{
+			$('#titleDiv').html('');
+		}
+		document.forms.adForm.submit();
+	}
+
+</script>

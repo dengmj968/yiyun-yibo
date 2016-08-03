@@ -1,0 +1,540 @@
+<include file="Public:_header" />
+<style>
+    .yanzheng {color: #ff0000}
+</style>
+<script>
+    $(document).ready(function() {
+        $('#file_upload').uploadify({
+            'uploader'  : '__PUBLIC__/js/uploadify/uploadify.swf',
+            'script'    : '__APP__/Admin/Public/uploadLogo/',
+            'scriptData': { 'folderName': 'Ad'},
+            'cancelImg' : '__PUBLIC__/js/uploadify/cancel.png',
+            'folder'    : '__PUBLIC__/upload/Ad',
+            'auto'      : true,
+            'fileDesc' : "请选择jpg,gif,png,jpeg图片类型",
+            'fileExt'  : '*.jpg;*.gif;*.png;*.jpeg',
+            'method'   : "POST",
+            'buttonImg'   : '__PUBLIC__/js/uploadify/select.png',
+            'fileDataName'   : "adPic",
+            'onComplete':function(event,queueId,fileObj,response,data){
+                if(response==0){
+                    alert("上传失败，请重试！")
+                }else{
+                    var img = new Image();
+                    img.src = response;
+                    img.onload = function(){
+                        var size_id = $("select[name='size_id'] option:selected").val();
+                        $.get('__APP__/Home/Ad/getSizeId', {id: size_id}, function(data){
+                            if(data){
+                                var sizeobj = eval('(' + data + ')');
+                                var imgSize = img.width + ' x ' + img.height;
+                                if (sizeobj.width != img.width || sizeobj.height != img.height){
+                                        alert('您上传的图片尺寸：' + imgSize + '，与您所选广告尺寸不符合！');
+                                }else{
+									$("#uploadPic").remove();
+                                    if(img.width > 600){
+                                        img.width = img.width/1.5;
+                                        img.height = img.height/1.5;
+                                    }
+                                    var pic ='<li id="uploadPic"><img style="margin-top:10px; width: ' + img.width + 'px; height: ' + img.height + 'px " src="' + img.src + '" id="thumbpic" align="absmiddle" alt="缩略图"/>' +
+                                            '<span style=" vertical-align:top;">' +
+                                            '<a href="javascript:void(0);" onclick="delPic(this);">' +
+                                            '<img style="margin-top:10px;" src="__PUBLIC__/js/uploadify/cancel.png" title="删除图像"/>' +
+                                            '</a>' +
+                                            '<span id="imgSize"></span>'+
+                                            '</span> <input type="hidden" name="pic" value="' + response + '"/></li>';
+									
+									$('#is_upload').val('1');
+                                    $('#examplePic').hide();
+                                    $('#pic').append(pic);
+                                }
+                            }
+                        })
+                    }
+                }
+            }
+        });
+    });
+</script>
+<div class="con_fr ">
+	<div class="con_fr_title">
+		
+		<span class="icon_bg_7"><i class=" icon icon_7"></i></span>
+		<!--<span>添加合作伙伴</span>&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="__APP__/Admin/Cooperation">返回列表</a></span>-->
+        <a href="__APP__/Admin/Ad/index/p/{$p}">广告管理列表</a> > <span>修改广告</span>
+        
+	</div>
+	<div class="con_fr_des">
+        <form method="post" action="__APP__/Admin/Ad/saveEdit" enctype="multipart/form-data" name="adForm">
+            <input type="hidden" name="id" value="{$adInfo.id}"/>
+            <input type="hidden" name="p" value="{$p}"/>
+            <div class="user_text clearfix">
+				<label class="user_title">标题：</label>
+				<div class="user_input">
+                    <input name="title" id="title" class="text_mes" type="text" value="{$adInfo.title}" onblur="if(this.value=='')document.getElementById('titleDiv').innerHTML='*请填写标题！';else document.getElementById('titleDiv').innerHTML='' "/>                    
+				</div>
+                <div class="user_des " id="" >
+					<span id="titleDiv"></span>
+				</div>
+			</div>
+            <div class="user_text clearfix">
+				<label class="user_title">描述：</label>
+				<div class="user_textarea">
+                    <textarea name="desc" id="desc" onblur="if(this.value=='')document.getElementById('descDiv').innerHTML='*请填写介绍！';else if(this.value.length >100) document.getElementById('descDiv').innerHTML='*描述请保持在100字以内！'; else document.getElementById('descDiv').innerHTML='' ">{$adInfo.desc}</textarea>                    
+				</div>
+                <div class="user_des " id="" >
+					<span id="descDiv"></span>
+				</div>
+			</div>
+            <div class="user_text clearfix">
+				<label class="user_title">广告地址：</label>
+				<div class="user_input">
+                    <input name="url" id="url" class="text_mes" type="text" value="{$adInfo.url}" onblur="if(this.value=='')document.getElementById('urlDiv').innerHTML='*请填写广告地址！';else document.getElementById('urlDiv').innerHTML='' "/>
+				</div>
+                <div class="user_des " id="" >
+					<span id="urlDiv"></span>
+				</div>
+			</div>
+            <div class="user_text clearfix">
+				<label class="user_title">关键字：</label>
+				<div class="user_input">
+                    <input name="keywords" id="keywords" class="text_mes"  type="text" value="{$adInfo.keywords}" onblur="searchUser();" onfocus="showDiv('#sysKeywords');"/>
+				</div>
+                <div class="user_des " id="" >
+					<span id=""><a class="user_small_btn" href="javascript:void(0);" onclick="searchUser();">验证关键字</a> &nbsp;&nbsp;&nbsp;&nbsp;多个关键字用“,”隔开</span>
+				</div>
+			</div>
+            <div class="use_left_distance clearfix" id="sysKeywords" style="display:none">
+                <div class="user_title_level3">热门关键字：（也可手动输入自定义关键字，多个关键字用英文“，”隔开！）</div>
+                <div class=" clearfix">
+                    <volist name="categoryList" id="vo">
+                        <a class="user_small_btn" href="javascript:void(0);" onclick="intoInput('{$vo.category_name}');">{$vo.category_name}</a>
+                    </volist>
+				 </div> 
+
+			</div>
+            <div class="use_left_distance" id="addKeywords" style="display:none;">
+                <dl class="lineD">
+                    <dt>关键字校验：</dt>
+                    <dd>
+                        <input name="addKeywords" id="" type="text" value="">
+                    </dd>
+                </dl>
+            </div>
+            <div class="user_text clearfix" style="display:none;">
+				<label class="user_title"></label>
+				<div class="user_input" id="addKeywords" style="display:none;">
+                    <input name="addKeywords" id="" type="text" value="" class="text_mes"/>
+				</div>
+			</div>
+             <div class="user_text clearfix">
+				<label class="user_title">投放区域：</label>
+                <div class="user_radio">
+                    <label><input type="radio" name="areaType" value="all" <empty name="adInfo.area"> checked="checked" </empty> />全国</label>
+                    <label><input type="radio" name="areaType" value="custom" <notempty name="adInfo.area"> checked="checked" </notempty>/>自定义</label>
+                    <div class="use_left_distance" style="overflow:hidden;" id="area">
+						<div class="clearfix">
+							<a class="user_small_btn" href="javascript:void(0);" id="selectAll">全选</a>&nbsp;&nbsp;
+							<a class="user_small_btn" href="javascript:void(0);" id="unSelect">全不选</a>&nbsp;&nbsp;
+							<a class="user_small_btn" href="javascript:void(0);" id="reverse">反选</a>
+						</div>
+						<div class="Keyword" id="areaList">
+							<volist name="area" id="vo">
+								<div style="width:600px;">
+									<div class="tigg_nr" style="float:left; width:130px; display:block;<php>if(in_array($vo['area_id'],$adInfo['area']))echo 'color:red';</php>">
+										<input type="checkbox" <php>if(in_array($vo['area_id'],$adInfo['area']))echo 'checked="checked"';</php> name="area[]" value="{$vo.area_id}" style=" vertical-align:middle; *+vertical-align:middle; margin-right:2px;">{$vo.title}
+									</div>
+								</div>
+							</volist>
+						</div>
+					</div>
+    			</div>
+			</div>
+            
+            <div class="user_text clearfix">
+				<label class="user_title">投放日期：</label>
+                <div class="clearfix" style="margin-bottom:10px;">
+                    <label class="user_title_level2">开始日期：</label>
+    				<div class="user_input">
+                        <input name="start_date" class="text_mes" id="start_date" type="text" value="{$adInfo.start_date}" onclick="return showCalendar('start_date', 'y-mm-dd');"/>
+    				</div>
+					
+                 </div> 
+				<div class="use_left_distance clearfix">
+                    <label class="user_title_level2">结束日期：</label>
+       	            <div class="user_input">
+                        <input name="end_date" id="end_date" type="text" value="{$adInfo.end_date}" onclick="return showCalendar('end_date', 'y-mm-dd');"/>
+    				</div>
+				</div>
+			</div>
+            <div class="user_text clearfix">
+				<label class="user_title">状态：</label>
+                <div class="user_radio">
+                    <label><input name="status" type="radio" value="1" <eq name="adInfo.status" value="1">checked</eq>/>审核中</label>
+                    <label><input name="status" type="radio" value="2" <eq name="adInfo.status" value="2">checked</eq>/>使用中</label>
+                    <label><input name="status" type="radio" value="3" <eq name="adInfo.status" value="3">checked</eq>/>已停用</label>
+                    <label><input name="status" type="radio" value="4" <eq name="adInfo.status" value="4">checked</eq>/>未通过</label>
+    			</div>
+			</div>
+            <div class="user_text clearfix">
+				<label class="user_title ">尺寸：</label>
+				<div class="fl user_select">                    
+					<select  name="size_id" id="size_id" onchange="getPicBySizeAjax(this.value);">
+                        <volist id="vo" name="adSizeList">
+                            <option value="{$vo.id}" <eq name="adInfo.size_id" value="$vo['id']">selected="selected" style="color:red"</eq>>{$vo.size_name}</option>
+                        </volist>
+				   </select>
+				</div>
+                <div class="user_des " id="" >
+					<span id="sizeDiv"></span>
+				</div>
+			</div>
+            
+            <div class="user_text clearfix">
+				<label class="user_title">图片：</label>
+                <div class="user_photo">
+                    <a name="picInfo"></a>
+                    <span class="yanzheng" id="picDiv" style="position: absolute; text-align: center; padding-left: 120px"></span>
+                    <div>
+                        <input type="file" id="file_upload"/>
+                    </div>
+                    <div style="display: none">
+                        <input type="file" id="file_upload_multi" />
+                    </div>
+                    <input type='hidden' value="" id="is_upload">
+                    <ul id="pic">
+                    </ul>
+                    <!--<div style='width: 400px;' id="logo_logo" style="display:none;"></div>
+                    <div style='width: 400px;'>
+                        <input type="file" id="file_upload" name="" />
+                        <img src='{$data["logo"]}' id="logopic" align="absmiddle"  alt='缩略图' width="300" height="200" />
+						<span style=" vertical-align:top;">
+						<a href="javascript:void(0);" onclick="delPic()"><img src="__PUBLIC__/js/uploadify/cancel.png" title="删除图像"/></a></span><span style="color:red; font-size: 11px;">
+						</span>
+                        <input class="input" type="hidden" name="logo" id="logo" value='{$data["logo"]}' />
+                    </div>-->
+    			</div>
+                <div class="user_des " id="" >
+					<span id="picDiv"></span>
+				</div>
+			</div>
+            <div class="user_btn clearfix">
+                <input type="hidden" name="type" value="{$adInfo.type}" />
+                <input type="hidden" name="user_id" value="{$adInfo.user_id}" />
+                <a class="user_btn_save" href="javascript:void(0);" onclick="run();">确认修改</a>
+            </div>			
+		</form>
+    </div>
+</div>
+<!--<div class="so_main">
+    <div class="page_tit">编辑广告&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="__APP__/Admin/Ad/index/p/{$Think.get.p}">返回列表</a></span></div>
+    <form method="post" action="__APP__/Admin/Ad/saveEdit" enctype="multipart/form-data" name="adForm">
+        <input type="hidden" name="id" value="{$adInfo.id}"/>
+        <div class="form2">
+            <dl class="lineD">
+                <dt>关键字：</dt>
+                <dd>
+                    <input name="keywords" id="keywords" class="biaoti"  type="text" value="{$adInfo.keywords}" onblur="searchUser();" onfocus="showDiv('#sysKeywords');"><a href="javascript:void(0);" onclick="searchUser();">验证关键字</a>
+                    <p style="margin-top: 10px">多个关键字用“,”隔开</p>
+                </dd>
+                <dl class="biaoqian" id="sysKeywordss" style="display:none">
+                    <dd class="dingyi"  style=" overflow:hidden;">
+                        <div class="tishiyu">热门关键字：<span>（也可手动输入自定义关键字，多个关键字用英文“，”隔开！）</span></div>
+                        <volist name="categoryList" id="vo">
+                            <a href="javascript:void(0);" onclick="intoInput('{$vo.category_name}');"><div class="gjz bqtou">{$vo.category_name}</div></a>
+                        </volist>
+                    </dd>
+                </dl>
+
+                <div id="addKeywords" style="display:none;">
+                    <dl class="lineD">
+                        <dt>关键字校验：</dt>
+                        <dd>
+                            <input name="addKeywords" id="" type="text" value="">
+                        </dd>
+                    </dl>
+                </div>
+            </dl>
+
+            <dl class="lineD">
+                <dt>投放区域：</dt>
+                <dd>
+                    <input type="radio" name="areaType" value="all" <empty name="adInfo.area">
+                    checked="checked"
+                </empty> />全国
+                    <input type="radio" name="areaType" value="custom" <notempty
+                        name="adInfo.area">checked="checked"
+                </notempty>/>自定义
+                </dd>
+                <dd style="overflow:hidden;" id="area">
+                    <span style="margin-bottom: 20px">&nbsp;
+                        <a href="javascript:void(0);" id="selectAll">全选</a>&nbsp;&nbsp;
+                        <a href="javascript:void(0);" id="unSelect">全不选</a>&nbsp;&nbsp;
+                        <a href="javascript:void(0);" id="reverse">反选</a>
+                    </span>
+                    <div class="Keyword" id="areaList">
+                        <volist name="area" id="vo">
+                            <div style="width:600px;">
+                                <div class="tigg_nr" style="float:left; width:130px; display:block;<php>if(in_array($vo['area_id'],$adInfo['area']))echo 'color:red';</php>">
+                                    <input type="checkbox" <php>if(in_array($vo['area_id'],$adInfo['area']))echo 'checked="checked"';</php> name="area[]" value="{$vo.area_id}" style=" vertical-align:middle; *+vertical-align:middle; margin-right:2px;">{$vo.title}
+                                </div>
+                            </div>
+                        </volist>
+                    </div>
+                </dd>
+            </dl>
+
+            <dl class="lineD">
+                <dt>投放日期：</dt>
+                <dd style="overflow:hidden;">
+                    开始日期：<input name="start_date" id="start_date" type="text" value="{$adInfo.start_date}" onclick="return showCalendar('start_date', 'y-mm-dd');">
+                </dd>
+                <dd style="overflow:hidden;">
+                    结束日期：<input name="end_date" id="end_date" type="text" value="{$adInfo.end_date}" onclick="return showCalendar('end_date', 'y-mm-dd');">
+                </dd>
+            </dl>
+
+            <dl class="lineD">
+                <dt>状态：</dt>
+                <dd>
+                    <input name="status" type="radio" value="1" <eq name="adInfo.status" value="1">checked</eq>/>审核中
+                    <input name="status" type="radio" value="2" <eq name="adInfo.status" value="2">checked</eq>/>使用中
+                    <input name="status" type="radio" value="3" <eq name="adInfo.status" value="3">checked</eq>/>已停用
+                </dd>
+            </dl>
+
+
+            <dl class="lineD" id="size">
+                <dt>尺寸：</dt>
+                <dd style="width:1000px;overflow:hidden;">
+                    <select name="size_id" id="size_id" class="xiala_wb chicun" onchange="getPicBySizeAjax(this.value)";>
+                        <volist id="vo" name="adSizeList">
+                            <option value="{$vo.id}" <eq name="adInfo.size_id" value="$vo['id']">selected="selected" style="color:red"</eq>>{$vo.size_name}</option>
+                        </volist>
+                    </select>
+                    <span class="yanzheng" id="sizeDiv"></span>
+                </dd>
+            </dl>
+
+            <dl class="lineD">
+                <dt>图片：</dt>
+                <dd>
+                    <a name="picInfo"></a>
+                    <span class="yanzheng" id="picDiv" style="position: absolute; text-align: center; padding-left: 120px"></span>
+                    <div>
+                        <input type="file" id="file_upload"/>
+                    </div>
+                    <div style="display: none">
+                        <input type="file" id="file_upload_multi" />
+                    </div>
+                    <input type='hidden' value="" id="is_upload">
+                    <ul id="pic">
+                    </ul>
+                </dd>
+            </dl>
+
+                <div class="page_btm">
+                    <input type="button" class="btn_b" onclick="run();" value="确定" />
+                </div>
+        </div>
+
+    </form>
+</div>-->
+<include file="Public:_footer" />
+<script>
+
+    //搜索用户
+    var isSearchHidden = 1;
+    function searchUser() {
+        var keywords = document.getElementById('keywords').value;
+        $.post("__APP__/Admin/Ad/addKeywords",{keyword:keywords},function(data){
+            if(data){
+               getKeyType(data);
+            }else{
+				alert('关键字都已被校验过');
+			}
+        })
+    }
+
+    function getKeyType(keyword){
+        $.post("__APP__/Admin/Ad/getKeywordType",{},function(data){
+            var obj=eval('('+data+')');
+            var htmlList="<option value=''>--请选择--</option>";
+            var html = "";
+            for(var i=0;i<obj.length;i++){
+                htmlList +="<option value='"+obj[i].id+"'>"+obj[i].category_name+"</option>";
+            }
+            //htmlList +='</select>';
+            var keywordList = keyword.split(',');
+            for(var i=0;i<keywordList.length;i++){
+                html += '<div class="user_select"><select name="'+keywordList[i]+'">' + htmlList + '</select>&nbsp;&nbsp;&nbsp;' +keywordList[i] + '</div>';
+            }
+            html +='<div class="user_title_level3">请为您的关键字选择类别</div>';
+            document.getElementById('addKeywords').innerHTML=html;
+        })
+
+
+        $("#addKeywords").slideDown("fast");
+
+    }
+
+$(function () {
+    //全选
+    $("#selectAll").click(function () {
+        $("#areaList").find(":checkbox").attr("checked", true);
+    });
+    //全不选
+    $("#unSelect").click(function () {
+        $("#areaList").find(":checkbox").attr("checked", false);
+    });
+    //反选
+    $("#reverse").click(function () {
+        $("#areaList").find("::checkbox").each(function () {
+            $(this).attr("checked", !$(this).attr("checked"));
+        });
+    });
+});
+
+
+//区域选择方式切换
+$(document).ready(function () {
+    check();
+    $(":radio[name='areaType']").click(function(){
+        check();
+    });
+});
+
+function check(){
+    if ( $(":radio[name='areaType']:checked").val() == 'all' ) {
+        $("#area").slideUp("fast");
+    }
+
+    if ( $(":radio[name='areaType']:checked").val() == 'custom' ) {
+        $("#area").slideDown("fast");
+    }
+}
+
+$(function(){
+    var id = $("#size_id").val();
+    getPicBySizeAjax(id);
+})
+
+    function getPicBySizeAjax(id) {
+        var sizeId = "{$adInfo.size_id}";
+        var theSavePic = "{$adInfo.pic}";
+
+        $.get('__APP__/Admin/Ad/getPicSize', {id: id}, function (data) {
+            if (data) {
+                var obj = eval('(' + data + ')');
+                var pic ='<li id="examplePic">'+
+                        '<img style="margin-top:10px; width: ' + obj.width + 'px; height: ' + obj.height + 'px;" src="' + obj.pic + '" id="thumbpic" align="absmiddle" alt="缩略图"/>' +
+                        '<input type="hidden" name="pic" value="' + obj.pic + '"/>'+
+                        '</li>';
+
+                $('#pic').html(pic);
+                $('#is_upload').val('');
+
+                if (id == sizeId){
+                    if(theSavePic.width > 600){
+                        pic.width = theSavePic.width/1.5;
+                        pic.height = theSavePic.height/1.5;
+                    }
+                    var uploadPic ='<li id="uploadPic"><img style="margin-top:10px; width: ' + theSavePic.width + 'px; height: ' + theSavePic.height + 'px;" src="' + theSavePic + '" id="thumbpic" align="absmiddle" alt="缩略图"/>' +
+                            '<span style=" vertical-align:top;">' +
+                            '<a href="javascript:void(0);" onclick="delPic(this);">' +
+                            '<img style="margin-top:10px;" src="__PUBLIC__/js/uploadify/cancel.png" title="删除图像"/>' +
+                            '</a>' +
+                            '<span id="imgSize"></span>'+
+                            '</span><input type="hidden" name="pic" value="' + theSavePic + '"/></li>';
+                    $('#pic').append(uploadPic);
+                    $('#examplePic').hide();
+                    $('#is_upload').val('1');
+                }
+            }
+        });
+    }
+
+
+function run() {
+    if ($('#title').val() == '') {
+        $('#titleDiv').html('*请填写标题！');
+        $('#title').focus();
+        return false;
+    } else {
+        $('#titleDiv').html('');
+    }
+
+    if ($('#desc').val() == '') {
+        $('#descDiv').html('*请填写描述！');
+        $('#desc').focus();
+        return false;
+    } else if ($('#desc').val().length > 200) {
+        $('#descDiv').html('*描述请保持在200字以内！');
+        $('#desc').focus();
+        return false;
+    } else {
+        $('#descDiv').html('');
+    }
+
+    if ($('#url').val() == '') {
+        $('#urlDiv').html('*请填写广告地址！');
+        $('#url').focus();
+        return false;
+    } else {
+        var strRegex = "^[A-Za-z]+://[A-Za-z0-9-_]+\\.[A-Za-z0-9-_%&\?\/.=]+$";
+        var re = new RegExp(strRegex);
+        if (!re.test($('#url').val())) {
+            $('#urlDiv').html('*您的URL不合法,别忘了写“http://”哦');
+            $('#url').focus();
+            return false;
+        } else {
+            $('#urlDiv').html('');
+        }
+    }
+
+    if ($('#examplePic').length <= 0 || $("#is_upload").val() == '') {
+        $('#picDiv').html('*请上传广告图片！');
+        location.hash="picInfo";
+        return false;
+    } else {
+        $('#picDiv').html('');
+    }
+    document.forms.adForm.submit();
+}
+
+function addKeywords() {
+    $("#addKeywords").show();
+    var keywords = $("input[name='keywordCustom']").val();
+    $.post("__APP__/Admin/Ad/addKeywords", {keyword: keywords}, function (data) {
+        if (data) {
+            var keywordList = data.split(',');
+            var html = '';
+            for(var i=0;i<keywordList.length;i++){
+                html += '<dd><input type="checkbox" name="'+keywordList[i]+'">'+keywordList[i]+'</dd>';
+            }
+            html += '<dd>如果此关键字符合当前广告类别，请勾选</dd>';
+            $("#addKeywords").html(html);
+        }
+    })
+}
+
+    function delPic(obj){
+        $(obj).parents('li').remove();
+        $('#examplePic').show();
+        if ($("#uploadPic").length <= 0) {
+            $("#is_upload").val('');
+        }
+    }
+//关键字展示
+function showDiv(obj){
+    $(obj).slideDown("fast");
+}
+function intoInput(name){
+    var keyword = $('#keywords').val();
+    if(keyword == ''){
+        $('#keywords').val(name + ',');
+    }else{
+        $('#keywords').val(keyword + name + ',');
+    }
+} 
+</script>

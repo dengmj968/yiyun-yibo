@@ -1,0 +1,77 @@
+<!--顶部导航-->
+<div class="navbar-wrapper">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="nav_bg"></div>
+            <div class="container">
+
+                <h1 class="brand"><a href="http://iyiyun.com/"><img src="__PUBLIC__/images/logo.png" width="140" height="125" border="0" /></a></h1>
+                <nav class="pull-right nav-collapse collapse">
+                    <ul id="menu-main" class="nav">
+                        <li <if condition="strtolower(MODULE_NAME) eq 'index' and strtolower(ACTION_NAME) eq 'index'">class="nav_on"</if> ><a class="check_on" href="/" title="">首&nbsp;&nbsp;页</a></li>
+                        <li id="menu-main-on">
+                            <a id="spread_ad" class="check_on" href="javascript:;" title="">传播公益广告</a>
+                            <ul id="aul">
+                                <li><a href="__APP__/Home/Place/index"><span>网站站长</span></a></li>
+                               <!--  <li><a href="__APP__/Home/Index/qzone"><span>qq空间</span></a></li> -->
+                                <li><a href="__APP__/Home/Index/blog"><span>博客主</span></a></li> 
+								<empty name='Think.session.userInfo.id'>
+									<li><a href="__APP__/Home/Index/web404"><span>404公益</span></a></li>
+								<else />
+									<li><a href="__APP__/Home/Place404/add"><span>404公益</span></a></li>
+								</empty>
+                            </ul>
+                        </li>
+                        <li <if condition="strtolower(MODULE_NAME) eq 'ad' and strtolower(ACTION_NAME) eq 'add'">class="nav_on"</if>><a class="check_on" href="__APP__/Home/Ad/add" title="">投放公益广告</a></li>
+                        <li <if condition="strtolower(MODULE_NAME) eq 'index' and strtolower(ACTION_NAME) eq 'top5'">class="nav_on"</if> ><a class="check_on" href="__APP__/Home/Index/top5" title="">广告展示TOP5</a></li>
+                        <li <if condition="strtolower(MODULE_NAME) eq 'index' and strtolower(ACTION_NAME) eq 'window'">class="nav_on"</if>><a class="check_on" href="__APP__/Home/Index/window" title="">公益广告墙</a></li>
+                        <li <if condition="strtolower(MODULE_NAME) eq 'index' and strtolower(ACTION_NAME) eq 'faqs'">class="nav_on"</if> style="margin-right:0;"><a class="check_on" href="__APP__/Home/Index/faqs" title="">新手指南</a></li>
+                    </ul>
+                    <div class="nav_right">
+                        <div class="box_left">
+                            <a href="{$deploy.YIBO_YU}">益播</a>
+                            |
+                            <a href="{$deploy.MAP_YU}">益图</a>
+                        </div>
+                        <div class="login_nav">				
+                
+                            <if condition='$userInfo'>
+                                <a id="a"  style="margin-top:-10px;" href="{$deploy['CENTER_SERVER']}/Home/Index/myHomePage" target="_parent">
+                                    <if condition="$userInfo['extend']['user_name']">
+                                        {$userInfo['extend']['user_name']}
+                                        <elseif condition="$userInfo['extend']['true_name']" />
+                                        {$userInfo['extend']['true_name']}
+                                        <elseif condition="$userInfo['email']" />
+                                        {$userInfo['email']}
+                                        <else />
+                                        {$userInfo['phone']}
+                                    </if>
+                                    <if condition="$userOrg['status'] eq 2">
+                    				   <span class="Grade_pic_6" style="margin-left: 5px;" title="该用户已通过{$userOrg['group_name']}认证"></span>
+                    				</if>
+                                </a>
+                                |
+                                <a href="{$deploy['CENTER_SERVER']}/Login/Index/quitLogin">退出</a>
+                            <else />
+                                <a class="login_nav_login" href="javascript:void(0);" onclick="login();"><span>登录</span></a>
+                                <a class="login_nav_register" href="{$deploy['CENTER_SERVER']}/Login/Index/register" target="_blank"><span>注册</span></a>
+                            </if>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!--顶部导航全部结束-->
+<script>
+	function login(){
+		art.dialog.open("{$deploy['CENTER_SERVER']}/Login/Index/login",{
+			width:380,
+			height:380,
+			title:'登录',
+			opacity:0.6,
+
+		},false).lock();
+	}
+</script>

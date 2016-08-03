@@ -1,0 +1,363 @@
+<include file="Public:header" />
+<include file="Public:top" />
+<head>
+    <meta property="qc:admins" content="2447227162761111566375" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{$webData.title}</title>
+    <meta name="keywords" content="{$webData.keywords}" />
+    <meta name="description" content="{$webData.description}" />
+    <!-- <link rel="stylesheet" type="text/css" href="/Public/css/home/css/all.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="/Public/css/home/css/reset.css" /> -->
+    <link rel="stylesheet" type="text/css" href="/Public/css/home/css/tema.css" />
+    <link rel="stylesheet" type="text/css" href="/Public/css/home/css/slide.css" />
+	<SCRIPT type="text/javascript" src="/Public/js/zclip/jquery.zclip.min.js"></SCRIPT>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body class="body">
+<link rel="stylesheet" type="text/css" href="/Public/css/home/css/gongyi_new.css" />
+<link rel="stylesheet" type="text/css" href="/Public/css/home/css/stencil.css" />
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6755738"></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<style>
+*{margin:0px;padding:0px;}
+.choise_color{background:url(/Public/images/colors/11.png) no-repeat;width:36px;height:36px;z-index:999;margin-top:-39px;*margin-top:-34px;margin-top:-34px\9;margin-left:-2px;position:absolute;*position:noen;bottom:0;top:37px;top:32px\9;*top:37px;}
+.input_error{border:1px solid #c10000;}
+.input_default{border:1px solid #ccc;}
+.left{float:left;width:300px;margin-top:-20px;}
+.right{float:left;}
+.style_div{width:300px;overflow: hiddenpadding-bottom:20px;}
+.style_div ul{width:300px;overfloat:hidden;display:block;}
+.style_div ul li{float:left;margin-left:8px;margin-bottom:2px;padding:0px;border:0px;width:36px;height:36px;}
+.style_div ul li a{width:32px;height:32px;z-index:99;}
+.xitong{line-height:30px;font-size:12px;margin-left:10px;color:#c10000;}
+.xitong span{margin-right:10px;}
+.g_upload_down_mask{position: absolute;left: 0;top: 0;width: 100%;z-index:1;height: 964px;background: rgba(0,0,0,0.2);background: url(/Public/images/stylist/mask_pic1.png)\9;/*opacity: 0.3;filter:alpha(opacity: 30);*/display:none;}
+.popup1{width:702px;height:492px;margin:0px auto;z-index:1099}
+.popup1_top{width:27px;height:27px;text-align:right;float:right;right:0;margin-right:40px;overflow:hidden;}
+.pupup1_top a{width:27px;heiht:27px;display:block;}
+.pupop1_center{width:702px;height:464px;background:url(/Public/images/Activity/pic_8.png) no-repeat;clear:both;overflow:hidden;}
+.pucenter_top{font-size:24px;font-family:"Microsoft YaHei";font-weight:600;width:490px;margin:20px auto 0px auto;text-indent:10px;line-height:24px;color:#fff;text-align:center;}
+.pucenter_top span{font-size:26px;color:#fff600;margin:0px 2px;font-family:Helvetica, Arial, sans-serif;}
+.pucenter_bottom{font-family:"Microsoft YaHei";color:#353535;width:260px;margin:80px auto 0px;padding-left:25px;height:240px;}
+.pucenter_bottom h3{font-size:20px;color:#8e4300;line-height:26px;margin-bottom:20px;font-weight:lighter;}
+.pucenter_bottom div{font-size:14px;line-height:26px;color:#353535;}
+.pucenter_input{width:366px;margin:0px auto;height:51px;}
+.pucenter_input1{background:url(/Public/images/Activity/pic_9.png) no-repeat;width:173px;height:51px;line-height:46px;color:#fff;display:block;text-align:center;font-size:24px;font-weight:bold;letter-spacing:10px;margin-right:20px;float:left;}
+.pucenter_input1 a{width:173px;height:51px;line-height:48px;color:#fff;display:block;font-size:24px;font-weight:bold;}
+.pucenter_input1 a:hover{width:173px;height:51px;line-height:48px;color:#fff;}
+.pucenter_input2{background:url(/Public/images/Activity/pic_9.png) no-repeat 0px -52px;width:173px;height:51px;line-height:46px;color:#fff;display:block;text-align:center;font-size:24px;font-weight:bold;float:right;}
+.pucenter_input2 a{width:173px;height:51px;line-height:48px;color:#fff;display:block;font-size:24px;font-weight:bold;}
+.pucenter_input2 a:hover{width:173px;height:51px;line-height:48px;color:#fff;}
+</style>
+<script>
+	function getTemplate(project_id,color){
+		$.ajax({
+			url:'__APP__/Index/getTemplate',
+			type:'post',
+			data:{project_id:project_id,color:color},
+			dataType:'html',
+			success:function(data){
+				$("#templates").empty().append(data);
+				load_share();
+			}
+		})
+	}
+	function tab_color(o,type){	
+		$(".choise_color").hide();
+		$(o).next().show();
+		$("#colors").val(type);
+		var project_id = $("#project_id").val();
+		var color = type;
+		getTemplate(project_id,color)
+	}
+	
+	function getModels(obj){
+		
+		//需要切换信息
+		if(obj.checked){
+			var color = $("#colors").val();
+			var project_id = obj.value;
+			var is_show_color = obj.getAttribute('show_color');
+			if(parseInt(is_show_color) == 1){
+				$("#color_page_style").css({'height':'120px','display':'block'});
+			}else{
+				$("#color_page_style").css({'height':'120px','display':'none'});
+			}
+			$("#project_id").val(project_id)
+			getTemplate(project_id,color)
+		}
+	}
+
+	var uid = '{$Think.session.userInfo.id}';
+	function run(obj){
+		
+		
+		var projectId = [];
+		//获取颜色
+		var colors = $("#colors").val();
+		
+		//设置主推
+		var is_push = $("input[name='is_push']:checked").val();
+		
+		
+		//获取专题
+		$("input[name='projectId']").each(function(){
+			if(this.checked){
+				projectId.push(this.value);
+			}
+		})
+		var listId = projectId.join();
+		
+		//获取广告位名称
+		var web_name = $("#web_name").val();
+		
+		//提交数据
+		$.ajax({
+			url:'__URL__/insertAdd',
+			type:'post',
+			data:{mid:listId,colors:colors,web_name:web_name,is_push:is_push},
+			dataType:'json',
+			success:function(data){
+				if(data.status == 1){
+					if (data.data.codenum!=0){
+						$("#webcount").html(data.data.webcount);
+						$("#codenum").html(data.data.codenum);
+						popup($("#box1"));
+					}
+					
+					$("#code").val(data.data.codes);
+					obj.disabled = true;
+				}
+			}
+		})
+	}
+	
+	function showMsg(msg){
+		art.dialog({
+			title: '提示',
+			time: 1.5,
+			icon: 'warning',
+			content: msg
+		}).lock();
+	}
+
+	$(function(){
+			
+		var project_id = $("#project_id").val();
+		var is_content = $("#is_content").val();
+		if(parseInt(is_content) == 1){
+			$("#color_page_style").css({'height':'120px','display':'block'});
+		}else{
+			$("#color_page_style").css({'height':'120px','display':'none'});
+		}
+		getTemplate(project_id,1);
+	    if( isIe() ){
+	        $('#copyBtn').click(
+	            function(){
+	                var a=document.getElementById('code');//对象是content
+	                a.select(); //选择对象
+	                document.execCommand("Copy"); //执行浏览器复制命令
+	                alert("已复制好，可贴粘。");
+	            }
+	        )
+	    }else{
+	        $('#copyBtn').zclip({
+	            path: "/Public/js/zclip/ZeroClipboard.swf",
+	            copy: function(){
+	                return $('#code').val();
+	            },
+	            afterCopy: function () { alert("复制成功!"); }
+
+	        });
+	    }
+	})
+
+	function isIe(){
+	    var str = window.navigator.userAgent.toLowerCase();
+	    if( str.indexOf('msie 6') != -1 || str.indexOf('msie 7') != -1 || str.indexOf('msie 8') != -1 )return true;
+	    return false;
+	}
+</script>
+<div id="main_ming" style="margin-top:0px; margin-bottom:20px;">
+	<div class="zhongxin_main" style="margin-top:50px;  background:#fff; padding:20px; border-radius:6px; box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);">
+
+		<div class="daohang" style="margin-bottom:0px;"><h4 class="header bangzhutishi">安装404公益广告位</h4></div>
+
+		<div style="width:980px; margin-left:13px; overflow:hidden;"> <!--  404 start -->
+				
+			<input type="hidden" id="insert_id" value="{$insert_id}" name="insert_id"/> <!-- 当前操作数据的list_id -->
+			<input type="hidden" id="colors" value="1" name="colors"/> <!-- 当前colors_id -->
+			<input type="hidden" id="project_id" value="{$projectInfo.id}" name="project_id"/>
+			<input type="hidden" id="is_content" value="{$projectInfo.is_content}" name="is_content">
+		<!--left 开始 -->
+			<div class="left" style="margin-top:0px;">
+			
+				<div class="zhandian"> <!-- 站点信息 -->
+					 <h3 class="tishi">填写站点信息&nbsp;&darr;</h3>
+					 <div class="zhandian" id="zhandian_info" >
+						<p style="font-size:14px; font-family:"Microsoft YaHei";">广告位名称： <input type="input" name="web_name" style=" height:22px; line-height:22px; *height:16px; *line-height:16px; margin:0px;" id="web_name"  onblur="updateConfigs();" class="input_default" placeholder="填写广告位的名称" value="{$web_name}" /></p>
+					 </div>
+				</div>
+				
+			<!--是否接受系统推送-->			
+				<div class="xitong">
+				<span style="margin-rigth:30px;">是否接受系统推送</span>
+<!-- 				<input type="radio" id="is_push" name="is_push" value="" style=" vertical-align:text-top;"/> -->
+				<input type="radio" name="is_push" value="1" checked="checked" />是   
+				<input type="radio" name="is_push" value="0" />否
+				</div>
+			<!--是否接受系统推送-->
+
+				<div class="gglx" style=" clear:both; margin-bottom:10px; overflow: hidden; ">
+					<h3 class="tishi1">选择专题：</h3>
+					<div style="margin-left:10px; font-size:12px; margin-botttom:10px;">
+						<volist name="projectList" id="voo">
+							<div style=" float:left; display:block; width:130px; margin-right:0px; margin-bottom:10px;"><input type="checkbox" style=" vertical-align: top;" name="projectId" info="{$voo.template_id}" value="{$voo.id}" onclick="getModels(this)" show_color = "{$voo.is_content}" /><span style=" margin-right:10px;">{$voo.name}</span></div>
+						</volist>
+					</div>
+				</div>	
+
+				
+				<div class="page_style" style="height:120px;display:none;" id="color_page_style"><!-- 选择风格 -->
+					<h3 class="tishi1">选择风格：</h3>
+					<div id="style_div" class="style_div">
+						<ul style="	overfloat:hidden; width:300px; display:block;">
+							<li><a href="javascript:void(0);" onclick="tab_color(this,1)"><img src="/Public/images/colors/1.png" /></a><div class="choise_color" style="display:block;"></div></li>
+							<li><a href="javascript:void(0);" onclick="tab_color(this,2)"><img src="/Public/images/colors/2.png" /></a><div class="choise_color" style="display:none;"></div></li>	
+							<li><a href="javascript:void(0);" onclick="tab_color(this,3)"><img src="/Public/images/colors/3.png" /></a><div class="choise_color" style="display:none;"></div></li>
+							<li><a href="javascript:void(0);" onclick="tab_color(this,4)"><img src="/Public/images/colors/4.png" /></a><div class="choise_color" style="display:none;"></div></li>
+							<li><a href="javascript:void(0);" onclick="tab_color(this,5)"><img src="/Public/images/colors/5.png" /></a><div class="choise_color" style="display:none;"></div></li>
+						</ul>
+						<ul style="	overfloat:hidden; width:300px; display:block;">
+							<li><a href="javascript:void(0);" onclick="tab_color(this,6)"><img src="/Public/images/colors/6.png" /></a><div class="choise_color" style="display:none;"></div></li>
+							<li><a href="javascript:void(0);" onclick="tab_color(this,7)"><img src="/Public/images/colors/7.png" /></a><div class="choise_color" style="display:none;"></div></li>
+							<li><a href="javascript:void(0);" onclick="tab_color(this,8)"><img src="/Public/images/colors/8.png" /></a><div class="choise_color" style="display:none;"></div></li>
+							<li><a href="javascript:void(0);" onclick="tab_color(this,9)"><img src="/Public/images/colors/9.png" /></a><div class="choise_color" style="display:none;"></div></li>
+							<li><a href="javascript:void(0);" onclick="tab_color(this,10)"><img src="/Public/images/colors/10.png" /></a><div class="choise_color" style="display:none;"></div></li>
+						</ul>
+					</div>
+				</div>	
+					
+		
+				<div class="code tishi1" style="overfloat:hidden; padding-top:10px; clear:both;">
+						<button class="button" onclick="run(this);">点击生成代码</button>
+						<textarea name="code" id="code" style="width:270px; height:90px; font-size:12px; padding:2px; border:1px solid #ccc;" placeholder="点击上面按钮生成404代码">{$default_code}</textarea>
+						<p><a href="javascript:void(0);" style="color:#333;" id="copyBtn">复制代码</a></p>
+				</div>
+					
+ 				<div class="404_share" style="width:290px; padding-left:10px; height:30px;">
+					<div class="baidu_share">
+						<div class="baidu_share" id="baidu_share_title_{$vo.mid}">
+							<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare"' data="{'url':'http://dwz.cn/lTWdi','text':'我的网站刚刚加入了#404公益#，在404页放置1个公益广告位，传播最新公益信息，举手之劳做公益，你也一起加入吧！','pic':'yibo.iyiyun.com/Public/images/bo_pic3.jpg','desc':'','comment':'>','wbuid':{'tsina':'4265654592'}}">
+								<a class="bds_more"></a>
+								<a class="bds_qzone"></a>
+								<a class="bds_tqq"></a>
+								<a class="bds_renren"></a>
+								<a class="bds_tsina"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<!-- left 结束 -->
+
+		<!-- right start -->	
+			<div class="right" style=" margin-left:10px; padding-top:20px;" id="templates">
+				<!--模版3开始-->
+			<!--模板3结束-->
+			</div>	<!-- right end-->
+		</div>	<!--  404 end -->
+		
+	<div class="minglu_rk">
+		<div  class="minglu"><a href="/Index/place404show">进入404爱心站名录</a></div>
+	</div>
+	</div>
+
+</div>
+  <script>
+	function load_share(){
+		$("#bdshell_js").remove();
+		new_element=document.createElement("script");
+		new_element.setAttribute("type","text/javascript");
+		new_element.setAttribute("id","bdshell_js");
+		document.body.appendChild(new_element); 
+		document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
+	}
+	load_share();
+
+</script> 
+<!-- 底部 -->
+<div style=""><include file="Public:footer" /></div>
+
+
+
+<script language="JavaScript" type="text/javascript"> 
+function test(){ 
+	var infoHeight = document.getElementById("info").scrollHeight; 
+	var bottomHeight = document.getElementById("bottom").scrollHeight; 
+	var allHeight = document.documentElement.clientHeight; 
+
+	var bottom = document.getElementById("bottom"); 
+	if((infoHeight + bottomHeight) < allHeight){ 
+		bottom.style.position = "fixed"; 
+		bottom.style.bottom = "0"; 
+	}else{ 
+		bottom.style.position = ""; 
+		bottom.style.bottom = ""; 
+	}  
+
+	setTimeout(function(){test();},10); 
+} 
+//test(); 
+
+
+function popup(popupName){ 
+	var _scrollHeight = $(document).scrollTop(),//获取当前窗口距离页面顶部高度 
+	_windowHeight = $(window).height(),//获取当前窗口高度 
+	_windowWidth = $(window).width(),//获取当前窗口宽度 
+	_popupHeight = popupName.height(),//获取弹出层高度 
+	_popupWeight = popupName.width();//获取弹出层宽度 
+	_posiTop = (_windowHeight - _popupHeight)/2 + _scrollHeight+20; 
+	_posiLeft = (_windowWidth - _popupWeight)/2; 
+	popupName.css({"left": _posiLeft + "px","top":_posiTop + "px","display":"block","position":"absolute"});//设置position 
+	$(".g_upload_down_mask").show();
+}
+
+function closeBox(id){
+	$("#"+id).hide();
+	$(".g_upload_down_mask").hide();
+}
+
+</script>
+
+<div class="g_upload_down_mask"></div>
+<div id="box1" class="popup1" style="display:none;">
+	<div class="popup1_top"><a href="javascript:;" onClick="closeBox('box1');"><img src="__PUBLIC__/images/Activity/pic_10.png"/></a></div>
+	<div class="pupop1_center">
+		<div class="pucenter_top">你成为了第<span id="webcount"></span>个加入404公益的网站</div>
+		<div class="pucenter_bottom">
+			<h3>恭喜您获得七牛云存储 【30元现金券】！兑换码：<span id="codenum"></span>
+            <p>提示：一次有效，记得保存哦！</p>
+            </h3>
+            <p>&nbsp;</p>
+            <div id="bdshare" class="bdshare_t bds_tools_24 get-codes-bdshare" data="{
+'bdDes':'我的网站 刚刚加入了#404公益#，又领取了@七牛云存储 【30元现金券】！
+在404页放置1个公益广告位，传播最新公益信息，举手之劳做公益，你也一起加入吧！',  
+'text':'我的网站 刚刚加入了#404公益#，又领取了@七牛云存储 【30元现金券】！
+在404页放置1个公益广告位，传播最新公益信息，举手之劳做公益，你也一起加入吧！',  
+'title':'', 
+'url':'http://yibo.iyiyun.com/Home/Index/web404',
+'pic':'',
+}">
+		<span style="float:left; line-height:35px; ">分享到：</span><a title="分享到新浪微博"  class="bds_tsina" data-cmd="tsina"></a><a title="分享到QQ空间"  class="bds_qzone" data-cmd="qzone"></a><a title="分享到腾讯微博"  class="bds_tqq" data-cmd="tqq"></a><span style="height:24px;" class="bds_more" data-cmd="more" ></span>
+    </div>
+		</div>
+		<div class="pucenter_input"><a href="javascript:;" onClick="closeBox('box1');" class="pucenter_input1">关闭</a><a href="https://portal.qiniu.com/signin" target="_blank" class="pucenter_input2">马上领取</a></div>
+</div>
+</div>
+
+<script type="text/javascript" id="bdshare_js" data="type=tools" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();
+</script>

@@ -1,0 +1,359 @@
+<include file="Public:header" />
+<include file="Public:top" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/uploadify/jquery.uploadify.v2.1.4.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/uploadify/swfobject.js"></script>
+<link href="__PUBLIC__/js/uploadify/uploadify.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="__PUBLIC__/js/calendar/calendar.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/calendar/calendar-setup.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/calendar/calendar-zh.js"></script>
+<link href="__PUBLIC__/js/calendar/calendar.css?v=2" rel="stylesheet" type="text/css">
+<style type="text/css">
+	.m_upload_down_form{margin-bottom:0; border: 0;}
+	.m_stylist_buy_btn{border-top: 1px dashed #eee; padding-top:30px; margin-right: 20px;}
+	.upperoptions .upperoptions_size{ width:98px; border:#63b4d2 1px solid; height:32px; text-align:center; line-height:32px; font-size:14px; color:#63b4d2;}
+</style>
+	<!-- banner -->
+	<div class="g_stylist_upload">
+		<div class="m_stylist_upload">
+			<div class="g_stylist_upload_r fr">
+				<h1>用创意做公益！</h1>
+				<p class="u_p1">设计要求</p>
+				<p>作品基调：积极乐观向上，贴近生活。</p>
+				<p>表现方式：绘画、电脑设计、摄影等表现方式均可。</p>
+				<p>文件格式：JPG或png均可。</p>
+				<p>热门图片尺寸：190x350  950x90  300x250  640x460(404公益)</p>
+				<a href="javascript:;">查看详细要求</a>
+			</div>
+		</div>
+	</div>
+	<!-- banner end -->
+	<div class="g_upload_dowm">
+		<div class="m_upload_down clearfix">
+			<div class="m_upload_down_2 fl">
+				<if condition="$adId gt 0" >
+                	<h2>恭喜您，已经成功购买该广告，请完善相关信息，以方便您广告的展示</h2>
+                <else />
+                	<h2>恭喜您，已经成功认购该广告，请完善相关信息，以方便您广告的展示</h2>
+                </if>
+                
+				<form action="/Home/Stylist/saveDemandAd" method="post" name="production">
+					<div class="m_upload_down_form">
+						<div class="m_upload_box clearfix">
+							<label for="title" class="m_upload_title">广告名称：</label>
+							<div class="m_upload_input">
+                                <input id="title" type="text" placeholder="" name="title" onblur="verifyTitle()"/>
+							</div>
+							<a class="map_judge_right" style="display:none;" id="titleRight"></a>
+							<div class="map_judge_error_box" style="display:none;" id="titleError">
+								<div class="warn_box" style="visibility: visible;">
+									<p class="warn" id="titleErrorMsg"></p><p class="angle"></p>
+								</div>
+								<a id="" class="map_judge_error"></a>
+							</div> 
+						</div>
+						<div class="m_upload_box clearfix">
+							<label for="desc" class="m_upload_title">链接地址：</label>
+							<div class="m_upload_input">
+								<input id="url" type="text" placeholder="" name="url" onblur="verifyUrl()"/>
+							</div>
+							<a class="map_judge_right" style="display:none;" id="urlRight"></a>
+							<div class="map_judge_error_box" style="display:none;" id="urlError">
+								<div class="warn_box" style="visibility: visible;">
+									<p class="warn" id="urlErrorMsg"></p><p class="angle"></p>
+								</div>
+								<a id="" class="map_judge_error"></a>
+							</div>
+						</div>
+						
+						<div class="m_upload_box clearfix">
+							<label for="desc" class="m_upload_title">展现日期：</label>
+							<div class="m_upload_input1">
+                            <input name="start_date" id="start_date" type="text" value="{$adInfo['start_date']}" placeholder="展现开始日期" class="m_upload_input1_input" onclick="return showCalendar('start_date', 'y-mm-dd');" />
+							 至 <input name="end_date" id="end_date" type="text" class="m_upload_input1_input" value="{$adInfo['end_date']}" placeholder="展现结束日期" onclick="return showCalendar('end_date', 'y-mm-dd');" />
+							</div>
+							<a class="map_judge_right" style="display:none;" id="dateRight"></a>
+							<div class="map_judge_error_box" style="display:none;" id="dateError">
+								<div class="warn_box" style="visibility: visible;">
+									<p class="warn" id="dateErrorMsg"></p><p class="angle"></p>
+								</div>
+								<a id="" class="map_judge_error"></a>
+							</div>
+						</div>
+
+						<div class="m_upload_box1 clearfix">
+							<label for="desc" class="m_upload_title">关键字：</label>
+							<div class="m_upload_input">
+                                <input type="text" style="" placeholder="关键字" name="keywords" class="input_box3" id="keywords" onfocus="showDiv('#sysKeywords');"/>
+							</div>
+							<a class="map_judge_right" style="display:none;" id="keywordsRight"></a>
+							<div class="map_judge_error_box" style="display:none;" id="keywordsError">
+								<div class="warn_box" style="visibility: visible;">
+									<p class="warn" id="keywordsErrorMsg"></p><p class="angle"></p>
+								</div>
+								<a id="" class="map_judge_error"></a>
+							</div>
+						</div>
+
+						<div class="m_upload_box clearfix" style="display:none;" id="sysKeywords">
+							<label for="desc" class="m_upload_title"></label>
+							<div class="upper_gjz">
+								<div  class="upper_gjz1">热门关键字：（也可手动输入自定义关键字，多个关键字用逗号隔开）</div>                                
+								<div class="upper_gjz2">
+                                <volist name="categoryList" id="vo">
+                                    <a href="javascript:void(0);" onclick="intoInput('{$vo.category_name}');"><div class="bqtou">{$vo.category_name}</div></a>
+                                </volist>
+                                </div>
+							</div>
+						</div>
+
+						<div class="m_upload_box1 clearfix">
+							<label for="desc" class="m_upload_title">展现区域：</label>
+							<div class="upper_Options">
+								<div class="upperoptions">
+                                    <a class="upperoptions_size"  href="javascript:void(0);" id="areaType" onclick="check(1);">全 国</a>
+                                    <a href="javascript:void(0);" id="areaType" onclick="check(2);">自定义</a>
+                                </div>
+							</div>
+							<a class="map_judge_right" style="display:none;" id="areaRight"></a>
+							<div class="map_judge_error_box" style="display:none;" id="areaError">
+								<div class="warn_box" style="visibility: visible;">
+									<p class="warn" id="areaErrorMsg"></p><p class="angle"></p>
+								</div>
+								<a id="" class="map_judge_error"></a>
+							</div>
+						</div>
+						<div class="m_upload_box clearfix" style="display:none;" id="area">
+							<label for="desc" class="m_upload_title"></label>
+							<div class="upper_gjz">
+								<div  class="uperptions">
+                                    <a href="javascript:void(0);" id="selectAll">全选</a>
+                                    <a href="javascript:void(0);" id="unSelect">全不选</a>
+                                    <a href="javascript:void(0);" id="reverse">反选</a>
+                                </div>
+								<div class="upper_gjz2" id="areaList">
+									<volist name="area" id="vo">
+                                        <label class="deliveryarea">
+                                            <input type="checkbox" name="area[]" value="{$vo.area_id}" >{$vo.title}
+                                        </label>
+                                    </volist>
+								</div>
+							</div>
+						</div>
+
+						<div class="m_upload_box clearfix">
+							<label for="title" class="m_upload_title">广告介绍：</label>
+							<div class="m_upload_txtarea">
+                                <textarea id="desc" name="desc" placeholder="广告介绍不能超过200字符" onblur="verifyDesc()"></textarea>
+							</div>
+                            <a class="map_judge_right" style="display:none;" id="descRight"></a>
+							<div class="map_judge_error_box" style="display:none;" id="descError">
+								<div class="warn_box" style="visibility: visible;">
+									<p class="warn" id="descErrorMsg"></p><p class="angle"></p>
+								</div>
+								<a id="" class="map_judge_error"></a>
+							</div>
+						</div>						
+
+						
+
+					</div>
+					<div class="m_stylist_buy_btn ">
+                        <input type="hidden" name="demand_id" value="{$demandId}"/>
+                        <input type="hidden" name="ad_id" value="{$adId}"/>                        
+						<a class="fr" href="javascript:;" onclick="checkSub();">提交</a>
+					</div>
+				</form>
+			</div>
+			<div class="m_upload_down_r fr">
+				<div class="m_upload_down_r_title clearfix">最新需求<a class="fr" href="/Home/Stylist/demandList">查看全部</a></div>
+				<div class="m_upload_down_list">
+					<ul>
+                        <volist name="demandList" id="vo">
+						<li><a href="/Home/Stylist/inputDemandProduction/id/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title|msubstr=0,15}</a><span><i><if condition="$vo.likes eq ''">0</if>{$vo.likes}</i>赞</span></li>
+						</volist>
+					</ul>
+				</div>
+			</div>
+		</div>      
+	</div>      
+<include file="Public:footer2" />
+<script type="text/javascript">
+	$('.upperoptions a').click(function(){
+		$(this).removeClass('upperoptions_size').addClass('upperoptions_size').siblings().removeClass('upperoptions_size');
+	});
+    $(function () {
+        //全选
+        $("#selectAll").click(function () {
+            $("#areaList").find(":checkbox").attr("checked", true);
+        });
+        //全不选
+        $("#unSelect").click(function () {
+            $("#areaList").find(":checkbox").attr("checked", false);
+        });
+        //反选
+        $("#reverse").click(function () {
+            $("#areaList").find(":checkbox").each(function () {
+                $(this).attr("checked", !$(this).attr("checked"));
+            });
+        });
+    });
+//关键字展示
+    function showDiv(obj){
+        $(obj).slideDown("fast");
+    }
+
+    function intoInput(name){
+        var keyword = $('#keywords').val();
+        if(keyword == ''){
+            $('#keywords').val(name + ',');
+        }else{
+            $('#keywords').val(keyword + name + ',');
+        }
+    }
+
+    function initPicHint(){
+        $("#img").next().show();
+        $("#img_success").hide();
+        $("#img_warning").hide();
+        $("#img_hint").hide();
+        $("#img2").next().show();
+        $("#img2_success").hide();
+        $("#img2_warning").hide();
+        $("#img2_hint").hide();
+    }
+
+    function check( type ){     
+
+        if ( type == 1 ) {
+            $("#area").slideUp("fast");
+        }
+
+        if ( type == 2 ) {
+            $("#area").slideDown("fast");
+        }
+    }
+
+    $(function(){
+        $("#is_upload").val('');
+        if($(":radio[name='uploadType']:checked").val() == 'single' ){
+            var id = $("#size_id").val();
+            getPicBySizeAjax(id);
+        }
+    })
+
+    function getPicBySizeAjax(id) {
+        initPicHint();
+        $.get('__APP__/Home/Ad/getPicSize', {id: id}, function (data) {
+            if (data) {
+                var obj = eval('(' + data + ')');
+                var pic ='<li id="examplePic"><img style="margin-top:10px; width: ' + obj.width + 'px; height: ' + obj.height + 'px;" src="' + obj.pic + '" id="thumbpic" align="absmiddle" alt="缩略图"/>' +
+                        '</li>';
+                $('#pic').html(pic);
+                $('#is_upload').val('');
+            }
+        });
+    }
+
+    //验证标题
+    function verifyTitle(){
+        if(!$("#title").val()){
+			$('#titleRight').hide();
+			$('#titleError').show();
+			$('#titleErrorMsg').html("广告没有名字，和答卷没有名字的后果一样");
+			return false;
+		}else{
+			$('#titleError').hide();
+			$('#titleErrorMsg').html('');
+			$('#titleRight').show();			
+			return true;
+        }
+    }
+
+    //验证url
+    function verifyUrl(){
+
+        var strRegex = "^[A-Za-z]+://[A-Za-z0-9-_]+\\.[A-Za-z0-9-_%&\?\/.=]+$";
+        var re = new RegExp(strRegex);
+        if(!re.test($('#url').val())){
+			$('#urlRight').hide();
+			$('#urlError').show();
+			$('#urlErrorMsg').html("貌似这个地址不正确，别忘了http://哦~");
+			return false;
+		}else{
+			$('#urlError').hide();
+			$('#urlErrorMsg').html('');
+			$('#urlRight').show();			
+			return true;
+        }
+    }
+
+    //验证描述
+    function verifyDesc(){
+        if($("#desc").val().length == 0){
+			$('#descRight').hide();
+			$('#descError').show();
+			$('#descErrorMsg').html("广告介绍不能空着哦~");
+			return false;
+		}else if($("#desc").val().length > 200){
+            $('#descRight').hide();
+			$('#descError').show();
+			$('#descErrorMsg').html("广告介绍请保持在200字以内！");
+			return false;
+		}else{
+			$('#descError').hide();
+			$('#descErrorMsg').html('');
+			$('#descRight').show();			
+			return true;
+        }
+    }
+
+    //验证日期
+    function verifydate(){
+        if($("#start_date").val() && $("#end_date").val()){
+            if ( ($("#start_date").val() > $("#end_date").val()) ) {
+                $('#dateRight').hide();
+                $('#dateError').show();
+			    $('#dateErrorMsg').html("展现结束日期不能小于展现开始日期！");
+			    return false;
+            } else {
+                $('#dateError').hide();
+    			$('#dateErrorMsg').html('');
+    			$('#dateRight').show();			
+    			return true;
+            }
+        }else{
+            $('#dateError').hide();
+			$('#dateErrorMsg').html('');
+			$('#dateRight').show();			
+			return true;
+        }
+    }
+
+    function checkSub() {
+        if(!verifyTitle()){
+            $("#title").focus();
+            return false;
+        }
+
+        if(!verifyUrl()){
+            $("#url").focus();
+            return false;
+        }
+
+        if(!verifydate()){
+            $("#end_date").focus();
+            return false;
+        }
+
+        if(!verifyDesc()){
+            $("#desc").focus();
+            return false;
+        }
+
+        window.onbeforeunload = function () {
+        }; // 清空事件
+        document.forms.production.submit();
+    }
+	
+</script>

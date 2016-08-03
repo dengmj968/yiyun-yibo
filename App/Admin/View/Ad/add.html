@@ -1,0 +1,564 @@
+<include file="Public:_header" />
+<script>
+    $(document).ready(function() {
+        $('#file_upload').uploadify({
+            'uploader'  : '__PUBLIC__/js/uploadify/uploadify.swf',
+            'script'    : '__APP__/Admin/Public/uploadLogo/',
+            'scriptData': { 'folderName': 'Ad'},
+            'cancelImg' : '__PUBLIC__/js/uploadify/cancel.png',
+            'folder'    : '__PUBLIC__/upload/Ad',
+            'auto'      : true,
+            'fileDesc' : "请选择jpg,gif,png,jpeg图片类型",
+            'fileExt'  : '*.jpg;*.gif;*.png;*.jpeg',
+            'method'   : "POST",
+            'buttonImg'   : '__PUBLIC__/js/uploadify/select.png',
+            'fileDataName'   : "adPic",
+            'onComplete':function(event,queueId,fileObj,response,data){
+                if(response==0){
+                    alert("上传失败，请重试");
+                }else{
+                    var img = new Image();
+                    img.src = response;
+                    img.onload = function(){
+                        var size_id = $("select[name='size_id'] option:selected").val();
+                        $.get('__APP__/Admin/Ad/getSizeInfoById', {id: size_id}, function(data){
+                            if(data){
+                                var sizeobj = eval('(' + data + ')');
+                                var imgSize = img.width + ' x ' + img.height;
+                                if (sizeobj.width != img.width || sizeobj.height != img.height){
+                                    alert('图片' + imgSize + '与您所选广告尺寸不符合！');
+                                }else{
+                                    var pic ='<li><img style="margin-top:10px; width: 100px; height: 100px" src="' + response + '" id="thumbpic" align="absmiddle" alt="缩略图"/>' +
+                                             '<span style=" vertical-align:top;">' +
+                                             '<a href="javascript:void(0);" onclick="delPic(this);">' +
+                                             '<img style="margin-top:10px;" src="__PUBLIC__/js/uploadify/cancel.png" title="删除图像"/>' +
+                                             '</a>' +
+                                             '<span id="imgSize"></span>'+
+                                             '</span> <input type="hidden" name="pic" value="' + response + '"/></li>';
+                                    $('#pic').append(pic)
+                                }
+                            }
+                        })
+                    }
+                }
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $('#file_upload_multi').uploadify({
+            'uploader'  : '__PUBLIC__/js/uploadify/uploadify.swf',
+            'script'    : '__APP__/Admin/Public/uploadLogo/',
+            'scriptData': { 'folderName': 'Ad'},
+            'cancelImg': '__PUBLIC__/js/uploadify/cancel.png',
+            'folder': '__PUBLIC__/uploads/Ad/',
+            'auto': true,
+            'multi': true,
+            'displayData': 'percentage',
+            'fileDesc': "请选择jpg,gif,png,jpeg图片类型",
+            'fileExt': '*.jpg;*.gif;*.png;*.jpeg',
+            'method': "POST",
+            'buttonImg': '__PUBLIC__/js/uploadify/select.png',
+            'fileDataName': "adPic",
+            'onComplete': function (event, queueId, fileObj, response, data) {
+                if (response == 0) {
+                    alert("上传失败，请重试");
+                } else {
+                    var img = new Image();
+                    img.src = response;
+                    img.onload = function(){
+                        var size_id = $("select[name='size_id'] option:selected").val();
+                        var isHave = null;
+                        $.get('__APP__/Admin/Ad/getSizeData', function(data){
+                            if(data){
+                                var sizeobj = eval(data);
+                                for(var i = 0; i < sizeobj.length; i++){
+                                    if((sizeobj[i].width == img.width) && (sizeobj[i].height == img.height)){
+                                        isHave = "yes";
+                                    }
+                                }
+
+                                var imgSize = img.width + ' x ' + img.height;
+                                if(isHave == 'yes'){
+                                    var pic ='<li><img style="margin-top:10px; width: 100px; height: 100px" src="' + response + '" id="thumbpic" align="absmiddle" alt="缩略图"/>' +
+                                            '<span style=" vertical-align:top;">' +
+                                            '<a href="javascript:void(0);" onclick="delPic(this);">' +
+                                            '<img style="margin-top:10px;" src="__PUBLIC__/js/uploadify/cancel.png" title="删除图像"/>' +
+                                            '</a>' +
+                                            '<span id="imgSize"></span>'+
+                                            '</span> <input type="hidden" name="picArr[]" value="' + response + '"/></li>';
+                                    $('#pic').append(pic)
+                                }
+                                if(isHave == null){
+                                    alert('图片' + imgSize + '与广告尺寸不符合！');
+                                }
+                                isHave = null;
+                            }
+                        })
+                    }
+                }
+            }
+        });
+    });
+</script>
+<div class="so_main">
+    <div class="page_tit">添加广告&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="__APP__/Admin/Ad">返回列表</a></span></div>
+    <form method="post" action="__APP__/Admin/Ad/saveAdd" enctype="multipart/form-data" name="adForm">
+
+        <div class="form2">
+            <dl class="lineD">
+                <dt>标题：</dt>
+                <dd>
+                    <input name="title" id="title" class="biaoti" type="text" value="" onblur="if(this.value=='')document.getElementById('titleDiv').innerHTML='*请填写标题！';else document.getElementById('titleDiv').innerHTML='' "><span class="yanzheng" id="titleDiv"></span>
+                </dd>
+            </dl>
+            <dl class="lineD">
+                <dt>描述：</dt>
+                <dd>
+                    <textarea name="desc" id="desc" style="width:400px;height:100px;" onblur="if(this.value=='')document.getElementById('descDiv').innerHTML='*请填写介绍！';else if(this.value.length >100) document.getElementById('descDiv').innerHTML='*描述请保持在100字以内！'; else document.getElementById('descDiv').innerHTML='' "></textarea><span class="yanzheng" id="descDiv"></span>
+                </dd>
+            </dl>
+
+            <dl class="lineD">
+                <dt>广告地址：</dt>
+                <dd>
+                    <input name="url" id="url" class="biaoti" type="text" value="" onblur="if(this.value=='')document.getElementById('urlDiv').innerHTML='*请填写广告地址！';else document.getElementById('urlDiv').innerHTML='' "><span class="yanzheng" id="urlDiv"></span>
+                </dd>
+            </dl>
+
+            <dl class="lineD">
+                <dt>广告类别：</dt>
+                <dd style="width:1000px;overflow:hidden;">
+                    <select name="keywords_category_id" class="xiala_wb chicun" id="keywords_category"
+                            onchange="getKeywordsAjax(this.value)">
+                        <volist id="vo" name="categoryList">
+                            <option value="{$vo.id}">{$vo.category_name}</option>
+                        </volist>
+                    </select>
+                </dd>
+            </dl>
+            <dl class="lineD">
+                <dt>关键字：</dt>
+                <dd>
+                    <input type="radio" name="keywordType" value="system" checked/>选择系统
+                    <input type="radio" name="keywordType" value="custom" />自定义
+                </dd>
+                <dd style="overflow: hidden" id="keywordShow">
+                    <div id="keywords">
+                    </div>
+                </dd>
+                <dd style="overflow: hidden" id="keywordCustom">
+                    <input type="text" name="keywordCustom" style="width: 195px"/> <span style="color: red">*</span>多个关键字之前用逗号分割
+                </dd>
+            </dl>
+
+
+            <dl class="lineD">
+                <dt>投放区域：</dt>
+                <dd>
+                    <input type="radio" name="area" value="all" checked />全选
+                    <input type="radio" name="area" value="custom" />自定义
+                </dd>
+                <dd style="overflow:hidden;" id="area">
+                    <span style="margin-bottom: 20px">&nbsp;
+                        <a href="javascript:void(0);" id="selectAll">全选</a>&nbsp;&nbsp;
+                        <a href="javascript:void(0);" id="unSelect">全不选</a>&nbsp;&nbsp;
+                        <a href="javascript:void(0);" id="reverse">反选</a>
+                    </span>
+                    <div class="Keyword" id="areaList">
+                        <volist name="area" id="vo">
+                            <div style="width:600px;">
+                                <div class="tigg_nr" style="float:left; width:130px; display:block;">
+                                    <input type="checkbox" name="area[]" value="{$vo.area_id}" style=" vertical-align:middle; *+vertical-align:middle; margin-right:2px;">{$vo.title}
+                                </div>
+                            </div>
+                        </volist>
+                    </div>
+                </dd>
+            </dl>
+
+            <dl class="lineD">
+                <dt>投放日期：</dt>
+                <dd style="overflow:hidden;">
+                    开始日期：<input name="start_date" id="start_date" type="text" value="" onclick="return showCalendar('start_date', 'y-mm-dd');">
+                </dd>
+                <dd style="overflow:hidden;">
+                    结束日期：<input name="end_date" id="end_date" type="text" value="" onclick="return showCalendar('end_date', 'y-mm-dd');">
+                </dd>
+            </dl>
+
+            <dl class="lineD">
+                <dt>状态：</dt>
+                <dd>
+                    <input name="status" type="radio" value="1" />审核中
+                    <input name="status" type="radio" value="2" checked="checked" />使用中
+                    <input name="status" type="radio" value="3" />已停用
+                    <input name="status" type="radio" value="4" />未通过
+                </dd>
+            </dl>
+
+            <dl class="lineD">
+                <dt class="bg_td" style="vertical-align:text-top">上传广告方式：</dt>
+                <dd>
+                    <input type="radio" name="uploadType" id="single" value="single" checked />单图上传
+                    <input type="radio" name="uploadType" id="multi" value="multi" />多图上传
+                </dd>
+            </dl>
+
+            <dl class="lineD" id="size">
+                <dt>尺寸：</dt>
+                <dd style="width:1000px;overflow:hidden;">
+                    <select name="size_id" id="size_id" class="xiala_wb chicun" onchange="getPicBySizeAjax(this.value)";>
+                        <volist id="vo" name="adSizeList">
+                            <option value="{$vo.id}">{$vo.size_name}</option>
+                        </volist>
+                    </select>
+                    <span class="yanzheng" id="sizeDiv"></span>
+                </dd>
+            </dl>
+
+            <dl class="lineD">
+                <dt>图片：</dt>
+                <dd>
+                    <div>
+                        <input type="file" id="file_upload"/>
+                    </div>
+                    <div style="display: none">
+                        <input type="file" id="file_upload_multi" />
+                    </div>
+                    <input type='hidden' value="" id="is_upload">
+                    <ul id="pic">
+                    </ul>
+                </dd>
+            </dl>
+
+                <div class="page_btm">
+                    <!--<input type="button" class="btn_b" onclick="run();" value="确定" />-->
+                    <input type="submit" value="保存"/>
+                </div>
+        </div>
+
+    </form>
+</div>
+<include file="Public:_footer" />
+<script>
+//单图上传、多图上传切换
+$(document).ready(function () {
+    check();
+    $(":radio[name='uploadType']").click(function () {
+        check();
+    });
+});
+
+function check() {
+    if ($(":radio[name='uploadType']:checked").val() == 'single') {
+        $("#size").show();
+        $("#file_upload_multi").parent('div').hide();
+        $("#file_upload").parent('div').show();
+        $("#pic").html('');
+    }
+
+    if ($(":radio[name='uploadType']:checked").val() == 'multi') {
+        $("#size").hide();
+        $("#file_upload_multi").parent('div').show();
+        $("#file_upload").parent('div').hide();
+        $("#pic").html('');
+    }
+}
+
+//关键字级联
+$(function () {
+    var category_id = $("#keywords_category").val();
+    getKeywordsAjax(category_id);
+})
+
+function getKeywordsAjax(category_id) {
+    $.get('__APP__/Home/Ad/getKeywordsAjax', {category_id: category_id}, function (data) {
+        if (data) {
+            $("#keywords").html(data);
+        }
+    })
+}
+
+//关键字选择
+$(document).ready(function () {
+    getKeywords();
+    $(":radio[name='keywordType']").click(function () {
+        getKeywords();
+    });
+});
+
+function getKeywords() {
+    if ($(":radio[name='keywordType']:checked").val() == 'system') {
+        $("#keywordCustom").hide();
+        $("#keywordShow").slideDown("fast");
+    }
+
+    if ($(":radio[name='keywordType']:checked").val() == 'custom') {
+        $("#keywordShow").slideUp("fast");
+        $("#keywordCustom").show();
+    }
+}
+/*
+//关键字级联
+$(function () {
+    var category_id = $("#keywords_category").val();
+    $.get('__APP__/Admin/Ad/getKeywordsAjax', {category_id: category_id}, function (data) {
+        if (data) {
+            $("#keywords").html(data);
+        }
+    })
+})
+
+function getKeywordsAjax(category_id) {
+    $.get('__APP__/Admin/Ad/getKeywordsAjax', {category_id: category_id}, function (data) {
+        if (data) {
+            $("#keywords").html(data);
+        }
+    })
+}
+
+//关键字选择
+$(document).ready(function () {
+    getKeywords();
+    $(":radio[name='keywordsType']").click(function () {
+        getKeywords();
+    });
+});
+
+function getKeywords() {
+    if ($(":radio[name='keywordsType']:checked").val() == 'system') {
+        $("#keywordCustom").hide();
+        $("#keywordShow").slideDown("fast");
+    }
+
+    if ($(":radio[name='keywordsType']:checked").val() == 'custom') {
+        $("#keywordShow").slideUp("fast");
+        $("#keywordCustom").show();
+    }
+}
+*/
+
+$(function () {
+    //全选
+    $("#selectAll").click(function () {
+        $("#areaList").find(":checkbox").attr("checked", true);
+    });
+    //全不选
+    $("#unSelect").click(function () {
+        $("#areaList").find(":checkbox").attr("checked", false);
+    });
+    //反选
+    $("#reverse").click(function () {
+        $("#areaList").find("::checkbox").each(function () {
+            $(this).attr("checked", !$(this).attr("checked"));
+        });
+    });
+});
+
+
+//图片上传方式切换、区域选择方式切换
+$(document).ready(function () {
+    check();
+    $(":radio[name='uploadType']").click(function(){
+        check();
+    });
+
+    $(":radio[name='area']").click(function(){
+        check();
+    });
+});
+
+function check(){
+    if ( $(":radio[name='uploadType']:checked").val() == 'single' ) {
+        $("#size").show();
+        $("#file_upload_multi").parent('div').hide();
+        $("#file_upload").parent('div').show();
+        var id = $("#size_id").val();
+        getPicBySizeAjax(id);
+    }
+
+    if ( $(":radio[name='uploadType']:checked").val() == 'multi' ) {
+        $("#size").hide();
+        $("#file_upload_multi").parent('div').show();
+        $("#file_upload").parent('div').hide();
+        $("#pic").html('');
+    }
+
+    if ( $(":radio[name='area']:checked").val() == 'all' ) {
+        $("#area").slideUp("fast");
+    }
+
+    if ( $(":radio[name='area']:checked").val() == 'custom' ) {
+        $("#area").slideDown("fast");
+    }
+}
+
+$(function(){
+    if($(":radio[name='uploadType']:checked").val() == 'single' ){
+        var id = $("#size_id").val();
+        getPicBySizeAjax(id);
+    }
+})
+
+function getPicBySizeAjax(id) {
+    $.get('__APP__/Home/Ad/getPicSize', {id: id}, function (data) {
+        if (data) {
+            var obj = eval('(' + data + ')');
+            var is_upload = $("#is_upload").val();
+            if(!is_upload){
+                var pic ='<li><img style="margin-top:10px; width: ' + obj.width + 'px; height: ' + obj.height + 'px;" src="' + obj.pic + '" id="thumbpic" align="absmiddle" alt="缩略图"/>' +
+                        '<span style=" vertical-align:top;">' +
+                        '<a href="javascript:void(0);" onclick="delPic(this);">' +
+                        '<img style="margin-top:10px;" src="__PUBLIC__/js/uploadify/cancel.png" title="删除图像"/>' +
+                        '</a>' +
+                        '<span id="imgSize"></span>'+
+                        '</span><input type="hidden" name="pic" value="' + obj.pic + '"/></li>';
+                $('#pic').html(pic);
+            }
+        }
+    });
+}
+/*//地域选择
+$(document).ready(function () {
+    getArea();
+    $(":radio[name='area']").click(function () {
+        getArea();
+    });
+});
+
+function getArea() {
+    if ($(":radio[name='area']:checked").val() == 'all') {
+        $("#areaShow").slideUp("fast");
+    }
+
+    if ($(":radio[name='area']:checked").val() == 'custom') {
+        $("#areaShow").slideDown("fast");
+    }
+}*/
+
+function run() {
+    if ($('#title').val() == '') {
+        $('#titleDiv').html('*请填写标题！');
+        return false;
+    } else {
+        $('#titleDiv').html('');
+    }
+    if ($('#desc').val() == '') {
+        $('#descDiv').html('*请填写描述！');
+        return false;
+    } else if ($('#desc').val().length > 100) {
+        $('#descDiv').html('*描述请保持在100字以内！');
+        return false;
+    } else {
+        $('#descDiv').html('');
+    }
+    if ($('#url').val() == '') {
+        $('#urlDiv').html('*请填写广告地址！');
+        return false;
+    } else {
+        var strRegex = "((https?|ftp|gopher|telnet|file|notes|ms-help):((//)|(\\\\))+[\w\d:#@%/;$()~_?\+-=\\\.&]*)";
+        var re = new RegExp(strRegex);
+        if (!re.test($('#url').val())) {
+            $('#urlDiv').html('*您的URL不合法,别忘了写“http://”哦');
+            return false;
+        } else {
+            $('#urlDiv').html('');
+        }
+
+    }
+    if ($('#AdPic').val() == '') {
+        $('#picDiv').html('*请上传广告图片！');
+        return false;
+    } else {
+        $('#picDiv').html('');
+    }
+    document.forms.adForm.submit();
+}
+
+function intoInput(name) {
+    var keyword = $('#keywords').val();
+    if (keyword == '') {
+        $('#keywords').val(name + ',');
+    } else {
+        $('#keywords').val(keyword + name + ',');
+    }
+}
+
+function addChildArea(obj) {
+    childAreaObj = document.getElementById('childArea');
+    $.post("__APP__/Global/Area/getChildArea", {pId: obj.value}, function (data) {
+        if (data) {
+            var obj = eval('(' + data + ')');
+            //alert(obj);
+            var htmlList = "";
+            for (var i = 0; i < obj.length; i++) {
+                htmlList += "<option value='" + obj[i].area_id + "'>" + obj[i].title + "</option>";
+            }
+        }
+        if (htmlList) {
+            childAreaObj.innerHTML = htmlList;
+        }
+    })
+}
+
+//搜索用户
+var isSearchHidden = 1;
+function searchUser() {
+    var keywords = document.getElementById('keywords').value;
+    $.post("__APP__/Admin/Ad/addKeywords", {keyword: keywords}, function (data) {
+        if (data) {
+            getKeyType(data);
+        }
+    })
+}
+
+var size_id = '';
+function changeSize(id) {
+    $.get('__APP__/Admin/Ad/getPicSize', {id: id}, function (data) {
+        if (data) {
+            var obj = eval('(' + data + ')');
+            var is_uplode = document.getElementById('is_uplode').value;
+            if (!is_uplode) {
+                $("#thumbpic").attr("src", obj.pic);
+            }
+            $("#thumbpic").attr("width", obj.width);
+            $("#thumbpic").attr("height", obj.height);
+            size_id = obj.id;
+        }
+    });
+}
+function delPic(obj) {
+    $(obj).parents('li').remove();
+}
+function getKeyType(keyword) {
+    $.post("__APP__/Admin/Ad/getKeywordType", {}, function (data) {
+        var obj = eval('(' + data + ')');
+        var htmlList = "";
+        var html = "";
+        for (var i = 0; i < obj.length; i++) {
+            htmlList += "<option value='" + obj[i].id + "'>" + obj[i].category_name + "</option>";
+        }
+        //htmlList +='</select>';
+        var keywordList = keyword.split(',');
+        for (var i = 0; i < keywordList.length; i++) {
+            html += '<dd><select name="' + keywordList[i] + '">' + htmlList + '</select>&nbsp;&nbsp;&nbsp;' + keywordList[i] + '</dd>';
+        }
+        html += '<dd>请为您的关键字选择类别</dd>';
+        document.getElementById('addKeywords').innerHTML = html;
+    })
+
+    if (isSearchHidden == 1) {
+        $("#addKeywords").slideDown("fast");
+        $(".searchUser_action").html("搜索完毕");
+        isSearchHidden = 0;
+    } else {
+        $("#addKeywords").slideUp("fast");
+        $(".searchUser_action").html("搜索广告");
+        isSearchHidden = 1;
+    }
+
+}
+
+changeSize(25);
+</script>

@@ -1,0 +1,165 @@
+<include file="Public:_header" />
+<script>
+    $(document).ready(function () {
+        $('#logo_upload').uploadify({
+            'uploader': '__PUBLIC__/js/uploadify/uploadify.swf',
+            'script'    : '__APP__/Admin/Public/uploadLogo/',
+            'scriptData': { 'folderName': 'cooperation'},
+            'cancelImg': '__PUBLIC__/js/uploadify/cancel.png',
+            'folder': '__PUBLIC__/uploads/cooperation/logo',
+            'auto': true,
+            'fileDesc': "请选择jpg,gif,png,jpeg图片类型",
+            'fileExt': '*.jpg;*.gif;*.png;*.jpeg',
+            'method': "POST",
+            'buttonImg': '__PUBLIC__/js/uploadify/select.png',
+            'fileDataName': "adPic",
+            'onComplete': function (event, queueId, fileObj, response, data) {
+                //alert(response);
+                if (response == 0) {
+                    alert("上传失败，请重试");
+                } else {
+                    response = response.replace(/\s+/g, "");
+                    $("#logo").val(response);
+                    $("#logo_logo").show();
+                    $("#logopic").attr("src", response);
+                }
+            }
+        });
+    });
+</script>
+<style>
+    .yanzheng{color: red}
+</style>
+
+<div class="con_fr ">
+	<div class="con_fr_title">
+		
+		<span class="icon_bg_7"><i class=" icon icon_7"></i></span>
+		<!--<span>添加合作伙伴</span>&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="__APP__/Admin/Cooperation">返回列表</a></span>-->
+        <a href="__APP__/Admin/Cooperation">合作伙伴列表</a> > <span>修改合作伙伴</span>
+        
+	</div>
+	<div class="con_fr_des">
+        <form method="post" action="__APP__/Admin/Cooperation/saveEdit" enctype="multipart/form-data" name="adForm">
+            <input type="hidden" name="id" value="{$data['id']}"/>
+            <div class="user_text clearfix">
+				<label class="user_title">标题：</label>
+				<div class="user_input">
+                    <input  name="title" id="title" class="text_mes" type="text" value="{$data['title']}" onblur="if(this.value=='')document.getElementById('titleDiv').innerHTML='*请填写标题！';else document.getElementById('titleDiv').innerHTML='' "/>
+				</div>
+                <div class="user_des " id="" >
+					<span id="titleDiv"></span>
+				</div>
+			</div>
+            <div class="user_text clearfix">
+				<label class="user_title">描述：</label>
+				<div class="user_textarea">
+                    <textarea name="desc" id="desc" onblur="if(this.value=='')document.getElementById('descDiv').innerHTML='*请填写介绍！';else if(this.value.length >100) document.getElementById('descDiv').innerHTML='*描述请保持在100字以内！'; else document.getElementById('descDiv').innerHTML='' ">{$data['desc']}</textarea>                    
+				</div>
+                <div class="user_des " id="" >
+					<span id="descDiv"></span>
+				</div>
+			</div>
+            <div class="user_text clearfix">
+				<label class="user_title">URL：</label>
+				<div class="user_input">
+                    <input name="url" id="url" class="text_mes"  type="text" value="{$data['url']}" onblur="if(this.value=='')document.getElementById('urlDiv').innerHTML='*请填写广告地址！';else document.getElementById('urlDiv').innerHTML='' "/>
+				</div>
+                <div class="user_des " id="" >
+					<span id="urlDiv"></span>
+				</div>
+			</div>
+            <div class="user_text clearfix">
+				<label class="user_title">排序：</label>
+				<div class="user_input">
+                    <input name="order" id="order" class="text_mes"  type="text" value="{$data['order']}"  onblur="if(this.value=='')document.getElementById('orderDiv').innerHTML='*请填写序号！';else document.getElementById('orderDiv').innerHTML='' "/>
+				</div>
+                <div class="user_des " id="" >
+					<span id="orderDiv"></span>
+				</div>
+			</div>
+            <div class="user_text clearfix">
+				<label class="user_title">分组：</label>
+				<div class="user_select">                    
+                    <select name="type" id="type">
+                        <option value="0">--选择分组--</option>
+                        <volist name="list" id="vo">
+                            <option value="{$vo.id}"
+                            <eq name="vo.id" value="$data['type']">selected="selected" style="color:red;"</eq>
+                            >{$vo.name}</option>
+                        </volist>
+            	    </select>
+				</div>
+			</div>
+            <div class="user_text clearfix">
+				<label class="user_title">状态：</label>
+                <div class="user_radio">
+                    <label><input name="status" type="radio" value="1" checked="checked" <if condition="$data['status'] eq 1">checked="checked"</if> />使用中</label>
+                    <label><input name="status" type="radio" value="2" <if condition="$data['status'] eq 2">checked="checked"</if> />已停用</label>
+    			</div>
+			</div>
+            <div class="user_text clearfix">
+				<label class="user_title">LOGO：</label>
+                <div class="user_photo">
+                    <div id="logo_logo" style="display:none;"></div>
+                    <div>
+                        <input type="file" id="logo_upload" name="" />
+                        <img src='{$data["logo"]}' id="logopic" align="absmiddle"  alt='缩略图' width="300" height="200" />
+						<span style=" vertical-align:top;">
+						<a href="javascript:void(0);" onclick="delPic()"><img src="__PUBLIC__/js/uploadify/cancel.png" title="删除图像"/></a></span><span style="color:red; font-size: 11px;">
+						</span>
+                        <input class="input" type="hidden" name="logo" id="logo" value='{$data["logo"]}' />
+                        <span class="yanzheng" id="picDiv"></span>
+                    </div>
+    			</div>
+			</div>
+            <div class="user_btn clearfix">
+                <a class="user_btn_save" href="javascript:void(0);" onclick="run();">确认修改</a>
+            </div>			
+		</form>
+    </div>
+</div>
+
+<include file="Public:_footer" />
+<script>
+    function showDiv(obj) {
+        $(obj).slideDown("fast");
+    }
+
+    function delPic(){
+        $('#logopic').attr('src', '__PUBLIC__/js/uploadify/default.png');
+        $('#logo').val('');
+s   }
+
+    function run() {
+        if ($('#title').val() == '') {
+            $('#titleDiv').html('*请填写标题！');
+            return false;
+        } else {
+            $('#titleDiv').html('');
+        }
+        if ($('#desc').val() == '') {
+            $('#descDiv').html('*请填写描述！');
+            return false;
+        } else if ($('#desc').val().length > 100) {
+            $('#descDiv').html('*描述请保持在100字以内！');
+            return false;
+        } else {
+            $('#descDiv').html('');
+        }
+        if ($('#url').val() == '') {
+            $('#urlDiv').html('*请填写合作方链接！');
+            return false;
+        } else {
+            $('#urlDiv').html('');
+        }
+        if ($('#logo').val() == '') {
+            $('#picDiv').html('*请上传合作方LOGO！');
+            return false;
+        } else {
+            $('#picDiv').html('');
+        }
+        document.forms.adForm.submit();
+    }
+
+</script>

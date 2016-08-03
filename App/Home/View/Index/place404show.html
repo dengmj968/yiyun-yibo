@@ -1,0 +1,86 @@
+<include file="Public:header" />
+<include file="Public:top" />
+<style>
+.info{bottom:0px;}
+.tongzhi{ font-size:30px; float:left; margin-top:30px;}
+.tongzhi h3{ font-size:30px; font-style: italic; color:#666; font-weight:500;}
+.tongzhi p{ font-size:18px; color:#666; line-height:30px; margin-top:20px; text-align:left;}
+.tongzhi div{ margin-top:20px; font-size:20px; text-align:left;}
+/*.tongzhi div span{ float:left; font-size:18px; color:#666; line-height:34px;}
+.tongzhi div div{ float:left; margin-top:0px;}*/
+
+</style>
+<div  id="info" style=" overflow:hidden;">
+		<div class="yibo_recommend_title share_title clearfix" >
+			<p><span>404爱心站名录</span></p>
+		</div>
+		<div class="main404">
+			<div class="mingluss"><img src="__PUBLIC__/images/pic_minglu.jpg" width="" height="" border=""/></div>
+			<form action="__URL__/place404show" method='post' id='myForms'>
+			<div class="adsearch_bot">你喜欢的网站加入了吗？http://<input class="text_tetle" type="text" name='web_host' placeholder="请输入搜索内容" value='{$web_host}' /><a href="javascript:void(0);" onclick="doSearch();">搜索</a></div>		
+			</form>
+		</div>
+
+
+<!--循环li，爱心站名录-->		
+	<form>
+		<notempty name="place404List">
+		<div class="main_axz">
+			<ul>
+					<volist name='place404List' id='vo'>
+						<li><a href="http://{$vo.web_host}" target="_blank"><if condition="$vo.web_name neq ''">{$vo.web_name|substr=0,35}<else />{$vo.web_host|substr=0,35}</if></a></li>
+					</volist>
+
+			</ul>
+		</div>
+		<else />
+		<div style="width:980px; height:200px; margin:0px auto; font-size:16px; font-family:'Microsoft YaHei'; text-align:center;">
+			<div style="float:left; margin:0px 30px 0px 120px;"><img src="__PUBLIC__/images/pic_cuowu.gif" width="200" height="200" border="0"/></div>
+			<div class="tongzhi">
+				<h3>很遗憾，该网站还没有加入……</h3>
+				<p>快去告诉它吧！</p>
+				<div>
+					<div class="bdsharebuttonbox"><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a></div>
+				</div>
+			</div>
+		</div>
+		</notempty>
+	</form>
+
+<div class="clearfix" style="width:980px; margin:0px auto; margin-bottom:50px; height:40px;">
+	<div id="placepages" class="fr m_page_stylist">{$show}</div>
+</div>	
+<script>
+function doSearch(){
+	$("#myForms").submit();
+	
+}
+</script>
+</div>	
+	
+<div  id="bottom" style="width:100%;">	
+<include file="Public:footer" />
+</div>
+
+<script language="JavaScript" type="text/javascript"> 
+function test(){ 
+ var infoHeight = document.getElementById("info").scrollHeight; 
+ var bottomHeight = document.getElementById("bottom").scrollHeight; 
+ var allHeight = document.documentElement.clientHeight; 
+  
+ var bottom = document.getElementById("bottom"); 
+ if((infoHeight + bottomHeight) < allHeight){ 
+  bottom.style.position = "fixed"; 
+  bottom.style.bottom = "0"; 
+ }else{ 
+  bottom.style.position = ""; 
+  bottom.style.bottom = "";
+ }  
+  
+ setTimeout(function(){test();},10); 
+} 
+test(); 
+
+</script>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"#404公益#已经有那么多网站加入到404公益中，用网站出错页面传播公益信息。@{$web_host}网站，怎么可以少了你呢？一起加入吧！","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{},"image":{"viewList":["tsina","weixin","qzone","tqq","renren"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["tsina","weixin","qzone","tqq","renren"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>

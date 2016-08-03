@@ -1,0 +1,367 @@
+<include file="Public:header" />
+<include file="Public:top" />
+<script type="text/javascript" src="__PUBLIC__/js/uploadify/jquery.uploadify.v2.1.4.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/uploadify/swfobject.js"></script>
+<link href="__PUBLIC__/js/uploadify/uploadify.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	.m_upload_down_form{margin-bottom:0; border: 0;}
+	.m_stylist_buy_btn{border-top: 1px dashed #eee; padding-top:30px; margin-right: 20px;}
+</style>
+	<div class="g_upload_down_mask">
+		<div class="g_upload_mask_content">
+			<a href="javascript:;" class="g_upload_mask_close"> </a>
+			<p class="g_upload_des">只有设计师才能上传作品！</p>
+			<a class="u_gotoapprove" href="javascript:;">去认证</a>
+		</div>
+	</div>
+	<div class="g_upload_dowm">
+		<div class="m_upload_down clearfix">
+			<div class="m_upload_down_l fl">
+				<h2>上传作品</h2>
+				<form action="/Home/Production/saveAddProduction" method="post" name="production">
+					<div class="m_upload_down_form">
+						<div class="m_upload_box clearfix">
+							<label for="title" class="m_upload_title">作品名称：</label>
+							<div class="m_upload_input">
+								<input name="title" id="title" placeholder="作品名称" onblur="if(checkIsNull('title','作品名称')){checkLength('title',60,'作品名称');}" onfocus="" value="" type="text" />
+							</div>
+							<a class="map_judge_right" style="display:none;" id="titleRight"></a>
+							<div class="map_judge_error_box" style="display:none;" id="titleError">
+								<div class="warn_box" style="visibility: visible;">
+									<p class="warn" id="titleErrorMsg"></p><p class="angle"></p>
+								</div>
+								<a id="" class="map_judge_error"></a>
+							</div> 
+						</div>
+						<div class="m_upload_box clearfix">
+							<label for="desc" class="m_upload_title">作品理念：</label>
+							<div class="m_upload_txtarea">
+								<textarea name="desc" id="desc" placeholder="作品理念"  onblur="if(checkIsNull('desc','作品理念');){checkLength('desc',150,'作品理念');}"></textarea>
+							</div>
+							<a class="map_judge_right" style="display:none;" id="descRight"></a>
+							<div class="map_judge_error_box" style="display:none;" id="descError">
+								<div class="warn_box" style="visibility: visible;">
+									<p class="warn" id="descErrorMsg"></p><p class="angle"></p>
+								</div>
+								<a id="" class="map_judge_error"></a>
+							</div>
+						</div>
+						<div class="m_upload_box clearfix">
+							<label for="keyword_ids" class="m_upload_title">作品类别：</label>
+							<select id="keywordIds" name="keyword_ids" class="m_select fl">
+								<volist name="categoryList" id="vo">
+								<option value="{$vo.id}">{$vo.category_name}</option>
+								</volist>
+							</select>
+							<a class="map_judge_right" style="display:none;" id="keywordIdsRight"></a>
+							<div class="map_judge_error_box" style="display:none;" id="keywordIdsError">
+								<div class="warn_box" style="visibility: visible;">
+									<p class="warn" id="keywordIdsErrorMsg"></p><p class="angle"></p>
+								</div>
+								<a id="" class="map_judge_error"></a>
+							</div>
+						</div>
+						<div class="m_upload_box clearfix">
+							<label for="size_id" class="m_upload_title">作品尺寸：</label>
+							<select id="sizeId" name="size_id" class="m_select fl" onchange="getPicBySizeAjax(this.value);">								
+								<volist id="vo" name="adSizeList">
+								<option value="{$vo.id}">{$vo.size_name}</option>
+								</volist>
+							</select>
+							<a class="map_judge_right" style="display:none;" id="sizeIdRight"></a>
+							<div class="map_judge_error_box" style="display:none;" id="sizeIdError">
+		 						<div class="warn_box" style="visibility: visible;">
+									<p class="warn" id="sizeIdErrorMsg"></p><p class="angle"></p>
+								</div>
+								<a class="map_judge_error"></a>
+							</div>
+						</div>
+						<div class="m_upload_box clearfix" >
+							<label for="" class="m_upload_title">类别选择：</label>							
+							<label  class="m_upload_title5 fl" style="text-align:center;" onclick="$('#priceDiv').hide()">
+								<input type="radio" name="type" value="2" checked="checked" />待赞助
+							</label>	
+							<label class="m_upload_title5 fl" style="text-align:center;" onclick="$('#priceDiv').show()">
+								<input type="radio" name="type" value="4" />待出售
+							</label>	
+						</div>
+                        <div class="m_upload_box clearfix" id="priceDiv"  style="display: none;">
+							<label for="" class="m_upload_title">出售价格：</label>							
+							<div class="m_upload_input" style="width: auto;">
+								<input name="price" id="price" placeholder="出售价格" onblur="checkIsNull('price','出售价格');" onfocus="" size="8" type="text" />
+							</div>
+							<span class="m_upload_title6">积分</span>
+							<a class="map_judge_right" style="display:none;" id="priceRight"></a>
+							<div class="map_judge_error_box" style="display:none;" id="priceError">
+								<div class="warn_box" style="visibility: visible;">
+									<p class="warn" id="priceErrorMsg"></p><p class="angle"></p>
+								</div>
+								<a id="" class="map_judge_error"></a>
+							</div>	
+						</div>
+						<div class="m_upload_box clearfix" style="margin-bottom:20px;">
+							<label for="" class="m_upload_title">作品上传：</label>
+							<div class="fl" style="width:220px;">
+								<input class="f_btn_photo" id='file_upload' >
+								<div id='spanthumbpic' >								
+								</div>
+								<input type='hidden' value="" id="is_upload">								
+							</div>
+							<a class="map_judge_right" style="display:none;" id="imgRight"></a>
+							<div class="map_judge_error_box" style="display:none;" id="imgError">
+								<div class="warn_box" style="visibility: visible;">
+									<p class="warn" id="imgErrorMsg"></p><p class="angle"></p>
+								</div>
+								<a id="" class="map_judge_error"></a>
+							</div>
+						</div>
+                        <div class="m_upload_box clearfix">
+							<label for="size_id" class="m_upload_title"></label>
+                            <div class="m_agree_box fl clearfix">
+                            	<input class="u_agree_checkbox fl" type="checkbox" id="checkAcc" name="checkAcc" checked="checked" value="1" />
+                            	同意<a href="__APP__/Stylist/copyright" target="_blank">《版权所有协议》</a>
+                            </div>
+							<a class="map_judge_right" style="display:none;" id="accRight"></a>
+							<div class="map_judge_error_box" style="display:none;" id="accError">
+								<div class="warn_box" style="visibility: visible;">
+									<p class="warn" id="accErrorMsg"></p><p class="angle"></p>
+								</div>
+								<a id="" class="map_judge_error"></a>
+							</div>
+                        </div>
+					</div>
+					<div class="m_stylist_buy_btn ">                        
+						<a class="fr" href="javascript:;" onclick="checkSub();">提交</a>
+					</div>
+				</form>
+			</div>
+			<div class="m_upload_down_r fr">
+				<div class="m_upload_down_r_title clearfix">最新需求<a class="fr" href="/Home/Stylist/demandList">查看全部</a></div>
+				<div class="m_upload_down_list">
+					<ul>
+                        <volist name="demandList" id="vo">
+						<li><a href="/Home/Production/inputDemandProduction/id/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title|msubstr=0,15}</a>
+						<span><i>{$vo.num}</i>个回复</span></li>
+						</volist>
+					</ul>
+				</div>
+			</div>
+		</div>      
+	</div>      
+<include file="Public:footer2" />
+<script type="text/javascript">
+    var typeval = $("input[name='type']:checked").val();
+    if(typeval == 4){
+        $("#priceDiv").show();
+    }
+    //价格验证
+    var reg = /^[1-9][0-9]*$/;
+    $("#price").blur(function(){
+    	var val = $(this).val();
+    	
+    	if(val!='' && !reg.test(val)){
+    		showError('price','出售价格请填写整数');
+    		$("#price").focus();
+    		$(this).val('');
+    		return;
+    	}
+    });
+    
+    $("#price").keyup(function(){
+    	var val = $(this).val();
+    	if(!reg.test(val)){ 
+    		$(this).val('');
+    	}
+    });
+    
+    
+	/*图片上传start*/
+    $(document).ready(function() {
+        $('#file_upload').uploadify({
+            'uploader'  : '__PUBLIC__/js/uploadify/uploadify.swf',
+            'script'    : '__APP__/Admin/Public/uploadLogo/',
+            'scriptData': { 'folderName': 'production'},
+            'cancelImg' : '__PUBLIC__/js/uploadify/cancel.png',
+            'folder'    : '__PUBLIC__/upload/production/',
+            'auto'      : true,
+            'fileDesc' : "请选择jpg,gif,png,jpeg,rar类型文件",
+            'fileExt'  : '*.jpg;*.gif;*.png;*.jpeg;*.rar',
+            'method'   : "POST",
+            'buttonImg'   : '__PUBLIC__/images/stylist/stylist_pic09.png',
+            'fileDataName'   : "adPic",
+            'onComplete':function(event,queueId,fileObj,response,data){
+                if(response==0){
+                    art.dialog({
+                        title: '提示',
+                        time: 2,
+                        icon: 'warning',
+                        content: '上传失败，请重试'
+                    }).lock();
+                }else{
+					var img = new Image();
+                    img.src = response;
+                    img.onload = function(){
+                        var size_id = $("select[name='size_id'] option:selected").val();
+                        $.get('__APP__/Home/Ad/getSizeInfoById', {id: size_id}, function(data){
+                            if(data){
+                                var sizeobj = eval('(' + data + ')');
+                                var imgSize = img.width + ' x ' + img.height;
+                                if (sizeobj.width != img.width || sizeobj.height != img.height){
+                                    art.dialog({
+                                        title: '提示',
+                                        time: 2,
+                                        icon: 'warning',
+                                        content: '您上传的图片尺寸为：' + imgSize + '，与您所选广告尺寸不符合！'
+                                    }).lock();
+                                }else{
+                                    if(img.width > 600){
+                                        img.width = img.width/1.7;
+                                        img.height = img.height/1.7;
+                                    }
+                                    var pic ='<img style="margin-top:10px; width: ' + img.width + 'px; height: ' + img.height + 'px " src="' + img.src + '" id="thumbpic" align="absmiddle" alt="缩略图"/><input type="hidden" name="pic" id="img" value="' + response + '"/></li>';
+                                    $('#is_upload').val('1');
+                                    $('#spanthumbpic').html(pic);
+                                }
+                            }
+                        })
+                    }
+                }
+            }
+        });
+    });	
+	/*图片上传end*/
+	
+	/*初始化加载默认图片start*/
+	$(function(){
+        $("#is_upload").val('');
+		var id = $("#sizeId").val();
+		getPicBySizeAjax(id);
+    })
+	/*初始化加载默认图片end*/
+	
+	/*改变尺寸时加载相应尺寸的缩略图start*/
+	function getPicBySizeAjax(id) {
+        $.get('__APP__/Home/Production/getPicSize', {id: id}, function (data) {
+            if (data) {
+                var obj = eval('(' + data + ')');
+                var pic ='<img style="margin-top:10px; width: ' + obj.width + 'px; height: ' + obj.height + 'px;" src="' + obj.pic + '" id="thumbpic" align="absmiddle" alt="缩略图"/><input class="input" type="hidden" name="img" id="img" value="" />';
+                $('#spanthumbpic').html(pic);
+                $('#is_upload').val('');
+            }
+        });
+    }
+	/*改变尺寸时加载相应尺寸的缩略图end*/
+	
+	/*显示关键字start_废*/
+	function showDiv(obj){
+        $(obj).slideDown("fast");
+    }
+	/*显示关键字end*/
+	
+	/*点击关键字放入text_start_废*/
+	function intoInput(name){
+        var keyword = $('#keyword').val();
+        if(keyword == ''){
+            $('#keyword').val(name + ',');
+        }else{
+            $('#keyword').val(keyword + name + ',');
+        }
+    }
+	/*点击关键字放入text_end*/
+	
+	/*判断是否为空start*/
+	function checkIsNull(id,desc){
+		var inVal = $("#"+id).val();
+		if(!inVal){
+			$("#"+id+'Right').hide();
+			$("#"+id+'Error').show();
+			$("#"+id+'ErrorMsg').html(desc+'不能为空');
+			return false;
+		}else{
+			$("#"+id+'Error').hide();
+			$("#"+id+'ErrorMsg').html('');
+			$("#"+id+'Right').show();			
+			return true;
+		}
+	}
+    
+    function showError(id, msg){
+    	    $("#"+id+'Right').hide();
+			$("#"+id+'Error').show();
+			$("#"+id+'ErrorMsg').html(msg);
+    }
+
+    function showRight(id){
+    	$("#"+id+'Error').hide();
+		$("#"+id+'ErrorMsg').html('');
+		$("#"+id+'Right').show();
+    }
+	/*判断是否为空end*/
+    
+    function checkAccept(){
+        var checkAcc = document.getElementById("checkAcc").checked;
+        if(checkAcc != true){
+			$("#accErrorMsg").html('请认真阅读版权协议');
+            $("#accError").show();
+            return false;
+        }else{
+			$("#accError").hide();
+            $("#accRight").show();
+            return true;    
+        }
+    }
+    
+    function checkLength(id,num,desc){
+        var val = $("#"+id).val();
+        if(val.length > num){
+			$("#"+id+'Right').hide();
+			$("#"+id+'Error').show();
+			$("#"+id+'ErrorMsg').html(desc+'长度不能超过'+num);
+			return false;
+		}else{
+			$("#"+id+'Error').hide();
+			$("#"+id+'ErrorMsg').html('');
+			$("#"+id+'Right').show();			
+			return true;
+		}
+    }
+    
+    function checkPrice(){
+        var reg = /^[1-9][0-9]*$/;
+    	var val = $("#price").val();
+    	
+    	 if(!checkIsNull('price','出售价格')){
+    	   return false;
+    	 }else if(val!='' && !reg.test(val)){
+    		showError('price','出售价格请填写整数');
+    		$("#price").focus();
+    		$("#price").val('');
+    		return false;
+    	}else{
+    	   showRight('price');
+    	   return true;
+    	}
+    }
+	
+	/*数据提交start*/
+	function checkSub(){
+		var checkTitle      = checkIsNull('title','作品名称');
+		var checkDesc       = checkIsNull('desc','作品理念');;
+		var checkKeywordIds = checkIsNull('keywordIds','关键字类别');
+		var checkSizeId     = checkIsNull('sizeId','图片尺寸');
+		var checkImg        = checkIsNull('img','作品图片');
+        var type            = $("input[name='type']:checked").val();
+		if(checkTitle && checkDesc && checkKeywordIds && checkSizeId && checkImg && checkAccept()){
+            if(checkLength('title',60,'作品名称') && checkLength('desc',150,'作品理念')){
+                if(type == 4){
+                    if(checkPrice()){
+                        document.forms.production.submit();
+                    }
+                }else{
+                    document.forms.production.submit();
+                }                
+            }
+		}
+	}
+	/*end*/
+</script>

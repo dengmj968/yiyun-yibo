@@ -1,0 +1,76 @@
+<include file="Public:_header"/>
+
+<div class="con_fr">
+	<div class="con_fr_title">
+		<span class="icon_bg_7"><i class=" icon icon_7"></i></span>
+		<span>广告尺寸管理</span>
+	</div>
+	<div class="con_fr_des">
+		<div class="con_fr_col clearfix">
+			<div class="con_fr_btn fl clearfix">
+                <a href="{:U('Admin/AdSizeConfig/add')}" class="search_ad_btn"><span>添加广告尺寸</span></a>
+			</div>
+			<!-- 分页 -->
+            <div class="page fr" id="page">{$page}</div>
+			<!-- 分页 end-->							
+		</div>
+		<div class="con_fr_list"> 
+			<table id="" class="user_table" width="100%" cellspacing="0" cellpadding="0" border="0">
+				<thead>
+					<tr>
+                        <th class="line_l" style="width:50px">ID</th>
+                        <th class="line_l" style="width:80px">尺寸名称</th>
+                        <th class="line_l" style="width:60px">高</th>
+                        <th class="line_l" style="width:60px">宽</th>                        
+                        <th class="line_l" style="width:60px">作品积分</th>
+                        <th class="line_l" style="width:60px">赞助积分（积分/天）</th>
+                        <th class="line_l" style="width:60px">广告位类型</th>
+                        <th class="line_l" style="width:200px">缩略图</th>
+                        <th class="line_l" style="width:70px">操作</th>
+					</tr>
+				</thead>
+				<tbody>
+                    <php>
+                        $trstyle = 1;
+                    </php>
+                    <volist id="vo" name="list">
+                        <if condition = "($trstyle % 2) eq 1">
+                            <tr id="idea_{$vo.id}" class="table_odd">
+                        <else />
+                            <tr id="idea_{$vo.id}" class="table_even">
+                        </if>
+                            <td>{$vo.id}</td>
+                            <td>{$vo.size_name}</td>
+                            <td>{$vo.height}</td>
+                            <td>{$vo.width}</td>
+                            <td>{$vo.price}</td>
+                            <td>{$vo.score}</td>
+                            <td><if condition="$vo['type'] eq 1 ">404广告位<else/>普通广告位</if></td>
+                            <td><if condition="$vo['pic'] neq '' "><a href="{$vo.pic}" target="_blank" ><img src='{$vo.pic}' style='height:60px;' /></a><else/>暂无图片 </if></td>                            
+                            <td><a href="__URL__/edit/id/{$vo.id}" class="table_btn_blue">修改</a> <!-- &nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="delIdea('{$vo.id}');">删除</a> --></td>
+                        </tr>                    
+                    <php>++ $trstyle;</php>
+                    </volist>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+	
+</div>
+
+<!-- 底部-->
+<include file="Public:_footer"/>
+
+<script>
+    function delIdea(id) {
+        if (!confirm('确认删除该数据吗？')) {
+            return false;
+        }
+        $.get('__APP__/Admin/AdSizeConfig/delByIdAjax', {id: id}, function (data) {
+            if (data == 1) {
+                $("#idea_" + id).remove();
+            }
+        })
+    }
+</script>

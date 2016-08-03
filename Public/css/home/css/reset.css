@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+/* C�digo Digital - Est�dio de Web Design de Fortaleza Cear� */
+
+/* tudo
+------------------------------------------------------------------- */
+* {margin:0; padding:0; border:0; font-size:12px; text-decoration:none;}
+p {font-size:13px; letter-spacing:0.4px;}
+img {border:0;}
+input, textarea, input:hover, input:focus, textarea:focus, textarea:hover {outline:none; /*text-shadow:0px -1px 1px #1a76cc;*/}
+input[type=submit] {cursor:pointer; font-family:helvetica, helvetica neue, arial, sans-serif;}
+a, a img {cursor:pointer;}
+*::selection {background:#e2d9ee; color:#fff; text-shadow:none!important; font-weight:normal!important;}
+#menu ul li a.ativo::selection {background:#594077;}
+
+/*后加样式，qq登录、新浪微博登录、百度登录*/
+.qbd_login{ width:100%; height:30px;}
+.disanfang{ height:30px; line-height:34px; padding-bottom:4px; background:url(/Public/images/qxb_pic.png) no-repeat 19px 0px; padding-left:40px; font-size:14px; font-family:"Microsoft YaHei"; color:#3e3e3e; }
+.disanfanga{ height:30px; line-height:30px;padding-bottom:4px;  background:url(/Public/images/qxb_pic.png) no-repeat 19px -20px; padding-left:40px; font-size:14px; font-family:"Microsoft YaHei"; color:#3e3e3e; }
+.disanfangb{ height:30px; line-height:30px;padding-bottom:4px;  background:url(/Public/images/qxb_pic.png) no-repeat 19px -43px; padding-left:40px; font-size:14px; font-family:"Microsoft YaHei"; color:#3e3e3e; }

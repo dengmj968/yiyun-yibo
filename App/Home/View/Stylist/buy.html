@@ -1,0 +1,637 @@
+<include file="Public:header" />
+<include file="Public:top" />
+<script type="text/javascript" src="__PUBLIC__/js/uploadify/jquery.uploadify.v2.1.4.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/uploadify/swfobject.js"></script>
+<link href="__PUBLIC__/js/uploadify/uploadify.css" rel="stylesheet" type="text/css">
+<style>
+#pic li span { right: 6px; top: 6px;}
+</style>
+	<div class="g_stylist_buy" id="g_stylist_buy">
+		<div class="m_stylist_buy clearfix">
+			<div class="m_stylist_buy_l fl">
+				
+                <!--作品信息-->
+                {__CONTENT__}
+                
+				<div class="stylist_discuss">
+					<div class="stylist_discuss_textarea " style="position:relative;zoom:1;">
+						<textarea id='comment_add'  onkeyup="removeTips(1);" onblur="removeTips(2);"placeholder="请填写评论"></textarea>
+						<p class="stylist_discuss_textarea_error2" style="display:none;">请填写作品创意</p>
+					</div>
+					<div class="stylist_discuss_add clearfix"><a flags="1" href="javascript:;" onclick="addComment(this);" >评 论</a></div>
+					<h2 class="stylist_discuss_title" id='all_comments'  <php>if(count($comments) == 0){echo "style='display:none;'";}</php> >全部评论</h2>
+					<span class='discuss_list'>
+					<volist name='comments' id='vo'>
+					<div class="stylist_discuss_list clearfix">
+						<div class="discuss_part clearfix">
+							<div class="user_photo">
+								<a href="javascript:;"><img src="{$vo.pic_small}" width="48" height="48" /></a>
+							</div>
+							<div class="discuss_con">
+								<h3>{$vo.username}<span>{$vo.create_time}</span></h3>
+								<p>{$vo.content}</p>
+							</div>
+						</div>
+					</div>
+					</volist>
+					</span>
+					<div class="clearfix"> 
+						<span class="fr m_page_stylist">{$show}</span>
+					</div>
+				</div>
+			</div>
+			<input type='hidden' name='type' value='2' id='commentType'>
+			<input type='hidden' name='ad_id' value='{$data.id}'>
+            <if condition="$showType eq 2">
+            
+			<div class="m_stylist_buy_r  fixed fr">
+				<h2 class="buy_pic1">我要赞助</h2>
+				<div class="m_stylist_buy_detail">
+					<p style="margin-bottom:4px;"><span class="m_s_buy_part1"><i>{$scoreOneDay}</i>积分/天</span><span class="m_s_buy_part2">你有 <i id="scoreTotal">{$scoreTotal}</i> 积分</span></p>
+					<p><span class="m_s_buy_part3">可展示 <i>{$days}</i> 天</span><a class="m_s_buy_part4" href="{$scoreRuleUrl}" target="_blank">查看积分获取方法</a></p>
+				</div>
+				<form action="/Home/Stylist/saveBuy" method="post" id="buyForm">
+                	<input type="hidden" name="buycode" value="{$buycode}">
+                	<input type="hidden" name="id" value="{$data.id}">
+					<div class="m_stylist_buy_form">
+						<div class="m_stylist_box clearfix">
+							<label for="user_name" class="m_stylist_title1">展示天数</label>
+							<div id="" class="m_stylist_input1">
+								<input name="day_num" id="day_num" placeholder="" value="1" type="text" />
+							</div><span class="m_s_buy_form_span1">天</span><span id="score_total" class="m_s_buy_form_span2">{$scoreOneDay}</span><span class="m_s_buy_form_span3">积分</span>
+							<a class="map_judge_right" id="day_right" style="display:none;"></a>
+							<div class="map_judge_error_box" id="day_error" style="display:none;">
+								<div id="pw_warn_box" class="warn_box" style="visibility: visible;">
+									<p id="pw_warn" class="warn"></p><p class="angle"></p>
+								</div>
+								<a id="" class="map_judge_error"></a>
+							</div> 
+						</div>
+						<div class="m_stylist_box clearfix">
+							<label for="user_name" class="m_stylist_title1">赞助方链接</label>
+							<div id="" class="m_stylist_input2">
+								<input name="url" id="url" placeholder="" onblur="" onfocus="" value="{$goUrl}" type="text" />
+							</div>
+							<a class="map_judge_right" id="url_right" style="display:none;"></a>
+							<div class="map_judge_error_box" id="url_error" style="display:none;">
+								<div id="pw_warn_box" class="warn_box" style="visibility: visible;">
+									<p id="pw_warn" class="warn"></p><p class="angle"></p>
+								</div>
+								<a id="" class="map_judge_error"></a>
+							</div>
+						</div>
+                        <if condition="$is404 eq 1">
+						<div class="m_stylist_box clearfix" style="margin-bottom:20px;">
+                        	<input type="hidden" name="logo" id="logo">
+							<label for="" class="m_stylist_title2">上传logo</label>
+							<div class="fl m_stylist_photo_layout" style="width:210px;">
+								<div class="m_stylist_photo_po1" >
+									<input class="f_btn_photo" id='file_upload'  >
+								</div>
+								<p class="m_stylist_photo_po2">透明背景PNG格式最佳。</p>
+
+								<div id='spanthumbpic' class="m_stylist_photo"  >
+									<!-- <img src='' title='默认图片' id="thumbpic" align="absmiddle" alt='' /> -->
+								</div>
+								<ul id="pic" class="unstyled" style="float: left; clear: both; ">
+		                        </ul>
+							</div>
+							<a class="map_judge_right" id="logo_right" style="display:none;"></a>
+							<div class="map_judge_error_box" id="logo_error" style="display:none;">
+								<div id="pw_warn_box" class="warn_box" style="visibility: visible;">
+									<p id="pw_warn" class="warn">请上传logo！</p><p class="angle"></p>
+								</div>
+								<a id="" class="map_judge_error"></a>
+							</div>
+						</div>
+                        </if>
+					</div>
+                    <div id="supNoticeBox" style=" display:none; visibility:visible; right:28px; margin-top:-18px;" class="warn_box" id="pw_warn_box">
+                        <p class="warn" id="supNoticeMsg"></p>
+                        <p class="angle"></p>
+                    </div>
+					<div class="m_stylist_buy_btn2" style="padding-top:15px;">
+						<a href="javascript:;" id="buySub">提 交</a>
+					</div>
+				</form>
+			</div>
+            
+            <elseif condition="$showType eq 3" />
+            
+            <div class="m_stylist_buy_r2 fixed fr">
+				<h2 class="buy_pic1">我要购买</h2>
+				<div class="m_stylist_buy_detail">
+					<p style="margin-bottom:4px;">
+						<span class="m_s_buy_part5">价值<i>{$data.price}</i>积分</span>						
+					</p>
+					<p>
+						<span class="m_s_buy_part2">你有 <i id="scoreTotal">{$scoreTotal}</i> 积分</span>						
+						<a class="m_s_buy_part4" href="{$scoreRuleUrl}" target="_blank">查看积分获取方法</a>
+					</p>
+				</div>
+                <div id="buyNoticeBox" style=" display:none; visibility:visible; right:28px; margin-top:-15px;" class="warn_box" id="pw_warn_box">
+                    <p class="warn" id="buyNoticeMsg">确定购买吗？</p>
+                    <p class="angle"></p>
+                </div>
+                <div class="m_stylist_buy_btn2" style="padding-top:20px;">
+                    <a id="buyAdBtn" href="javascript:void(0);">购 买</a>
+                </div>
+			</div>
+            
+            <elseif condition="$showType eq 1" />
+            
+            <div class="m_stylist_buy_r fr">
+				<h3 class="m_stylist_buy_r_h3">赞助方</h3>
+				<div class="m_stylist_buy_detail3">
+					<div class="m_s_buy_part7 clearfix">
+						<a class="m_stylist_buy_photo fl" href="{$buy.homePage}" target="_blank">
+                        <img src="{$buy.photo}">
+                        </a>
+						<div class="m_stylist_buy_personbox fl">
+							<a class="m_stylist_buy_persontitle" href="{$buy.homePage}" target="_blank">{$buy.user}</a>
+                            <if condition="$buy['user_desc']">
+							<p>{$buy.user_desc}</p>
+                            </if>
+                            <if condition="$buy['my_url']">
+							<p class="m_s_buy_part5">网址：<a href="{$buy.my_url}" title="{$buy.my_url2}" target="_blank">{$buy.my_url2}</a></p>
+                            </if>
+						</div>
+					</div>
+					<p class="m_s_buy_part6">展示时间：<br/>
+						<span >{$buy.start_date}</span><i>至</i><span>{$buy.end_date}</span>
+                     </p>
+				</div>
+				<div class="m_upload_down_r2 fr">
+					<div class="m_upload_down_r_title m_upload_down_r_title2 clearfix">最新作品<a class="fr" target="_blank" href="__APP__/Stylist/productionWall">查看全部</a></div>
+					<div class="m_upload_down_list">
+						<ul>
+                        <foreach name="proList" item="i">
+                        	<li><a href="javascript:void(0);" onclick="login('{$userInfo['id']}','{$deploy['YIBO_YU']}{$i.url}');">{$i.tit}</a><span><i>{$i.likes}</i>赞</span></li>
+                        </foreach>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+            
+            <else />
+            <div class="m_stylist_buy_r fr">
+				<h3 class="m_stylist_buy_r_h3">购买方</h3>
+				<div class="m_stylist_buy_detail3">
+					<div class="m_s_buy_part7 clearfix">
+						<a class="m_stylist_buy_photo fl" href="{$buy.homePage}" target="_blank">
+                        <img src="{$buy.photo}">
+                        </a>
+						<div class="m_stylist_buy_personbox fl">
+							<a class="m_stylist_buy_persontitle" href="{$buy.homePage}" target="_blank">{$buy.user}</a>
+                            <if condition="$buy['user_desc']">
+							<p>{$buy.user_desc}</p>
+                            </if>
+                            <if condition="$buy['my_url']">
+							<p class="m_s_buy_part5">网址：<a href="{$buy.my_url}" title="{$buy.my_url2}" target="_blank">{$buy.my_url2}</a></p>
+                            </if>
+						</div>
+					</div>
+				</div>
+				<div class="m_upload_down_r2 fr">
+					<div class="m_upload_down_r_title m_upload_down_r_title2 clearfix">最新作品<a class="fr" target="_blank" href="__APP__/Stylist/productionWall">查看全部</a></div>
+					<div class="m_upload_down_list">
+						<ul>
+                        <foreach name="proList" item="i">
+                        	<li><a href="javascript:void(0);" onclick="login('{$userInfo['id']}','{$deploy['YIBO_YU']}{$i.url}');">{$i.tit}</a><span><i>{$i.likes}</i>赞</span></li>
+                        </foreach>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+            </if>
+		</div>      
+	</div>      
+<include file="Public:footer2" />
+<script type="text/javascript">
+	function test(){ 
+		var infoHeight = document.getElementById("g_stylist_buy").scrollHeight +140; 
+		var bottomHeight = document.getElementById("bottom").scrollHeight; 
+		var allHeight = document.documentElement.clientHeight; 
+		var bottom = document.getElementById("bottom");
+
+		if((infoHeight + bottomHeight) < allHeight){ 
+			bottom.style.position = "fixed"; 
+			bottom.style.bottom = "0"; 
+		}else{ 
+			bottom.style.position = ""; 
+			bottom.style.bottom = ""; 
+		}  
+
+		setTimeout(function(){test();},10); 
+	} 
+	test(); 	
+
+</script>
+<script type="text/javascript">
+var reg = /^[1-9][0-9]*$/;
+var urlReg = "^[A-Za-z]+://[A-Za-z0-9-_]+\\.[A-Za-z0-9-_%&\?\/.=]+$";
+var re = new RegExp(urlReg);
+var scoreOneDay = '{$scoreOneDay}' ? parseInt('{$scoreOneDay}') : 0; //展示每天需消耗的积分
+var scoreTotal = '{$scoreTotal}' ? parseInt('{$scoreTotal}') : 0; //用户总积分
+//var scoreTotal = 0; //用户总积分
+
+
+$(function(){
+	//实时获取用户积分数据
+	$.ajax({
+		url:'__APP__/Stylist/ajaxGetUserScore',
+		type:'post',
+		dataType:'json',
+		success:function(data){
+			scoreTotal = data;
+			$("#scoreTotal").html(scoreTotal);
+		}
+	});
+	
+	
+	//点击购买
+	var adPrice = '{$data.price}' ? parseInt('{$data.price}') : 0; //广告价值
+	var clickBuyNum = 0;//点击购买次数
+	$("#buyAdBtn").click(function(){
+		if (scoreTotal < adPrice){
+			msg = '购买此广告需要'+adPrice+'积分，您的积分不够！';
+		}else if(clickBuyNum > 0){
+			if ($(this).hasClass('buying')){
+				return false;
+			}
+			$(this).addClass('buying');
+			$(this).html('提交中…');
+			window.location = '__APP__/Home/Stylist/saveBuyProduction/id/{$data.id}';
+			return true;
+		}else{
+			msg = '购买此广告需要'+adPrice+'积分，确定购买吗？';
+			$(this).html('确 定');
+			clickBuyNum++;
+			
+		}
+		$("#buyNoticeMsg").html(msg);
+		$("#buyNoticeBox").show();
+	});
+});
+
+$("#day_num").focus(function(){
+	if($(this).val()==0) $(this).val('');
+});
+$("#day_num").blur(function(){
+	var val = $(this).val();
+	if (val==''){
+		showError('day','请填写展示天数！');
+	}else if(!reg.test(val)){
+		showError('day','请填写正确的天数！');
+	}else{
+		score_total = scoreOneDay*parseInt(val);
+		$("#score_total").html(score_total);
+		if (score_total > scoreTotal){
+			showError('day','您的积分不够，请减少展示天数！');
+		}else{
+			showRight('day');
+		}
+	}
+});
+
+$("#day_num").keyup(function(){
+	buySubNum = 0;
+	$("#supNoticeBox").hide();
+	$("#buySub").html('提 交');
+	var val = $(this).val();
+	if(!reg.test(val)){ 
+		$(this).val('');
+		$("#score_total").html('0');
+		return;
+	}else{
+		score_total = scoreOneDay*val;
+		$("#score_total").html(score_total);	
+	}
+});
+
+$("#url").blur(function(){
+	var val = $(this).val();
+	if (val==''){
+		showError('url','请填写跳转链接！');
+	}else if(!re.test(val)){
+		showError('url','这个地址不正确，别忘了加http://');
+	}else {
+		showRight('url');
+	}
+});
+
+$("#logo").blur(function(){
+	var val = $(this).val();
+	if (val==''){
+		showError('logo','请上传logo！');
+	}else {
+		showRight('logo');
+	}
+});
+
+function showError(tar, msg){
+	$("#"+tar+"_error").find(".warn").html(msg);
+	$("#"+tar+"_error").show();
+	$("#"+tar+"_right").hide();
+}
+
+function showRight(tar){
+	$("#"+tar+"_error").hide();
+	$("#"+tar+"_right").show();
+}
+var buySubNum = 0;
+//提交
+$("#buySub").click(function(){
+	var flag = true;
+	var dayNum = $("#day_num").val();
+	var url = $("#url").val();
+	var logo = $("#logo").val();
+	var score;
+	var msg = '';
+	if (dayNum==''){
+		showError('day','请填写展示天数！');
+		flag = false;
+	}else{
+		score = scoreOneDay*dayNum;
+		$("#score_total").html(score);	
+		if (score > scoreTotal){
+			showError('day','您的积分不够，请减少展示天数！');
+			flag = false;
+		}else{
+			showRight('day');		
+		}
+	}
+	
+	if (url == ''){
+		showError('url','请填写跳转链接！');
+		flag = false;
+	}else if(!re.test(url)){
+		showError('url','这个地址不正确，别忘了加http://');
+		flag = false;
+	}else{
+		showRight('url');
+	}
+	
+	if (logo == ''){
+		showError('logo','请上传logo！');
+		flag = false;
+	}else{
+		showRight('logo');	
+	}
+	
+	if (flag == false){
+		buySubNum = 0;
+		$("#supNoticeBox").hide();
+		$(this).html('提 交');
+		return false;
+	}
+	
+	if (buySubNum==1){
+		buySubNum++;
+		$(this).html('提交中…');
+		$("#buyForm").submit();
+	}else if(buySubNum==0){
+		msg = '赞助此广告'+dayNum+'天需要'+score+'积分，确定赞助吗？';
+		$(this).html('确 定');
+		$("#supNoticeMsg").html(msg);
+		$("#supNoticeBox").show();
+		buySubNum++;
+	}
+});
+
+
+function delPic(){
+	$("#uploadPic").remove();
+	$("#logo_right").hide();
+	$("#logo").val('');
+}
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+        $('#file_upload').uploadify({
+            'uploader'     : '__PUBLIC__/js/uploadify/uploadify.swf',
+            'script'       : '__APP__/Admin/Public/uploadLogo/',
+            'scriptData'   : { 'folderName': 'logo'},
+            'cancelImg'    : '__PUBLIC__/js/uploadify/cancel.png',
+            'folder'       : '__PUBLIC__/upload/logo',
+            'auto'         : true,
+            'multi'        : true,
+            'fileDesc'     : "请选择jpg,gif,png,jpeg图片类型",
+            'fileExt'      : '*.jpg;*.gif;*.png;*.jpeg',
+            'method'       : "POST",
+            'buttonImg'    : '__PUBLIC__/images/stylist/stylist_pic09.png',
+            'buttonText'   : '上传相关文件',
+            'fileDataName' : "adPic",
+            'onComplete':function(event,queueId,fileObj,response,data){
+                if(response==0){
+					showError('logo','上传失败，请重试！');
+                }else{
+					$('#spanthumbpic').css('display','none');
+					showRight('logo');
+					$("#logo").val(response);
+					var img = new Image();
+                    img.src = response;
+                    img.onload = function(){
+                        var pic ='<li id="uploadPic">' +
+                                 '<img src="'+response+'" width="220" height="80"/>' +
+                                 '<span style="vertical-align:top;position: absolute;">' +
+                                 '<a href="javascript:void(0);" onclick="delPic(this);">' +
+                                 '<img src="__PUBLIC__/images/cancel.png" title="删除此图片"/>' +
+                                 '</a>' +
+                                 '</span></li>';
+                        $('#is_upload').val('1');
+                        $('#pic').append(pic);
+                        document.getElementById("left").style.height = document.getElementById("right").offsetHeight+"px";  
+                    }
+                }
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+$(document).ready(function(e) {			
+	t = $('.fixed').offset().top;
+	mh = $('.m_stylist_buy_l').height();
+	fh = $('.fixed').height();
+	$(window).scroll(function(e){
+		s = $(document).scrollTop();
+		if(s > t ){
+			$('.fixed').css({'position':'fixed','margin-right':'-510px','top':'106px','right':'50%'});
+			if(s + fh > mh){
+				$('.fixed').css('top',mh-s-fh+'px');
+			}				
+		}else{
+			$('.fixed').css({'position':'','margin-right':'','top':'','right':''});
+		}
+	})
+});
+</script>
+<script>
+//点赞特效
+function anp(e){
+		//var n=Math.round(Math.random()*10);
+		var $i=$("<b>").text("+1");
+		var x=e.pageX,y=e.pageY;
+		$i.css({top:y-20,left:x,position:"absolute",color:"#E94F06"});
+		$("body").append($i);
+		$i.animate({top:y-180,opacity:0,"font-size":"3.0em"},1500,function(){
+			$i.remove();
+		});
+		e.stopPropagation();
+}
+//弹窗
+function dialogs(title,content,time){
+	var time = time || 2;
+	var title = title || '提示信息';
+	var content = content || '操作成功';
+	art.dialog({
+		title:title,
+		drag:false,
+		time:time,
+		lock:true,
+		content:content
+	})	
+}
+//过滤空格
+function trim(str){
+	return str.replace(/(^\s*)|(\s*$)/g, "");
+}
+//评论
+function addComment(obj){
+	$(".stylist_discuss_textarea").removeClass('stylist_discuss_textarea_error');
+	$('.stylist_discuss_textarea_error2').text('');
+	$('.stylist_discuss_textarea_error2').hide();
+	var content = $("#comment_add").val();	
+	content = trim(content);
+	var type = $('#commentType').val();
+	var ad_id = $("input[name='ad_id']").val();
+	if(content == ''){
+		$("#comment_add").attr('placeholder','');
+		$(".stylist_discuss_textarea").addClass('stylist_discuss_textarea_error');
+		$('.stylist_discuss_textarea_error2').text('亲，写点内容吧');
+		$('.stylist_discuss_textarea_error2').show();
+		//dialogs('','亲，写点吧',2);
+		return false;
+	}
+	if(content.length >50){
+		$("#comment_add").attr('placeholder','');
+		$("#comment_add").val('');
+		$(".stylist_discuss_textarea").addClass('stylist_discuss_textarea_error');
+		$('.stylist_discuss_textarea_error2').text('评论内容过长，长度要小于50个字');
+		$('.stylist_discuss_textarea_error2').show();
+		//dialogs('','评论内容过长，长度要小于50个',2);
+		return false;
+	}
+	$(obj).attr('onclick','return false;');
+	$(obj).css('background','#adadad');
+	$.ajax({
+		url:'__URL__/addComments',
+		type:'post',
+		dataType:'json',
+		data:{content:content,ad_id:ad_id,type:type},
+		success:function(data){
+			if(data.status == 1){
+				$(".discuss_list").prepend(data.data);	
+				//评论数目改变
+				$("#all_comments").css('display','block');
+			}else{
+				//dialogs('',data.info,2)
+				$("#comment_add").attr('placeholder','');
+				$(".stylist_discuss_textarea").addClass('stylist_discuss_textarea_error');
+				$('#comment_add').val('');
+				$('.stylist_discuss_textarea_error2').text(data.info);
+				$('.stylist_discuss_textarea_error2').show();
+			}
+
+		}
+	})
+			
+}
+//点赞
+/*
+$(function(){
+
+	$('#click_zan').on('click',function(e){
+		$('#titleError').hide();
+		var ad_id = $("input[name='ad_id']").val();
+		$.ajax({
+			url:'/Stylist/addLikes',
+			type:'post',
+			data:{id:ad_id},
+			dataType:'json',
+			success:function(data){
+				if(data.status == 1){
+					$("#click_zan").text(data.data.likes);
+					anp(e);
+				}else{
+					//dialogs('',data.info,2);
+					$("#titleErrorMsg").text('已经点过赞了');
+					setTimeout(function(){
+						$("#titleErrorMsg").text('');
+						$("#titleError").hide();
+					},3000);
+					$('#titleError').show();
+				}
+			}
+		})
+						
+	})
+})
+*/
+document.getElementById("click_zan").onclick = function(e){
+		//var prenums = $('#click_zan').text();
+		//var nownums = parseInt(prenums)+1;
+		$("#click_zan").addClass('m_stylist_buy_zan2');
+		var flags = $('#click_zan').attr('flags');
+		$("#click_zan").attr('flags',2);
+		if(flags == 2){
+			return false;
+		}
+		//$("#click_zan").text(nownums);
+		$('#titleError').hide();
+		var ad_id = $("input[name='ad_id']").val();
+		$.ajax({
+			url:'/Stylist/addLikes',
+			type:'post',
+			data:{id:ad_id},
+			dataType:'json',
+			success:function(data){
+				if(data.status == 1){
+					$("#click_zan").text(data.data.likes);
+					anp(e);
+				}else{
+					$("#titleErrorMsg").text('已经点过赞了');
+					setTimeout(function(){
+						$("#titleErrorMsg").text('');
+						$("#titleError").hide();
+					},3000);
+					$('#titleError').show();
+				}
+			}
+		})
+}
+function removeTips(id){
+	var val =trim($('#comment_add').val());
+	if(id == 1){
+		if(val.length == 0){
+			$("#comment_add").attr('placeholder','');
+			$(".stylist_discuss_textarea").addClass('stylist_discuss_textarea_error');
+			$('.stylist_discuss_textarea_error2').text('亲，写点内容吧');
+			$('.stylist_discuss_textarea_error2').show();
+		}else{
+			$(".stylist_discuss_textarea").removeClass('stylist_discuss_textarea_error');
+			$('.stylist_discuss_textarea_error2').text('');
+			$('.stylist_discuss_textarea_error2').hide();
+		}
+	}else if(id == 2){
+			$("#comment_add").attr('placeholder','请填写评论');
+			$(".stylist_discuss_textarea").removeClass('stylist_discuss_textarea_error');
+			$('.stylist_discuss_textarea_error2').text('');
+			$('.stylist_discuss_textarea_error2').hide();
+	}
+}
+</script>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"{$data.title}","bdUrl":"http://yibo.iyiyun.com/Stylist/detail/id/{$data.id}","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>

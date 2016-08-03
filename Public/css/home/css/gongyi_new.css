@@ -1,0 +1,152 @@
+*{padding:0; margin:0;}
+a{text-decoration:none;}
+ul,li{list-style:none;}
+input,textarea{border:0; outline:none;}
+body{font-family:'microsoft yahei'}
+/*加入404公益第一步样式开始*/
+.gy{width:980px; height:430px; margin:20px auto; background:#96bd3c; padding:23px 10px; position:relative;}
+.tab1{float:left; margin-top:25px;}
+.tab2{float:right; margin-top:25px;}
+.gy .deration{position:absolute; left:432px; top:30px; width:151px; height:81px; background:url(../image/404img_yun.jpg);}
+.gy .ly_404{border:0; position:absolute; display:block; left:406px; top:90px; background:url(../image/404img_btn.png); width:170px; height:170px; z-index:999; color:#fff; line-height:40px; font-size:16px; padding:8px; text-align:center;}
+.gy .ly_404:hover{text-decoration:none;}
+.gy .ly_404 span{font-weight:bold; display:block; width:170px; line-height:40px; color:#fff; text-align:center;}
+.gy .hander{position:absolute; left:470px; top:240px; width:50px; height:70px; background:url(../image/404_shou.gif); z-index:1000;}
+.gy .toR{position:absolute; left:390px; top:266px; width:256px; height:156px; background:url(../image/arrowsR.png);}
+/*加入404公益第一步样式结束*/
+
+/*填入站名及域名样式开始*/
+.gy_address{width:866px; padding:0 67px;}
+.address{background:url(../image/address_bg.png) no-repeat; width:759px; height:251px; margin:10px auto; position: relative; margin-left:52px;}
+.address h4{background:url(../image/address_top.png); width:686px; height:84px; margin: 0 auto; color:#fff; font:normal 30px/68px 'microsoft yahei'; position: absolute; left:-54px; top:18px; padding-left:180px;}
+.address button{background:url(../image/back_bg.png); border:none; color:#fff; font:bold 18px/113px 'microsoft yahei'; width:104px; height:113px; position:absolute; right:20px; bottom:-113px; cursor: pointer; text-align:center;}
+.addInfor{overflow: hidden; padding:40px 0 0 50px; width:540px; float:left;}
+.addInfor p{overflow: hidden; margin-bottom:38px; background:none;}
+.addInfor span{float:left; color:#fff; font:bold 28px/60px 'microsoft yahei'; padding-left:20px;}
+.addInfor input{float:left;}  
+.name_txt,.address_txt{background:url(../image/input_addressbg.png); width:396px; height:30px; padding:15px 10px; margin:0; font:bold 14px/31px 'microsoft yahei';}
+.address_btn{background:url(../image/next_bg.png); width:123px; height:61px; color:#fff; font:normal 24px/57px 'microsoft yahei'; margin:94px 0 0 10px; cursor: pointer; float:left;}
+.example{padding-top:20px;}
+.example h4{font:bold 18px/30px 'microsoft yahei'; color:#96bd3c; padding-left:50px;}
+.example ul{overflow: hidden; padding:10px 50px;}
+.example ul li{float:left; margin:0 20px; width:310px; line-height:24px;}
+.example ul li a{color:#333; border-bottom:1px dotted #efefef; font-size:14px;}
+.example ul li a:hover{color:#96bd3c;}
+/*填入站名及域名样式结束*/
+
+/*404寻人页面样式设置页面样式开始*/
+.gy_webs{ width:980px; overflow:hidden;}
+.beg_box{width:980px; margin:0 auto;}
+.main{ float:left; height:100%; overflow:hidden; background:#FFFFFF; border:#b6b6b6 1px solid; margin-left:20px;}
+.main b{margin:0 4px 0 10px;}
+.shang{  margin:0 auto;}
+.shang_a{ background:url(../image/left_top.png) no-repeat; width:6px; height:8px; float:left; margin:0px; border:0px; padding:0px;}
+.shang_b{width:628px; background:url(../image/shang.png) repeat-x; height:6px; float:left; border:0px; margin-left:-1px;}
+.shang_c{ background:url(../image/right_top.png) no-repeat; width:6px; height:6px; float:left;} 
+.main_center{ height:90px; overflow:hidden; border-bottom:#CCCCCC 1px solid; background:#f0f0f0; padding-bottom:10px;}
+.infor_detail{overflow:hidden; margin-top:16px; border-bottom:#CCCCCC 1px solid; padding-bottom:24px;}
+.infor_detail img{width:172px; height:230px;}
+.main_content a{color:#5f5f5f;}
+.main_cent .tel_num{ margin-top:10px; float:left; position: relative; font-size:24px; color:#e17500;}
+.tel_num img{width:50px; height:68px; border:0; position: absolute; right:10px; bottom:2px;}
+.zhong{ height:100%; margin:0 auto; overflow:hidden; margin-top:-2px; float:left;}
+.zhong_a{height:450px; float:left; width:6px; margin:0px; padding:0px; border:0px;}
+.zhong_b{width:638px; float:left; font:14px "微软雅黑"; color:#5f5f5f; margin:0px; border:0px;}
+.zhong_b_a{padding-top:10px; float:left;}
+.zhong_b_a .zhong_b_adiv{ font-family:Verdana, Arial, Helvetica, sans-serif; line-height:90px; font-size:70px; font-weight:600; font-style:italic; margin-left:20px; color:#3e3e3e; margin-right:34px;}
+.zhong_b_a d{background:none; color:#5f5f5f; font:20px/40px "微软雅黑"; text-decoration:none; font-weight:500;}
+.zhong_b_b{margin-left:10px; float:left;}
+.zhong_b_b_a{padding:1px; border:#CCCCCC 1px solid; margin-left:28px;}
+.zhong_b_c{float:left; width:410px; margin-left:12px;}
+.zhong_c{height:450px; width:6px; float:left; padding:0px; border:0px; }
+.main_content{font-size:14px; color:#8f8f8f; font-weight:700;}
+.main_content span{font-weight:lighter; font:14px/26px "微软雅黑"; color:#3e3e3e;}
+.main_content span a{font-size:14px;}
+.main_content span a:hover{font-weight:lighter; font:14px/26px "微软雅黑"; color:#95bb3d; text-decoration:underline;}
+.main_cent{font:24px/30px Arial, Helvetica, sans-serif; color:#5f5f5f; font-weight:bold; font-style:italic;}
+.bottom_link{overflow:hidden;}
+.bottom_link ul li{float:left; list-style:none; color:#95bb3d; padding:15px; font-weight:bold;}
+.bottom_link ul li a{ font:18px/40px "微软雅黑"; font-weight:500; text-decoration:none;font-weight:bold;}
+.bottom_a{background:url(../image/left_bottom.png) no-repeat; width:5px; height:6px; float:left;}
+.bottom_b{background:url(../image/xia.png) repeat-x; height:4px; float:left; margin-top:1px;}
+.bottom_c{background:url(../image/right_bottom.png) no-repeat; width:6px; height:6px; float:left;}
+.bottom_lileft{ margin-left:10px;}
+			/*设置iframe样式开始*/
+.size{ width:280px; float:right;  font:14px "微软雅黑"; color:#5f5f5f; font-weight:bold; line-height:27px; overflow:hidden; margin-right:20px; }
+.size ul{ width:280px; float:right;}
+.size ul li{ list-style:none; font-size:12px; font-family:simsun-ExtB; color:#bd6d17; font-weight:lighter; margin-bottom:8px;}
+.size_cc{width:145px; height:21px; height:22px/9; *height:22px; font-size:14px; font-family:Arial, Helvetica, sans-serif; color:#5f5f5f; margin:0px; padding:0px; *vertical-align:bottom; *margin-top:4px; -moz-box-shadow:1px 1px 1px #999 inset;  -webkit-box-shadow:1px 1px 1px #999 inset; box-shadow:1px 1px 1px #999 inset; }
+.size .botton{width:50px; padding:2px 0; height:18px; font:14px/18px Arial; color:#5f5f5f; background:#e0e0e0; vertical-align:middle; -moz-box-shadow:1px 1px 1px #FFFFFF inset;  -webkit-box-shadow:1px 1px 1px #FFFFFF inset; margin-left:4px;}
+.next_btn{float:right; padding-right:100px;}
+.next_btn input{width:123px; height:61px; background:url(../image/next_bg.png); color:#fff; font:normal 24px/61px 'microsoft yahei'; cursor: pointer;}
+			/*设置iframe样式结束*/
+/*404寻人页面样式设置页面样式结束*/
+
+/*嵌入的iframe地址及表示感谢样式开始*/
+			/*嵌入irfame样式开始*/
+.use{width:980px; margin:10px auto; position:relative; float:left;}
+.use h2{padding-left:35px;}
+.thanks{overflow: hidden; position: relative;}
+.thanks b{display: block; float:left; width:20px;}
+.thanks b.border_left{background:url(../image/thanks_lbg.png);}    
+.thanks b.border_right{background:url(../image/thanks_rbg.png);}  
+.thanks_detail{width: 1000px; float:left;}
+.thanks_detail .copy{float:left; background:#96bd3c; width:488px; height:222px;}
+.thanks_detail .copy span{color:#fff; display:block; font-size:18px; font-weight:bold; padding-top:10px; padding-left:50px; line-height: 50px;}
+.thanks_detail .copy textarea{width:400px; height:120px; margin-left:30px; padding:10px 8px; line-height:24px; font-size:14px; font-family:'Arial';}
+.thank_share{float:right; width:464px; height:222px; background:#; background:#96bd3c;}
+.thank_share span{color:#fff; display:block;  padding-top:10px; padding-left:50px; font:bold 18px/50px 'microsoft yahei';}
+.thankShare_detail input{background:url(../image/download.png) no-repeat; width:290px; height:73px; margin:30px 0 0 80px; color:#fff; font:bold 18px/73px 'microsoft yahei'; cursor: pointer;}
+.thanks .or{background:url(../image/web_bg_1.png); width:120px; height:120px; position: absolute; left:455px; top:46px; z-index:1; color:#fff; font:bold 22px/120px 'microsoft yahei'; text-align: center;}
+			/*嵌入irfame样式结束*/
+			/*表示感谢样式开始*/
+.say_thanks{overflow: hidden; position: relative;}
+.say_thanks h3{color:#96bd3c; font:bold 20px/50px 'microsoft yahei'; text-align:center;}
+.say_thanks{overflow: hidden; width:1000px;}
+.say_thanks .spread{background:#96bd3c; width:488px; height:240px; float:left;}
+.spread h4{color:#fff; font:bold 16px/30px 'microsoft yahei'; padding:10px 0 10px 110px;}
+.spread_detail{background:#fff; padding:10px; width:380px; height:140px; margin-left:30px;}
+.spread_detail p,.spread_detail p a{color:#5f5f5f; font:normal 14px/22px 'microsoft yahei';}
+.spread_detail p a:hover{color:#96bd3c}
+.say_thanks .medal{background:#96bd3c; width:464px; height:240px; float:right;}
+.medal h4{color:#fff; font:bold 16px/30px 'microsoft yahei'; padding:10px 0 10px 20px;} 
+.medal ul{overflow: hidden; padding:0 15px; width:320px; background:#fff; margin:10px 50px;}
+.medal ul li{float:left;}
+.say_thanks .house{position: absolute; top:120px; left:450px; z-index:1;}
+.laba{position: absolute; left:10px; top:33px;}
+.or{position:absolute; left:480px; top:160px; background:url(../image/web_bg_1.png); width:120px; height:120px; border:0;}
+.or em{color:#fff; font-size:24px; font-family:'microsoft yahei'; font-style:normal; display:block; width:120px; text-align:center; padding-top:40px;}
+			/*表示感谢样式结束*/
+/*嵌入的iframe地址及表示感谢样式结束*/
+
+/*没有网站邀请别人来支持样式开始*/
+.user{width:488px; float:left; background:#96bd3c; padding:10px 0; position:relative;}
+.user .or{position:absolute; left:452px; top:65px;}
+.user label{font-size:14px; color:#fff; display:block; margin-bottom:16px; vertical-align:top;}
+.user label.email_{padding-left:37px; padding-top:7px; margin-bottom:1px; font-size:16px; font-weight:bold;}
+.user input.btn{width:80px; height:30px; background:#ccc; margin-left:108px;}
+.say{width:476px; margin-left:37px;}
+.say textarea{width:300px; height:60px;}
+.e-mail,.name{margin-left:50px;}
+.e-mail input,.name input{width:175px; height:28px;}
+.share{width:444px; height:228px; padding:10px; float:right; background:#96bd3c;}
+.share_t{font-size:16px; line-height:24px; float:left; color:#fff; font-weight:bold; padding-left:37px;}
+/*没有网站邀请别人来支持样式结束*/
+
+/*底部已计入机构及最新加入机构样式开始*/
+.supports{width:960px; overflow:hidden; margin-bottom:10px;}
+.supports h3.nums{padding-left:30px; font-size:16px; line-height:40px;}
+.supports h3.nums span{font-size:14px; line-height:20px; background:#1595d4; display:inline-block; margin:0 5px; width:61px; height:20px; color:#fff; text-align:center;}
+.support{width:488px; height:208px; float:left; margin-left:10px;}
+.support h3{padding-left:30px; font-size:16px; line-height:40px;}
+.support ul{background:#e6e6e6; overflow:hidden; padding:16px;}
+.support ul li a{font-size:16px; width:100px; color:#333; text-decoration:none; line-height:24px; padding-left:8px;}
+.support ul li a:hover,.faqi ul li a:hover{color:#288efb;}
+.faqi{width:464px; height:208px; float:right; margin-left:10px;}
+.faqi h3{padding-left:30px; font-size:16px; line-height:40px;}
+.faqi ul{padding:16px; background:#e6e6e6; overflow:hidden;}
+.faqi ul li a{font-size:16px; padding-left:8px; width:100px; color:#333; text-decoration:none; line-height:24px;}
+/*底部已计入机构及最新加入机构样式结束*/
+.footerUS{overflow:hidden; width:978px; background:#fff; border:1px solid #ccc;}
+.US h2{line-height:20px;}
+.US h2 a{color:#93b939; font-family:'microsoft yahei'; font-size:16px; font-weight:bolder; margin:10px;}

@@ -1,0 +1,136 @@
+/* SLIDE HOME PAGE */
+ul#slide {overflow:visible !important; list-style-type:none; width:1000px; height:445px; left:50%; margin-left:-490px; position:absolute; /*border:solid 1px #fff;*/ margin-top:-14px;}
+
+
+/* setas do teclado */
+#SetasDoTeclado {position:absolute; margin-top:-10px; margin-left:813px; width:135px; height:100px; z-index:20;}
+#SetasDoTeclado p {margin-bottom:-3px; text-align:center; font-family:'VistaSanLig', arial, sans-serif; font-size:14px; color:#8e3ced; line-height:21px;}
+#SetasDoTeclado img {margin-top:9px;}
+#SetasDoTeclado img[alt=anterior] {margin-left:14px;}
+#SetasDoTeclado img[alt=proximo] {margin-left:-3px;}
+
+
+
+/* NAV DIV */
+#nav {width:200px; height:50px; position:absolute; left:50%; margin-left:-91px; bottom:-1px; z-index:20;}
+#nav a {background:url(/Public/images/botaoOff.bmp) center no-repeat; color:transparent; padding:16px; margin:0px -4px 0px -4px;}
+#nav a:hover {opacity:0.6;}
+#nav a.activeSlide {background:url(/Public/images/botaoOn.bmp) -2px 4px no-repeat;}
+#nav a.activeSlide:hover {opacity:1;}
+
+
+#secao1, #secao2, #secao3, #secao4, #secao5, #secao6 {
+	background-color:transparent!important;
+}  
+
+/* SLIDE 1 */
+#secao1 #inicio {margin-top:162px; margin-left:10px; width:960px; height:120px;}
+#secao1 #inicio h2, #secao1 #inicio h2 strong {text-align:center; color:#fff; font-family:'VistaSanMed', arial, sans-serif; font-size:37px; text-transform:uppercase; font-weight:normal; font-style:normal; letter-spacing:-1px;}
+#secao1 #dizeres1, #secao1 #dizeres1 span {letter-spacing:-1px; margin-top:65px; text-align:center; text-transform:uppercase; font-family:'VistaSanLig', arial, sans-serif; font-size:19px; color:#9c73d1;}
+#secao1 #dizeres1 span {color:#8e3ced !important;}
+#secao1 #guia {position:absolute; margin-top:14px; margin-left:318px;}
+
+
+
+
+
+/* SLIDE 2 */
+#secao2 div#left, #secao2 div#right {width:490px; height:445px; float:left;}
+#secao2 div#left img {margin-top:135px;}
+#secao2 div#right {margin-left:20px;}
+#secao2 div#right div#title {margin-top:60px;}
+#secao2 div#right div#title h2 {font-family:'VistaSanMed', arial, sans-serif; font-size:38px; color:#fff; font-weight:100; text-transform:uppercase; letter-spacing:-1px;} 
+#secao2 div#right div#title span {font-family:'VistaSanBoo', arial, sans-serif; font-size:17px; color:#b19ace;}
+#secao2 div#right div#descricao1 {_margin-top:45px;}
+#secao2 div#right div#descricao1 p {font-family:'VistaSanLig', arial, sans-serif; font-size:18px; color:#f3f4ef; text-transform:uppercase; line-height:30px;}
+#secao2 div#right div#descricao2 {margin-top:25px;}
+#secao2 div#right div#descricao2 p {font-family:'VistaSanLig', arial, sans-serif; font-size:16px; color:#b19ace; line-height:30px;}
+#secao2 div#right #botao {margin-top:48px;}
+#secao2 div#right #botao a {padding:19px 46px; font-family:'VistaSanBoo', arial, sans-serif; font-size:13px; color:#472273; background:url(/Public/images/b1.png) 0px 0px no-repeat; text-transform:uppercase;}
+#secao2 div#right #botao a:hover {background:url(/Public/images/b1.png) 0px -51px;}
+#secao2 div#right #botao a:active {background:url(/Public/images/b1.png) 0px -102px;}
+
+
+
+
+
+/* SLIDE 3 */
+#secao3 div#left, #secao3 div#right {width:490px; height:445px; float:left;}
+#secao3 div#left div#title {margin-top:60px;}
+#secao3 div#left div#title h2 {font-family:'VistaSanMed', arial, sans-serif; font-size:38px; color:#fff; font-weight:100; text-transform:uppercase; letter-spacing:-1px;} 
+#secao3 div#left div#title span {font-family:'VistaSanBoo', arial, sans-serif; font-size:17px; color:#b19ace;}
+#secao3 div#left div#descricao1 {margin-top:35px;}
+#secao3 div#left div#descricao1 p {font-family:'VistaSanLig', arial, sans-serif; font-size:18px; color:#f3f4ef; text-transform:uppercase; line-height:30px;}
+#secao3 div#left div#descricao2 {margin-top:15px;}
+#secao3 div#left div#descricao2 p {font-family:'VistaSanLig', arial, sans-serif; font-size:16px; color:#b19ace; line-height:30px;}
+#secao3 div#left #botao {margin-top:48px;}
+#secao3 div#left #botao a {padding:19px 51px; font-family:'VistaSanBoo', arial, sans-serif; font-size:13px; color:#472273; background:url(/Public/images/b2.png) 0px 0px no-repeat; text-transform:uppercase;}
+#secao3 div#left #botao a:hover {background:url(/Public/images/b2.png) 0px -51px;}
+#secao3 div#left #botao a:active {background:url(/Public/images/b2.png) 0px -102px;}
+#secao3 div#right #ecommerce {margin-top:60px; margin-left:-45px;}
+
+
+
+
+
+/* SLIDE 4 */
+#secao4 div#left, #secao4 div#right {width:490px; height:445px; float:left;}
+#secao4 div#left #mobile {margin-top:52px; margin-left:80px;}
+#secao4 div#right {margin-left:15px;}
+#secao4 div#right div#title {margin-top:60px;}
+#secao4 div#right div#title h2 {font-family:'VistaSanMed', arial, sans-serif; font-size:38px; color:#fff; font-weight:100; text-transform:uppercase; letter-spacing:-1px;} 
+#secao4 div#right div#title span {font-family:'VistaSanBoo', arial, sans-serif; font-size:17px; color:#b19ace;}
+#secao4 div#right div#descricao1 {margin-top:35px;}
+#secao4 div#right div#descricao1 p {font-family:'VistaSanLig', arial, sans-serif; font-size:18px; color:#f3f4ef; text-transform:uppercase; line-height:30px;}
+#secao4 div#right div#descricao2 {margin-top:15px;}
+#secao4 div#right div#descricao2 p {font-family:'VistaSanLig', arial, sans-serif; font-size:16px; color:#b19ace; line-height:30px;}
+#secao4 div#right #botao {margin-top:48px;}
+#secao4 div#right #botao a {padding:19px 47px; font-family:'VistaSanBoo', arial, sans-serif; font-size:13px; color:#472273; background:url(/Public/images/b3.png) 0px 0px no-repeat; text-transform:uppercase;}
+#secao4 div#right #botao a:hover {background:url(/Public/images/b3.png) 0px -51px;}
+#secao4 div#right #botao a:active {background:url(/Public/images/b3.png) 0px -102px;}
+#secao4 div#right #iconesPlusBotao {float:left;}
+#secao4 div#right #iconesPlusBotao #icones {float:left; margin-top:40px; margin-left:30px; margin-right:-10px;}
+#secao4 div#right #iconesPlusBotao #icones img {margin-right:26px;}
+#secao4 div#right #iconesPlusBotao #botao {float:left;}
+
+
+
+
+/* SLIDE 5 */
+#secao5 div#left, #secao5 div#right {width:490px; height:445px; float:left;}
+#secao5 div#right #aviao {position:absolute; margin-top:60px; margin-left:50px;}
+#secao5 div#left div#title {margin-top:60px;}
+#secao5 div#left div#title h2 {font-family:'VistaSanMed', arial, sans-serif; font-size:38px; color:#fff; font-weight:100; text-transform:uppercase; letter-spacing:-1px;} 
+#secao5 div#left div#title span {font-family:'VistaSanBoo', arial, sans-serif; font-size:17px; color:#b19ace;}
+#secao5 div#left div#descricao1 {margin-top:35px;}
+#secao5 div#left div#descricao1 p {font-family:'VistaSanBoo', arial, sans-serif; font-size:18px; color:#f3f4ef; text-transform:uppercase; line-height:30px;}
+#secao5 div#left div#descricao2 {margin-top:15px;}
+#secao5 div#left div#descricao2 p {margin-left:19px; font-family:'VistaSanLig', arial, sans-serif; font-size:16px; color:#b19ace; line-height:30px;}
+#secao5 div#left #botao {margin-top:48px; margin-left:19px;}
+#secao5 div#left #botao a {padding:19px 47px; font-family:'VistaSanBoo', arial, sans-serif; font-size:13px; color:#472273; background:url(/Public/images/b3.png) 0px 0px no-repeat; text-transform:uppercase;}
+#secao5 div#left #botao a:hover {background:url(/Public/images/b3.png) 0px -51px;}
+#secao5 div#left #botao a:active {background:url(/Public/images/b3.png) 0px -102px;}
+#secao5 div#left #checklist {width:234px; height:107px; margin-left:20px; margin-top:45px;}
+#secao5 div#left #checklist ul {list-style-image:url(/Public/images/check.bmp);}
+#secao5 div#left #checklist ul li {font-family:'VistaSanBoo', arial, sans-serif; font-size:14px; color:#fff; text-transform:uppercase; font-size:19px; margin-bottom:10px;}
+
+
+
+
+/* SLIDE 6 */
+#secao6 div#left, #secao6 div#right {width:490px; height:445px; float:left;}
+#secao6 div#right #sistemas {position:absolute; margin-top:45px; margin-left:58px;}
+#secao6 div#left div#title {margin-top:60px;}
+#secao6 div#left div#title h2 {font-family:'VistaSanMed', arial, sans-serif; font-size:38px; color:#fff; font-weight:100; text-transform:uppercase; letter-spacing:-1px;} 
+#secao6 div#left div#title span {font-family:'VistaSanBoo', arial, sans-serif; font-size:17px; color:#b19ace;}
+#secao6 div#left div#descricao1 {margin-top:35px;}
+#secao6 div#left div#descricao1 p {font-family:'VistaSanLig', arial, sans-serif; font-size:18px; color:#f3f4ef; text-transform:uppercase; line-height:30px;}
+#secao6 div#left div#descricao2 {margin-top:15px;}
+#secao6 div#left div#descricao2 p {font-family:'VistaSanLig', arial, sans-serif; font-size:16px; color:#b19ace; line-height:30px;}
+#secao6 div#left #botao {margin-top:48px;}
+#secao6 div#left #botao a {padding:19px 49px; font-family:'VistaSanBoo', arial, sans-serif; font-size:13px; color:#472273; background:url(/Public/images/b4.png) 0px 0px no-repeat; text-transform:uppercase;}
+#secao6 div#left #botao a:hover {background:url(/Public/images/b4.png) 0px -51px;}
+#secao6 div#left #botao a:active {background:url(/Public/images/b4.png) 0px -102px;}
+
+
+

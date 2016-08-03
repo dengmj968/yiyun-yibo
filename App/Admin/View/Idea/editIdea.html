@@ -1,0 +1,51 @@
+<include file="Public:_header" />
+<div class="con_fr ">
+	<div class="con_fr_title">
+		<span class="icon_bg_7"><i class=" icon icon_7"></i></span>
+        <a href="__APP__/Admin/Idea">用户意见</a> > <span>编辑意见</span>
+        
+	</div>
+	<div class="con_fr_des">
+        <form method="post" action="__APP__/Admin/Idea/saveEditIdea" name="adForm">
+            <input type="hidden" name="id" value="{$idea['id']}"/>
+            <div class="user_text clearfix">
+				<label class="user_title">邮箱：</label>
+				<div class="user_input">
+                    <input  name="email" id="email" class="text_mes" type="text" value="{$idea['email']}" onblur="if(this.value=='')document.getElementById('titleDiv').innerHTML='*请填写标题！';else document.getElementById('titleDiv').innerHTML='' "/>
+				</div>
+                <div class="user_des " id="" >
+					<span id="titleDiv"></span>
+				</div>
+			</div>
+            <div class="user_text clearfix">
+				<label class="user_title">描述：</label>
+				<div class="user_textarea">
+                    <textarea name="desc" id="desc" onblur="if(this.value=='')document.getElementById('descDiv').innerHTML='*请填写介绍！';else if(this.value.length >100) document.getElementById('descDiv').innerHTML='*描述请保持在100字以内！'; else document.getElementById('descDiv').innerHTML='' ">{$idea['desc']}</textarea>                    
+				</div>
+                <div class="user_des " id="" >
+					<span id="descDiv"></span>
+				</div>
+			</div>
+            <div class="user_btn clearfix">
+                <a class="user_btn_save" href="javascript:void(0);" onclick="run();">确认修改</a>
+            </div>			
+		</form>
+    </div>
+</div>
+
+<include file="Public:_footer" />
+<script>
+    function showDiv(obj) {
+        $(obj).slideDown("fast");
+    }
+
+    function delPic(){
+        $('#logopic').attr('src', '');
+        $('#logo').val('');
+s   }
+
+    function run() {
+        document.forms.adForm.submit();
+    }
+
+</script>

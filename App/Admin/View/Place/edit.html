@@ -1,0 +1,135 @@
+<include file="Public:_header" />
+<style>
+    .yanzheng{color: red}
+</style>
+
+<div class="con_fr ">
+	<div class="con_fr_title">
+		
+		<span class="icon_bg_7"><i class=" icon icon_7"></i></span>
+        <a href="__APP__/Admin/Place/index">站长广告位</a> > <span>编辑广告位</span>
+        
+	</div>
+	<div class="con_fr_des">
+        <form method="post" action="__APP__/Admin/Place/saveEdit"  name="myForm">
+             <input type="hidden" name="id" value="{$placeInfo.id}"/>
+            <div class="user_text clearfix">
+				<label class="user_title">名称：</label>
+				<div class="user_input">
+                    <input  name="name" id="name" class="text_mes" type="text" value="{$placeInfo.name}" onblur="if(this.value=='')document.getElementById('titleDiv').innerHTML='*请填写标题！';else document.getElementById('titleDiv').innerHTML='' "/>
+				</div>
+                <div class="user_des " id="" >
+					<span id="titleDiv"></span>
+				</div>
+			</div>
+			<div class="user_text clearfix">
+				<label class="user_title"></label>
+                <div class="user_radio">
+                    <input name="placeType" type="radio" value="1"  onclick='showAllSize();' <eq name="placeInfo.placeType" value="1">checked</eq> />网站
+                    <input name="placeType" type="radio" value="2" onclick='selectSize();' <eq name="placeInfo.placeType" value="2">checked</eq>/>博客
+    			</div>
+			</div>
+			<div class="user_text clearfix">
+				<label class="user_title">关键字</label>
+                <div class="user_input">
+					<input name="keywords" id="keywords" class="biaoti"  type="text" value="{$placeInfo.keywords}"  onfocus="showDiv('#sysKeywords');">
+					<input type="hidden" name='keyword_ids' id="keywords_ids" value="{$placeInfo.keyword_ids}">						
+    			</div>
+			</div>
+			<div class="user_text clearfix" id="sysKeywords" style="display:none">
+				<div class="user_tags" >
+					<volist name="categoryList" id="vo">
+						<a href="javascript:void(0);" ><span class="gjz bqtou" onclick='selectCate(this);return false;'  info="{$vo.id}">{$vo.category_name}</span></a>
+					</volist>
+				</div>
+			</div>
+			<div class="user_text clearfix">
+				<label class="user_title">状态：</label>
+                <div class="user_radio">
+                   <input name="status" type="radio" value="2" <eq name="placeInfo.status" value="2">checked</eq>/>使用中
+                    <input name="status" type="radio" value="3" <eq name="placeInfo.status" value="3">checked</eq>/>已停用
+    			</div>
+			</div>
+            <div class="user_text clearfix">
+				<label class="user_title">LOGO：</label>
+                <div class="user_photo">
+                    <div id="logo_logo" ></div>
+                    <div >
+                        <img src='{$placeInfo.pic}' id="logopic" align="absmiddle"  alt='缩略图' width="300" height="200" />                   
+                    </div>
+    			</div>
+			</div>
+
+            <div class="user_btn clearfix">
+                <a class="user_btn_save" href="javascript:void(0);" onclick="run();">确认修改</a>
+            </div>			
+		</form>
+    </div>
+</div>
+
+<include file="Public:_footer" />
+<script>
+function getPic(size_id){
+	$.get('__APP__/Admin/Place/getPic', {size_id:size_id}, function (data) {
+        if (data) {
+             $("#showImages").attr("src",data.data.pic);
+        }
+    })
+}
+function showDiv(obj){
+	$(obj).slideDown("fast");
+}
+		function selectCate(obj){
+			var val = obj.innerHTML;
+			var id = obj.getAttribute('info');
+			var inputVal = $("#keywords").val();
+			var inputInfo = $("#keywords_ids").val();
+			var patt = new RegExp(val);
+			if( patt.test( inputVal ) ){
+				return false;
+			}else{
+				if(inputVal != ""){
+					inputVal = inputVal+','+val;
+					inputInfo = inputInfo+','+id;
+				}else{
+					inputVal = val;
+					inputInfo = id;
+				}
+			}
+			document.getElementById('keywords').value = inputVal;
+			document.getElementById('keywords_ids').value = inputInfo
+		}
+		//博客和空间固定尺寸
+		function selectSize(){
+			$("select[name='size_id'] option").each(function(){
+				if($(this).attr('info') != '190x350' ){
+					$(this).hide();
+				}else{
+					$(this).attr("selected",'selected');
+				}
+				
+			})
+			
+			var size_id =$("select[name='size_id'] option:selected").val();
+			getPic(size_id);
+			
+		}
+		function showAllSize(){
+			$("select[name='size_id'] option").each(function(){
+				$(this).show();
+			})
+		}
+		
+		function run(){
+			var name = $("#name").val();
+			if(name == ''){
+				$("#name").focus();
+				document.getElementById('titleDiv').innerHTML='*请填写标题！';
+				return false;
+			}else{
+				document.getElementById('titleDiv').innerHTML='';
+			}
+			document.forms.myForm.submit();
+		}
+
+</script>
